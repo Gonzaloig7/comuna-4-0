@@ -141,6 +141,20 @@ export default function MapaComuna() {
         )
       })}
 
+      {/* ── Compás Norte ─────────────────────────────────── */}
+      <g transform="translate(462, 52)">
+        <circle cx="0" cy="0" r="13" fill="white" opacity="0.50" />
+        <circle cx="0" cy="0" r="13" fill="none" stroke="#C4B49A" strokeWidth="0.8" />
+        {/* Flecha Norte */}
+        <polygon points="0,-11 -4,-3 0,-6 4,-3" fill="#6b5040" />
+        {/* Flecha Sur */}
+        <polygon points="0,11 -4,3 0,6 4,3" fill="#C4B49A" />
+        <line x1="0" y1="-11" x2="0" y2="11" stroke="#C4B49A" strokeWidth="0.5" />
+        <line x1="-11" y1="0" x2="11" y2="0" stroke="#C4B49A" strokeWidth="0.5" />
+        <text x="0" y="-15" textAnchor="middle" fontSize="7.5" fill="#6b5040"
+          fontFamily="'Bebas Neue', Impact, sans-serif">N</text>
+      </g>
+
       {/* ── Marco decorativo ─────────────────────────────── */}
       <rect x="3" y="3" width="514" height="434" fill="none"
         stroke="#C4B49A" strokeWidth="1" rx="4" />
