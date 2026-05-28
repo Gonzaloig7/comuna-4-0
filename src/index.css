@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #faf7f2;
+  color: #1c1917;
+  margin: 0;
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+/* ── SVG map interactions ───────────────────────────────── */
+
+.barrio-region {
+  cursor: pointer;
+}
+
+.barrio-region polygon {
+  transition: opacity 0.18s ease, filter 0.18s ease;
+}
+
+.barrio-region:hover polygon:first-child {
+  opacity: 0.95 !important;
+  filter: brightness(1.1);
+}
+
+.plaza-marker {
+  cursor: pointer;
+}
+
+.plaza-marker circle,
+.plaza-marker text {
+  transition: transform 0.14s ease;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+.plaza-marker:hover circle {
+  transform: scale(1.28);
+}
+
+/* ── Modal ──────────────────────────────────────────────── */
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.97) translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.modal-content {
+  animation: fadeIn 0.2s ease;
+}
+
+/* ── Page entrance ──────────────────────────────────────── */
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page-enter {
+  animation: slideUp 0.28s ease;
+}

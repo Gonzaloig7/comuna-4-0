@@ -1,0 +1,186 @@
+{
+  "config": {
+    "formularioReclamosUrl": "https://docs.google.com/forms/d/e/1FAIpQLSd0lasd_NJaoZXfEGgod9K-2JpKxMugkxDBZa2WbWQv1ul9JQ/viewform?usp=publish-editor",
+    "titulo": "Comuna 4 – Mapa Vecinal",
+    "subtitulo": "Recorremos las plazas de La Boca, Barracas, Parque Patricios y Nueva Pompeya. Escuchamos a los vecinos. Llevamos sus voces a la Legislatura porteña."
+  },
+  "barrios": [
+    {
+      "id": "la-boca",
+      "nombre": "La Boca",
+      "colorPrimario": "#1C5BA8",
+      "colorSecundario": "#F5D000",
+      "descripcion": "Barrio histórico del sur porteño, cuna del tango y el fútbol argentino.",
+      "plazas": [
+        {
+          "id": "plaza-solis",
+          "nombre": "Plaza Solís",
+          "svgX": 250,
+          "svgY": 285,
+          "visitada": true,
+          "descripcion": "Plaza histórica en el corazón de La Boca. Punto de encuentro de vecinos y sede de actividades culturales barriales.",
+          "videos": {
+            "instagram": "https://www.instagram.com/PLACEHOLDER",
+            "tiktok": "https://www.tiktok.com/PLACEHOLDER",
+            "youtube": "https://www.youtube.com/PLACEHOLDER"
+          }
+        },
+        {
+          "id": "parque-lezama",
+          "nombre": "Parque Lezama",
+          "svgX": 130,
+          "svgY": 175,
+          "visitada": true,
+          "descripcion": "El pulmón verde de La Boca. Anfiteatro, museo histórico y mucho movimiento vecinal.",
+          "videos": {
+            "instagram": "https://www.instagram.com/PLACEHOLDER",
+            "tiktok": null,
+            "youtube": "https://www.youtube.com/PLACEHOLDER"
+          }
+        },
+        {
+          "id": "vuelta-de-rocha",
+          "nombre": "Vuelta de Rocha",
+          "svgX": 405,
+          "svgY": 340,
+          "visitada": false,
+          "descripcion": "Icónico rincón sobre el Riachuelo y corazón turístico de La Boca.",
+          "videos": null
+        }
+      ]
+    },
+    {
+      "id": "barracas",
+      "nombre": "Barracas",
+      "colorPrimario": "#C2185B",
+      "colorSecundario": "#F48FB1",
+      "descripcion": "Barrio de arraigo fabril y murgas, con arquitectura industrial y cultura popular vibrante.",
+      "plazas": [
+        {
+          "id": "plaza-colombia",
+          "nombre": "Plaza Colombia",
+          "svgX": 215,
+          "svgY": 245,
+          "visitada": true,
+          "descripcion": "Una de las plazas más queridas de Barracas, con árboles centenarios y lugar de encuentro para los vecinos.",
+          "videos": {
+            "instagram": "https://www.instagram.com/PLACEHOLDER",
+            "tiktok": "https://www.tiktok.com/PLACEHOLDER",
+            "youtube": null
+          }
+        },
+        {
+          "id": "parque-espana",
+          "nombre": "Parque España",
+          "svgX": 140,
+          "svgY": 315,
+          "visitada": false,
+          "descripcion": "Espacio verde sobre la Av. Martín García, con fuente central y juegos infantiles.",
+          "videos": null
+        },
+        {
+          "id": "plaza-de-los-patricios",
+          "nombre": "Plaza de los Patricios",
+          "svgX": 355,
+          "svgY": 195,
+          "visitada": false,
+          "descripcion": "Plaza con historia ligada al Regimiento de Patricios y al barrio obrero.",
+          "videos": null
+        },
+        {
+          "id": "parque-pereyra",
+          "nombre": "Parque Pereyra",
+          "svgX": 350,
+          "svgY": 315,
+          "visitada": true,
+          "descripcion": "Espacio verde de Barracas con mucho movimiento vecinal y vida de barrio.",
+          "videos": {
+            "instagram": "https://www.instagram.com/p/DY3B9R1Obwu/?hl=es%2F",
+            "tiktok": null,
+            "youtube": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "parque-patricios",
+      "nombre": "Parque Patricios",
+      "colorPrimario": "#B71C1C",
+      "colorSecundario": "#FFCDD2",
+      "descripcion": "Barrio del sur con identidad futbolera, sede de Huracán y polo tecnológico emergente.",
+      "plazas": [
+        {
+          "id": "parque-los-patricios",
+          "nombre": "Parque de los Patricios",
+          "svgX": 250,
+          "svgY": 305,
+          "visitada": true,
+          "descripcion": "Gran pulmón verde del barrio, con canchas, juegos y el espíritu de la comunidad.",
+          "videos": {
+            "instagram": "https://www.instagram.com/p/DYpKEO8Owkp/?hl=es%2F",
+            "tiktok": null,
+            "youtube": null
+          }
+        },
+        {
+          "id": "plaza-martin-fierro",
+          "nombre": "Plaza Martín Fierro",
+          "svgX": 115,
+          "svgY": 195,
+          "visitada": false,
+          "descripcion": "Plaza arbolada con homenaje al poema nacional, en el corazón del barrio.",
+          "videos": null
+        },
+        {
+          "id": "plaza-mexico",
+          "nombre": "Plaza México",
+          "svgX": 375,
+          "svgY": 195,
+          "visitada": false,
+          "descripcion": "Plaza de barrio con feria semanal y actividades vecinales.",
+          "videos": null
+        }
+      ]
+    },
+    {
+      "id": "nueva-pompeya",
+      "nombre": "Nueva Pompeya",
+      "colorPrimario": "#212121",
+      "colorSecundario": "#EEEEEE",
+      "descripcion": "Barrio del extremo sur, de raíces inmigrantes y vocación obrera, al borde del Riachuelo.",
+      "plazas": [
+        {
+          "id": "plaza-de-las-misiones",
+          "nombre": "Plaza de las Misiones",
+          "svgX": 180,
+          "svgY": 200,
+          "visitada": false,
+          "descripcion": "Plaza céntrica del barrio, punto de encuentro y actividades comunitarias.",
+          "videos": null
+        },
+        {
+          "id": "parque-roca",
+          "nombre": "Parque Roca",
+          "svgX": 355,
+          "svgY": 320,
+          "visitada": true,
+          "descripcion": "Gran espacio verde con canchas de fútbol, pistas de atletismo y actividades al aire libre.",
+          "videos": {
+            "instagram": "https://www.instagram.com/PLACEHOLDER",
+            "tiktok": null,
+            "youtube": "https://www.youtube.com/PLACEHOLDER"
+          }
+        },
+        {
+          "id": "plaza-centenario-pompeya",
+          "nombre": "Plaza Centenario",
+          "svgX": 135,
+          "svgY": 100,
+          "visitada": false,
+          "descripcion": "Plaza histórica del barrio Nueva Pompeya, con árbol centenario y memoria local.",
+          "videos": null
+        }
+      ]
+    }
+  ]
+}
