@@ -2,32 +2,42 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import data from '../data/comuna4.json'
 
-// Polígonos con bordes compartidos exactos. Riachuelo sigue el borde sur/este.
+// Polígonos a escala basados en la geografía real de la Comuna 4.
+// Layout (norte arriba):
+//   Parque Patricios → noroeste   (limita con San Cristóbal al norte, Barracas al este, NP al sur)
+//   Nueva Pompeya   → suroeste   (debajo de PP, limita con Barracas al este, Riachuelo al sur)
+//   Barracas        → centro     (el más grande, abarca todo el largo N-S)
+//   La Boca         → noreste/este (barrio costero, Río de la Plata al este, Riachuelo al sur)
+// Límite PP/NP – Barracas: línea vertical en x=192 (Av. Zavaleta → Amancio Alcorta)
+// Límite Barracas – La Boca: diagonal (Av. Suárez/Olavarría/Almirante Brown)
 const BARRIOS_MAPA = [
   {
     id: 'parque-patricios',
-    points: '50,35 470,35 470,195 50,195',
-    labelX: 260,
-    labelY: 110,
-  },
-  {
-    id: 'la-boca',
-    // Borde NE (Río de la Plata) + curva SE (Riachuelo) + borde NO compartido con Barracas
-    points: '320,195 470,195 480,265 476,315 470,355 455,382 438,400 415,412 390,420 365,418 358,415 290,325',
-    labelX: 400,
-    labelY: 310,
-  },
-  {
-    id: 'barracas',
-    points: '140,195 320,195 290,325 358,415 320,420 285,422 255,422 242,420 195,418 140,408',
-    labelX: 245,
-    labelY: 308,
+    // Rectángulo NO: x 28-192, y 28-240
+    points: '28,28 192,28 192,240 28,240',
+    labelX: 110,
+    labelY: 134,
   },
   {
     id: 'nueva-pompeya',
-    points: '50,195 140,195 140,408 115,418 75,422 50,422',
-    labelX: 95,
-    labelY: 308,
+    // SO, debajo de PP: x 28-192, y 240-412 + curva Riachuelo
+    points: '28,240 192,240 192,412 166,419 126,421 80,421 28,419',
+    labelX: 100,
+    labelY: 340,
+  },
+  {
+    id: 'barracas',
+    // Centro (mayor barrio): x 192-385, y 28-412 + curva Riachuelo
+    points: '192,28 385,28 390,170 384,308 372,380 344,406 310,416 280,420 250,420 220,418 200,414 192,412 192,28',
+    labelX: 285,
+    labelY: 215,
+  },
+  {
+    id: 'la-boca',
+    // Este costero: x 385-506, y 28-421 + costa Río de la Plata + Riachuelo
+    points: '385,28 506,28 510,148 508,285 502,358 490,388 464,410 437,419 409,421 382,419 360,413 344,406 372,380 384,308 390,170 385,28',
+    labelX: 440,
+    labelY: 228,
   },
 ]
 
@@ -58,21 +68,22 @@ export default function MapaComuna() {
       </defs>
 
       {/* ── Río de la Plata / Riachuelo ────────────────────── */}
-      {/* El path traza exactamente el borde exterior de los polígonos de barrio */}
+      {/* Path traza exactamente el borde exterior de los 4 polígonos de barrio */}
       <path
-        d="M 0,422 L 50,422 L 75,422 L 115,418 L 140,408
-           L 195,418 L 242,420 L 255,422 L 285,422 L 320,420
-           L 358,415 L 365,418 L 390,420 L 415,412 L 438,400
-           L 455,382 L 470,355 L 476,315 L 480,265 L 470,195
-           L 520,195 L 520,440 L 0,440 Z"
+        d="M 0,419
+           L 28,419 L 80,421 L 126,421 L 166,419 L 192,412
+           L 200,414 L 220,418 L 250,420 L 280,420 L 310,416 L 344,406
+           L 360,413 L 382,419 L 409,421 L 437,419 L 464,410 L 490,388
+           L 502,358 L 508,285 L 510,148 L 506,28
+           L 520,28 L 520,440 L 0,440 Z"
         fill="#89C9DD"
         opacity="0.60"
         filter="url(#water-wobble)"
       />
-      <text x="240" y="433" fontSize="8" fill="#4A90A4" textAnchor="middle"
+      <text x="245" y="434" fontSize="8" fill="#4A90A4" textAnchor="middle"
         fontFamily="'Lora', Georgia, serif" fontStyle="italic">Riachuelo</text>
-      <text x="502" y="240" fontSize="7.5" fill="#4A90A4" textAnchor="middle"
-        transform="rotate(90, 502, 240)"
+      <text x="515" y="230" fontSize="7.5" fill="#4A90A4" textAnchor="middle"
+        transform="rotate(90, 515, 230)"
         fontFamily="'Lora', Georgia, serif" fontStyle="italic">Río de la Plata</text>
 
       {/* ── Barrios ──────────────────────────────────────── */}
@@ -142,7 +153,7 @@ export default function MapaComuna() {
       })}
 
       {/* ── Compás Norte ─────────────────────────────────── */}
-      <g transform="translate(462, 52)">
+      <g transform="translate(476, 52)">
         <circle cx="0" cy="0" r="13" fill="white" opacity="0.50" />
         <circle cx="0" cy="0" r="13" fill="none" stroke="#C4B49A" strokeWidth="0.8" />
         {/* Flecha Norte */}
