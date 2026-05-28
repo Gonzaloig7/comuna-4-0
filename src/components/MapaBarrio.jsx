@@ -2,200 +2,236 @@ import { useState } from 'react'
 import PlazaModal from './PlazaModal.jsx'
 import data from '../data/comuna4.json'
 
-// Colores de estado de plaza
 const COLOR_VISITADA = '#22c55e'
 const COLOR_NO_VISITADA = '#9ca3af'
+const PAPEL = '#f5ede0'
+const AGUA = '#89C9DD'
 
-// ── Fondos SVG por barrio ────────────────────────────────
-// TODO: reemplazar cada función con el SVG definitivo del diseñador.
-// Todas usan viewBox "0 0 500 400".
-// Para reemplazar: borrá el contenido de la función y pegá el SVG del diseñador
-// dentro del <g> correspondiente. Las marcas de plazas se superponen automáticamente.
-
+// ── La Boca ──────────────────────────────────────────────
+// La Boca tiene una grilla rotada ~43° (alineada con el Almirante Brown).
+// Las calles transversales son perpendiculares a Brown.
 function LaBocaBackground() {
   return (
     <g>
-      {/* Fondo */}
-      <rect width="500" height="400" fill="#eef4ff" rx="4" />
+      <rect width="500" height="400" fill="#eff4f9" rx="4" />
 
-      {/* Riachuelo / agua (sureste) */}
+      {/* Riachuelo y curva SE */}
       <path
-        d="M 370,295 Q 440,335 488,375 L 500,400 L 410,400 Q 390,380 360,340 Z"
-        fill="#89C9DD"
-        opacity="0.65"
+        d="M 372,348 Q 420,330 468,290 L 500,270 L 500,400 L 0,400 L 0,395 Z"
+        fill={AGUA} opacity="0.55"
       />
-      <text x="448" y="390" fontSize="7" fill="#4A90A4" textAnchor="middle">
-        Riachuelo
-      </text>
+      <text x="450" y="393" fontSize="7" fill="#4A90A4" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif" fontStyle="italic">Riachuelo</text>
 
-      {/* Av. Paseo Colón — eje N-S, oeste */}
-      <line x1="88" y1="18" x2="88" y2="375" stroke="#1C5BA8" strokeWidth="3.5" strokeLinecap="round" />
-      <text x="88" y="11" fontSize="7.5" fill="#1C5BA8" textAnchor="middle">
-        Av. Paseo Colón
-      </text>
+      {/* Puerto Madero / Río de la Plata (NE) */}
+      <path d="M 470,15 L 500,15 L 500,270 L 468,290 L 470,220 L 472,150 L 470,15 Z"
+        fill={AGUA} opacity="0.40" />
+      <text x="487" y="155" fontSize="6.5" fill="#4A90A4" textAnchor="middle"
+        transform="rotate(90,487,155)"
+        fontFamily="'Lora',Georgia,serif" fontStyle="italic">Puerto Madero</text>
 
-      {/* Av. Almirante Brown — diagonal NW→SE */}
-      <line x1="88" y1="75" x2="390" y2="358" stroke="#1C5BA8" strokeWidth="3.5" strokeLinecap="round" />
-      <text
-        x="230"
-        y="195"
-        fontSize="7.5"
-        fill="#1C5BA8"
-        textAnchor="middle"
-        transform="rotate(43, 230, 195)"
-      >
-        Av. Almirante Brown
-      </text>
+      {/* ── Calles transversales (perpendiculares a Brown, ángulo ~-47°) ── */}
+      {/* Dr. del Valle Iberlucea */}
+      <line x1="295" y1="18" x2="88" y2="228" stroke="#b8cfe8" strokeWidth="1.3" />
+      <text x="198" y="116" fontSize="6.5" fill="#7aa0c8" textAnchor="middle"
+        transform="rotate(-47,198,116)" fontFamily="'Lora',Georgia,serif">Dr. del Valle Iberlucea</text>
 
-      {/* Av. Pedro de Mendoza — ribera sur */}
-      <line x1="88" y1="358" x2="470" y2="372" stroke="#1C5BA8" strokeWidth="3" strokeLinecap="round" />
-      <text x="280" y="351" fontSize="7.5" fill="#1C5BA8" textAnchor="middle">
-        Av. Pedro de Mendoza
-      </text>
+      {/* Brandsen */}
+      <line x1="356" y1="55" x2="88" y2="340" stroke="#b8cfe8" strokeWidth="1.3" />
+      <text x="230" y="196" fontSize="6.5" fill="#7aa0c8" textAnchor="middle"
+        transform="rotate(-47,230,196)" fontFamily="'Lora',Georgia,serif">Brandsen</text>
 
-      {/* Calles secundarias */}
-      <line x1="88" y1="180" x2="310" y2="198" stroke="#b0c4de" strokeWidth="1.2" />
-      <line x1="88" y1="270" x2="385" y2="295" stroke="#b0c4de" strokeWidth="1.2" />
-      <line x1="195" y1="75" x2="195" y2="360" stroke="#b0c4de" strokeWidth="1" strokeDasharray="4,3" />
-      <line x1="305" y1="75" x2="305" y2="300" stroke="#b0c4de" strokeWidth="1" strokeDasharray="4,3" />
+      {/* Suárez */}
+      <line x1="415" y1="112" x2="148" y2="396" stroke="#b8cfe8" strokeWidth="1.3" />
+      <text x="296" y="268" fontSize="6.5" fill="#7aa0c8" textAnchor="middle"
+        transform="rotate(-47,296,268)" fontFamily="'Lora',Georgia,serif">Suárez</text>
+
+      {/* Olavarría (secundaria, punteada) */}
+      <line x1="460" y1="162" x2="204" y2="397" stroke="#b8cfe8" strokeWidth="1"
+        strokeDasharray="3,2" />
+
+      {/* ── Avenidas principales ── */}
+      {/* Av. Paseo Colón */}
+      <line x1="88" y1="15" x2="88" y2="372" stroke="#1C5BA8" strokeWidth="3.5" strokeLinecap="round" />
+      <text x="88" y="9" fontSize="7" fill="#1C5BA8" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif">Av. Paseo Colón</text>
+
+      {/* Av. Almirante Brown */}
+      <line x1="88" y1="75" x2="390" y2="355" stroke="#1C5BA8" strokeWidth="3.5" strokeLinecap="round" />
+      <text x="224" y="196" fontSize="7" fill="#1C5BA8" textAnchor="middle"
+        transform="rotate(43,224,196)" fontFamily="'Lora',Georgia,serif">Av. Almirante Brown</text>
+
+      {/* Av. Pedro de Mendoza */}
+      <line x1="88" y1="354" x2="468" y2="368" stroke="#1C5BA8" strokeWidth="2.5" strokeLinecap="round" />
+      <text x="278" y="346" fontSize="6.5" fill="#1C5BA8" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif">Av. Pedro de Mendoza</text>
+
+      {/* ── Landmark: La Bombonera ── */}
+      <rect x="182" y="167" width="24" height="18" fill="#1C5BA8" opacity="0.20" rx="2" />
+      <text x="194" y="193" fontSize="5.5" fill="#1C5BA8" opacity="0.65" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif">La Bombonera</text>
     </g>
   )
 }
 
+// ── Barracas ─────────────────────────────────────────────
 function BarracasBackground() {
   return (
     <g>
-      {/* Fondo */}
-      <rect width="500" height="400" fill="#fff0f7" rx="4" />
+      <rect width="500" height="400" fill="#fdf0f5" rx="4" />
 
-      {/* Av. Montes de Oca — N-S central */}
-      <line x1="218" y1="18" x2="218" y2="388" stroke="#C2185B" strokeWidth="3.5" strokeLinecap="round" />
-      <text x="218" y="11" fontSize="7.5" fill="#C2185B" textAnchor="middle">
-        Av. Montes de Oca
-      </text>
+      {/* Riachuelo (sur) */}
+      <path d="M 0,372 Q 90,362 180,368 Q 270,374 360,370 Q 420,366 500,372 L 500,400 L 0,400 Z"
+        fill={AGUA} opacity="0.55" />
+      <text x="250" y="394" fontSize="7" fill="#4A90A4" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif" fontStyle="italic">Riachuelo</text>
 
-      {/* Av. Caseros — E-O norte */}
+      {/* ── Calles secundarias ── */}
+      <line x1="22" y1="168" x2="478" y2="168" stroke="#f4c4d5" strokeWidth="1" strokeDasharray="4,3" />
+      <line x1="22" y1="230" x2="478" y2="230" stroke="#f4c4d5" strokeWidth="1" strokeDasharray="4,3" />
+      <line x1="22" y1="310" x2="478" y2="310" stroke="#f4c4d5" strokeWidth="1" strokeDasharray="4,3" />
+      <line x1="128" y1="18" x2="128" y2="370" stroke="#f4c4d5" strokeWidth="1" strokeDasharray="4,3" />
+
+      {/* ── Avenidas secundarias ── */}
+      {/* Av. Vélez Sársfield */}
+      <line x1="438" y1="18" x2="438" y2="370" stroke="#e2829a" strokeWidth="2" strokeLinecap="round" />
+      <text x="438" y="11" fontSize="6.5" fill="#C2185B" opacity="0.75" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif">Vélez Sársfield</text>
+
+      {/* Av. Gral. Tomás de Iriarte */}
+      <line x1="22" y1="348" x2="478" y2="348" stroke="#e2829a" strokeWidth="2" strokeLinecap="round" />
+      <text x="355" y="340" fontSize="6.5" fill="#C2185B" opacity="0.75" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif">Av. Gral. T. de Iriarte</text>
+
+      {/* ── Avenidas principales ── */}
+      {/* Av. Montes de Oca */}
+      <line x1="218" y1="18" x2="218" y2="370" stroke="#C2185B" strokeWidth="3.5" strokeLinecap="round" />
+      <text x="218" y="11" fontSize="7" fill="#C2185B" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif">Av. Montes de Oca</text>
+
+      {/* Av. Caseros */}
       <line x1="22" y1="128" x2="478" y2="128" stroke="#C2185B" strokeWidth="3.5" strokeLinecap="round" />
-      <text x="380" y="120" fontSize="7.5" fill="#C2185B" textAnchor="middle">
-        Av. Caseros
-      </text>
+      <text x="380" y="120" fontSize="7" fill="#C2185B" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif">Av. Caseros</text>
 
-      {/* Av. Regimiento de Patricios — N-S este */}
-      <line x1="348" y1="18" x2="348" y2="388" stroke="#C2185B" strokeWidth="3" strokeLinecap="round" />
-      <text x="348" y="11" fontSize="7.5" fill="#C2185B" textAnchor="middle">
-        Av. Reg. de Patricios
-      </text>
+      {/* Av. Regimiento de Patricios */}
+      <line x1="348" y1="18" x2="348" y2="370" stroke="#C2185B" strokeWidth="3" strokeLinecap="round" />
+      <text x="348" y="11" fontSize="6.5" fill="#C2185B" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif">Av. Reg. de Patricios</text>
 
-      {/* Av. Martín García — diagonal SO */}
+      {/* Av. Martín García (diagonal SO) */}
       <line x1="22" y1="252" x2="218" y2="385" stroke="#C2185B" strokeWidth="2.5" strokeLinecap="round" />
-      <text
-        x="92"
-        y="345"
-        fontSize="7.5"
-        fill="#C2185B"
-        textAnchor="middle"
-        transform="rotate(32, 92, 345)"
-      >
-        Av. Martín García
-      </text>
-
-      {/* Calles secundarias */}
-      <line x1="22" y1="230" x2="478" y2="230" stroke="#f48fb1" strokeWidth="1" strokeDasharray="4,3" />
-      <line x1="22" y1="315" x2="478" y2="315" stroke="#f48fb1" strokeWidth="1" strokeDasharray="4,3" />
-      <line x1="128" y1="18" x2="128" y2="388" stroke="#f48fb1" strokeWidth="1" strokeDasharray="4,3" />
+      <text x="96" y="344" fontSize="6.5" fill="#C2185B" textAnchor="middle"
+        transform="rotate(32,96,344)" fontFamily="'Lora',Georgia,serif">Av. Martín García</text>
     </g>
   )
 }
 
+// ── Parque Patricios ─────────────────────────────────────
 function ParquePatriciosBackground() {
   return (
     <g>
-      {/* Fondo */}
-      <rect width="500" height="400" fill="#fff5f5" rx="4" />
+      <rect width="500" height="400" fill="#fdf0f0" rx="4" />
 
-      {/* Av. Caseros — E-O norte */}
+      {/* ── Calles secundarias ── */}
+      <line x1="22" y1="165" x2="478" y2="165" stroke="#f5a8a8" strokeWidth="1" strokeDasharray="4,3" />
+      <line x1="22" y1="285" x2="478" y2="285" stroke="#f5a8a8" strokeWidth="1" strokeDasharray="4,3" />
+      <line x1="98" y1="18" x2="98" y2="388" stroke="#f5a8a8" strokeWidth="1" strokeDasharray="4,3" />
+      <line x1="268" y1="18" x2="268" y2="388" stroke="#f5a8a8" strokeWidth="1" strokeDasharray="4,3" />
+
+      {/* ── Área verde: Parque de los Patricios ── */}
+      <rect x="180" y="108" width="150" height="72" fill="#86efac" opacity="0.40" rx="4" />
+      <text x="255" y="150" fontSize="7" fill="#15803d" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif" fontStyle="italic">Parque de los Patricios</text>
+
+      {/* ── Avenidas secundarias ── */}
+      {/* Av. Amancio Alcorta */}
+      <line x1="432" y1="18" x2="432" y2="388" stroke="#e57373" strokeWidth="2" strokeLinecap="round" />
+      <text x="432" y="11" fontSize="6.5" fill="#B71C1C" opacity="0.75" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif">Av. Alcorta</text>
+
+      {/* ── Avenidas principales ── */}
+      {/* Av. Caseros */}
       <line x1="22" y1="105" x2="478" y2="105" stroke="#B71C1C" strokeWidth="3.5" strokeLinecap="round" />
-      <text x="118" y="97" fontSize="7.5" fill="#B71C1C" textAnchor="middle">
-        Av. Caseros
-      </text>
+      <text x="118" y="97" fontSize="7" fill="#B71C1C" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif">Av. Caseros</text>
 
-      {/* Av. Chiclana — E-O centro */}
+      {/* Av. Chiclana */}
       <line x1="22" y1="228" x2="478" y2="228" stroke="#B71C1C" strokeWidth="3.5" strokeLinecap="round" />
-      <text x="118" y="220" fontSize="7.5" fill="#B71C1C" textAnchor="middle">
-        Av. Chiclana
-      </text>
+      <text x="118" y="220" fontSize="7" fill="#B71C1C" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif">Av. Chiclana</text>
 
-      {/* Av. Centenera — N-S oeste */}
+      {/* Av. Sáenz */}
+      <line x1="22" y1="345" x2="478" y2="345" stroke="#B71C1C" strokeWidth="2.5" strokeLinecap="round" />
+      <text x="118" y="337" fontSize="7" fill="#B71C1C" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif">Av. Sáenz</text>
+
+      {/* Av. Centenera */}
       <line x1="192" y1="18" x2="192" y2="388" stroke="#B71C1C" strokeWidth="3" strokeLinecap="round" />
-      <text x="192" y="11" fontSize="7.5" fill="#B71C1C" textAnchor="middle">
-        Av. Centenera
-      </text>
+      <text x="192" y="11" fontSize="7" fill="#B71C1C" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif">Av. Centenera</text>
 
-      {/* Av. Colonia — N-S este */}
+      {/* Av. Colonia */}
       <line x1="342" y1="18" x2="342" y2="388" stroke="#B71C1C" strokeWidth="3" strokeLinecap="round" />
-      <text x="342" y="11" fontSize="7.5" fill="#B71C1C" textAnchor="middle">
-        Av. Colonia
-      </text>
+      <text x="342" y="11" fontSize="7" fill="#B71C1C" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif">Av. Colonia</text>
 
-      {/* Calles secundarias */}
-      <line x1="22" y1="168" x2="478" y2="168" stroke="#ef9a9a" strokeWidth="1" strokeDasharray="4,3" />
-      <line x1="22" y1="310" x2="478" y2="310" stroke="#ef9a9a" strokeWidth="1" strokeDasharray="4,3" />
-      <line x1="98" y1="18" x2="98" y2="388" stroke="#ef9a9a" strokeWidth="1" strokeDasharray="4,3" />
-      <line x1="432" y1="18" x2="432" y2="388" stroke="#ef9a9a" strokeWidth="1" strokeDasharray="4,3" />
+      {/* ── Landmark: Estadio de Huracán ── */}
+      <ellipse cx="352" cy="342" rx="22" ry="17" fill="#B71C1C" opacity="0.18" />
+      <text x="352" y="368" fontSize="5.5" fill="#B71C1C" opacity="0.70" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif">Est. Huracán</text>
     </g>
   )
 }
 
+// ── Nueva Pompeya ────────────────────────────────────────
 function NuevaPompeyaBackground() {
   return (
     <g>
-      {/* Fondo */}
-      <rect width="500" height="400" fill="#f5f5f5" rx="4" />
+      <rect width="500" height="400" fill="#f5f3f0" rx="4" />
 
       {/* Riachuelo (sur) */}
-      <path
-        d="M 0,368 Q 120,382 280,375 Q 400,370 500,378 L 500,400 L 0,400 Z"
-        fill="#89C9DD"
-        opacity="0.6"
-      />
-      <text x="250" y="395" fontSize="7" fill="#4A90A4" textAnchor="middle">
-        Riachuelo
-      </text>
+      <path d="M 0,365 Q 120,355 260,360 Q 380,364 500,358 L 500,400 L 0,400 Z"
+        fill={AGUA} opacity="0.55" />
+      <text x="250" y="390" fontSize="7" fill="#4A90A4" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif" fontStyle="italic">Riachuelo</text>
 
-      {/* Av. Sáenz — E-O norte */}
+      {/* ── Calles secundarias ── */}
+      <line x1="22" y1="200" x2="478" y2="200" stroke="#bdbdbd" strokeWidth="1" strokeDasharray="4,3" />
+      <line x1="22" y1="332" x2="478" y2="332" stroke="#bdbdbd" strokeWidth="1" strokeDasharray="4,3" />
+      <line x1="102" y1="18" x2="102" y2="362" stroke="#bdbdbd" strokeWidth="1" strokeDasharray="4,3" />
+      <line x1="432" y1="18" x2="432" y2="362" stroke="#bdbdbd" strokeWidth="1" strokeDasharray="4,3" />
+
+      {/* ── Avenidas secundarias ── */}
+      {/* Av. Perito Moreno */}
+      <line x1="22" y1="195" x2="478" y2="195" stroke="#757575" strokeWidth="2" strokeLinecap="round" />
+      <text x="108" y="187" fontSize="6.5" fill="#424242" opacity="0.70" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif">Av. Perito Moreno</text>
+
+      {/* ── Avenidas principales ── */}
+      {/* Av. Sáenz */}
       <line x1="22" y1="135" x2="478" y2="135" stroke="#424242" strokeWidth="3.5" strokeLinecap="round" />
-      <text x="102" y="127" fontSize="7.5" fill="#424242" textAnchor="middle">
-        Av. Sáenz
-      </text>
+      <text x="102" y="127" fontSize="7" fill="#424242" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif">Av. Sáenz</text>
 
-      {/* Av. Cruz — E-O centro */}
+      {/* Av. Cruz */}
       <line x1="22" y1="268" x2="478" y2="268" stroke="#424242" strokeWidth="3.5" strokeLinecap="round" />
-      <text x="102" y="260" fontSize="7.5" fill="#424242" textAnchor="middle">
-        Av. Cruz
-      </text>
+      <text x="102" y="260" fontSize="7" fill="#424242" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif">Av. Cruz</text>
 
-      {/* Av. Centenera — N-S oeste */}
-      <line x1="188" y1="18" x2="188" y2="368" stroke="#424242" strokeWidth="3" strokeLinecap="round" />
-      <text x="188" y="11" fontSize="7.5" fill="#424242" textAnchor="middle">
-        Av. Centenera
-      </text>
+      {/* Av. Centenera */}
+      <line x1="188" y1="18" x2="188" y2="362" stroke="#424242" strokeWidth="3" strokeLinecap="round" />
+      <text x="188" y="11" fontSize="7" fill="#424242" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif">Av. Centenera</text>
 
-      {/* Av. Osvaldo Cruz — N-S este */}
-      <line x1="322" y1="18" x2="322" y2="368" stroke="#424242" strokeWidth="3" strokeLinecap="round" />
-      <text x="322" y="11" fontSize="7.5" fill="#424242" textAnchor="middle">
-        Av. Osvaldo Cruz
-      </text>
-
-      {/* Calles secundarias */}
-      <line x1="22" y1="200" x2="478" y2="200" stroke="#9e9e9e" strokeWidth="1" strokeDasharray="4,3" />
-      <line x1="102" y1="18" x2="102" y2="368" stroke="#9e9e9e" strokeWidth="1" strokeDasharray="4,3" />
-      <line x1="432" y1="18" x2="432" y2="368" stroke="#9e9e9e" strokeWidth="1" strokeDasharray="4,3" />
+      {/* Av. Osvaldo Cruz */}
+      <line x1="322" y1="18" x2="322" y2="362" stroke="#424242" strokeWidth="3" strokeLinecap="round" />
+      <text x="322" y="11" fontSize="7" fill="#424242" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif">Av. Osvaldo Cruz</text>
     </g>
   )
 }
 
-// Mapa de barrioId → componente de fondo
-// Para agregar un barrio nuevo: añadí su función de fondo aquí y en el JSON.
 const BACKGROUNDS = {
   'la-boca': LaBocaBackground,
   barracas: BarracasBackground,
@@ -203,7 +239,6 @@ const BACKGROUNDS = {
   'nueva-pompeya': NuevaPompeyaBackground,
 }
 
-// Componente de marca de plaza (círculo + etiqueta)
 function PlazaMarker({ plaza, onClick }) {
   return (
     <g
@@ -212,114 +247,66 @@ function PlazaMarker({ plaza, onClick }) {
       role="button"
       aria-label={`${plaza.nombre}${plaza.visitada ? ' — visitada' : ' — por visitar'}`}
     >
-      {/* Área táctil ampliada (44px de diámetro mínimo para mobile) */}
+      {/* Área táctil ampliada */}
       <circle cx={plaza.svgX} cy={plaza.svgY} r="22" fill="transparent" />
 
       {/* Halo */}
-      <circle
-        cx={plaza.svgX}
-        cy={plaza.svgY}
-        r="14"
-        fill={plaza.visitada ? COLOR_VISITADA : COLOR_NO_VISITADA}
-        opacity="0.2"
-      />
+      <circle cx={plaza.svgX} cy={plaza.svgY} r="14"
+        fill={plaza.visitada ? COLOR_VISITADA : COLOR_NO_VISITADA} opacity="0.18" />
 
       {/* Círculo principal */}
-      <circle
-        cx={plaza.svgX}
-        cy={plaza.svgY}
-        r="9"
+      <circle cx={plaza.svgX} cy={plaza.svgY} r="9"
         fill={plaza.visitada ? COLOR_VISITADA : COLOR_NO_VISITADA}
-        stroke="white"
-        strokeWidth="2"
-      />
+        stroke="white" strokeWidth="2" />
 
-      {/* Etiqueta — contorno para legibilidad sobre cualquier fondo */}
-      <text
-        x={plaza.svgX}
-        y={plaza.svgY + 23}
-        fontSize="7.5"
-        fontWeight="600"
-        fill="black"
-        stroke="white"
-        strokeWidth="3"
-        strokeLinejoin="round"
-        textAnchor="middle"
-        paintOrder="stroke"
+      {/* Etiqueta con contorno blanco para legibilidad */}
+      <text x={plaza.svgX} y={plaza.svgY + 23} fontSize="7.5" fontWeight="600"
+        fill="white" stroke="white" strokeWidth="3" strokeLinejoin="round"
+        textAnchor="middle" paintOrder="stroke"
         className="select-none pointer-events-none"
-      >
+        fontFamily="'Lora',Georgia,serif">
         {plaza.nombre}
       </text>
-      <text
-        x={plaza.svgX}
-        y={plaza.svgY + 23}
-        fontSize="7.5"
-        fontWeight="600"
-        fill="#1c1917"
-        textAnchor="middle"
+      <text x={plaza.svgX} y={plaza.svgY + 23} fontSize="7.5" fontWeight="600"
+        fill="#1c1917" textAnchor="middle"
         className="select-none pointer-events-none"
-      >
+        fontFamily="'Lora',Georgia,serif">
         {plaza.nombre}
       </text>
 
-      {/* Indicador de visitada */}
+      {/* Ícono de video si fue visitada */}
       {plaza.visitada && (
-        <text
-          x={plaza.svgX + 8}
-          y={plaza.svgY - 6}
-          fontSize="8"
-          textAnchor="middle"
-          className="select-none pointer-events-none"
-        >
-          🎥
+        <text x={plaza.svgX + 9} y={plaza.svgY - 7} fontSize="9" textAnchor="middle"
+          className="select-none pointer-events-none">
+          ▶
         </text>
       )}
     </g>
   )
 }
 
-// ── Componente principal ─────────────────────────────────
-// Recibe el objeto barrio del JSON. Las plazas se renderizan
-// dinámicamente — para agregar una plaza, solo editá el JSON.
 export default function MapaBarrio({ barrio }) {
   const [plazaSeleccionada, setPlazaSeleccionada] = useState(null)
   const Background = BACKGROUNDS[barrio.id]
 
   return (
     <>
-      {/* TODO: reemplazar con SVG definitivo del diseñador */}
       <svg
         viewBox="0 0 500 400"
-        className="w-full max-w-2xl mx-auto drop-shadow-sm"
+        className="w-full max-w-2xl mx-auto"
         role="img"
         aria-label={`Mapa de ${barrio.nombre} — tocá una plaza para ver información`}
       >
-        {/* Capa 1: fondo (calles y avenidas) */}
-        {Background && <Background />}
+        <Background />
 
-        {/* Capa 2: plazas (se genera dinámicamente desde el JSON) */}
         {barrio.plazas.map((plaza) => (
-          <PlazaMarker
-            key={plaza.id}
-            plaza={plaza}
-            onClick={setPlazaSeleccionada}
-          />
+          <PlazaMarker key={plaza.id} plaza={plaza} onClick={setPlazaSeleccionada} />
         ))}
 
-        {/* Marco decorativo */}
-        <rect
-          x="2"
-          y="2"
-          width="496"
-          height="396"
-          fill="none"
-          stroke="#D6C9B4"
-          strokeWidth="1"
-          rx="4"
-        />
+        <rect x="2" y="2" width="496" height="396" fill="none"
+          stroke="#C4B49A" strokeWidth="1" rx="4" />
       </svg>
 
-      {/* Modal — se abre al tocar una plaza */}
       {plazaSeleccionada && (
         <PlazaModal
           plaza={plazaSeleccionada}
