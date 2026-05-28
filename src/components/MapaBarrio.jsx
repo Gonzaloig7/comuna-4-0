@@ -1,6 +1,4 @@
-import { useState } from 'react'
-import PlazaModal from './PlazaModal.jsx'
-import data from '../data/comuna4.json'
+// onSelectPlaza: función que recibe una plaza y abre el modal (gestionado en Barrio.jsx)
 
 const COLOR_VISITADA = '#22c55e'
 const COLOR_NO_VISITADA = '#9ca3af'
@@ -320,35 +318,24 @@ function PlazaMarker({ plaza, onClick }) {
   )
 }
 
-export default function MapaBarrio({ barrio }) {
-  const [plazaSeleccionada, setPlazaSeleccionada] = useState(null)
+export default function MapaBarrio({ barrio, onSelectPlaza }) {
   const Background = BACKGROUNDS[barrio.id]
 
   return (
-    <>
-      <svg
-        viewBox="0 0 500 400"
-        className="w-full max-w-2xl mx-auto"
-        role="img"
-        aria-label={`Mapa de ${barrio.nombre} — tocá una plaza para ver información`}
-      >
-        <Background />
+    <svg
+      viewBox="0 0 500 400"
+      className="w-full max-w-2xl mx-auto"
+      role="img"
+      aria-label={`Mapa de ${barrio.nombre} — tocá una plaza para ver información`}
+    >
+      <Background />
 
-        {barrio.plazas.map((plaza) => (
-          <PlazaMarker key={plaza.id} plaza={plaza} onClick={setPlazaSeleccionada} />
-        ))}
+      {barrio.plazas.map((plaza) => (
+        <PlazaMarker key={plaza.id} plaza={plaza} onClick={onSelectPlaza} />
+      ))}
 
-        <rect x="2" y="2" width="496" height="396" fill="none"
-          stroke="#C4B49A" strokeWidth="1" rx="4" />
-      </svg>
-
-      {plazaSeleccionada && (
-        <PlazaModal
-          plaza={plazaSeleccionada}
-          formularioUrl={data.config.formularioReclamosUrl}
-          onClose={() => setPlazaSeleccionada(null)}
-        />
-      )}
-    </>
+      <rect x="2" y="2" width="496" height="396" fill="none"
+        stroke="#C4B49A" strokeWidth="1" rx="4" />
+    </svg>
   )
 }

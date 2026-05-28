@@ -1,10 +1,13 @@
+import { useState } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import MapaBarrio from '../components/MapaBarrio.jsx'
+import PlazaModal from '../components/PlazaModal.jsx'
 import data from '../data/comuna4.json'
 
 export default function Barrio() {
   const { id } = useParams()
   const navigate = useNavigate()
+  const [plazaSeleccionada, setPlazaSeleccionada] = useState(null)
 
   const barrio = data.barrios.find((b) => b.id === id)
 
@@ -39,10 +42,10 @@ export default function Barrio() {
 
         <hr className="masthead-rule" />
 
-        {/* Nombre del barrio */}
+        {/* Nombre del barrio + contador */}
         <div className="py-3 flex items-end justify-between gap-4">
           <h1
-            className="font-display leading-none text-stone-900"
+            className="font-display leading-none"
             style={{
               fontSize: 'clamp(2.8rem, 11vw, 5rem)',
               letterSpacing: '0.04em',
@@ -89,43 +92,75 @@ export default function Barrio() {
 
       {/* ── Mapa del barrio ─────────────────────────────── */}
       <main className="flex-1 px-3 pt-2 max-w-2xl mx-auto w-full">
-        <MapaBarrio barrio={barrio} />
+        <MapaBarrio barrio={barrio} onSelectPlaza={setPlazaSeleccionada} />
 
         {/* ── Lista de plazas ──────────────────────────── */}
         <section className="mt-6 px-2">
           <p className="text-xs text-stone-400 font-body tracking-[0.2em] uppercase mb-3">
             Plazas del barrio
           </p>
-          <hr className="masthead-rule-thin mb-3" />
-          <div className="flex flex-col gap-0">
+          <hr className="masthead-rule-thin mb-0" />
+          <div className="flex flex-col">
             {barrio.plazas.map((plaza, i) => (
-              <PlazaListItem key={plaza.id} plaza={plaza} barrio={barrio} index={i} total={barrio.plazas.length} />
+              <PlazaListItem
+                key={plaza.id}
+                plaza={plaza}
+                barrio={barrio}
+                index={i}
+                total={barrio.plazas.length}
+                onSelect={() => setPlazaSeleccionada(plaza)}
+              />
             ))}
           </div>
         </section>
       </main>
+
+      {/* ── Modal de plaza ──────────────────────────────── */}
+      {plazaSeleccionada && (
+        <PlazaModal
+          plaza={plazaSeleccionada}
+          barrio={barrio}
+          formularioUrl={data.config.formularioReclamosUrl}
+          onClose={() => setPlazaSeleccionada(null)}
+        />
+      )}
     </div>
   )
 }
 
-function PlazaListItem({ plaza, barrio, index, total }) {
+function PlazaListItem({ plaza, barrio, index, total, onSelect }) {
+  const isLast = index === total - 1
+
   return (
-    <div className={`flex items-center justify-between py-3 gap-3 ${index < total - 1 ? 'border-b border-stone-200' : ''}`}>
-      <div className="flex items-center gap-3">
+    <button
+      onClick={onSelect}
+      className={`w-full flex items-center justify-between py-3 gap-3 text-left transition-colors
+        hover:bg-stone-900/[0.03] active:bg-stone-900/[0.06] -mx-2 px-2 rounded-sm
+        ${!isLast ? 'border-b border-stone-200' : ''}`}
+    >
+      {/* Dot + nombre */}
+      <div className="flex items-center gap-3 min-w-0">
         <span
           className="w-2 h-2 rounded-full shrink-0"
           style={{ backgroundColor: plaza.visitada ? barrio.colorPrimario : '#d6d3d1' }}
         />
-        <span className="font-body text-sm text-stone-800">{plaza.nombre}</span>
+        <span className="font-body text-sm text-stone-800 truncate">{plaza.nombre}</span>
       </div>
+
+      {/* Estado / acción */}
       {plaza.visitada ? (
-        <span className="text-xs text-stone-400 font-body flex items-center gap-1 shrink-0">
-          <span aria-hidden="true">▶</span>
-          <span className="hidden sm:inline">Entrevistas</span>
+        <span
+          className="text-xs font-body font-semibold shrink-0 px-2.5 py-0.5 rounded-sm"
+          style={{
+            backgroundColor: barrio.colorPrimario + '22',
+            color: barrio.colorPrimario,
+          }}
+        >
+          Ver →
         </span>
       ) : (
-        <span className="text-xs text-stone-300 font-body shrink-0 italic">Próximamente</span>
+        <span className="text-xs text-stone-300 font-body shrink-0 italic">pendiente</span>
       )}
-    </div>
+    </button>
   )
 }

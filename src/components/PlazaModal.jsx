@@ -1,38 +1,22 @@
 import { useEffect } from 'react'
 
 const REDES = [
-  {
-    key: 'instagram',
-    label: 'Instagram',
-    className: 'bg-gradient-to-br from-purple-600 to-pink-500 hover:opacity-90',
-    icon: '📸',
-  },
-  {
-    key: 'tiktok',
-    label: 'TikTok',
-    className: 'bg-stone-900 hover:bg-stone-700',
-    icon: '🎵',
-  },
-  {
-    key: 'youtube',
-    label: 'YouTube',
-    className: 'bg-red-600 hover:bg-red-500',
-    icon: '▶',
-  },
+  { key: 'instagram', label: 'Instagram', icon: '▶' },
+  { key: 'tiktok',    label: 'TikTok',    icon: '▶' },
+  { key: 'youtube',  label: 'YouTube',   icon: '▶' },
 ]
 
-export default function PlazaModal({ plaza, formularioUrl, onClose }) {
+export default function PlazaModal({ plaza, barrio, formularioUrl, onClose }) {
   // Cerrar con Escape
   useEffect(() => {
-    const handler = (e) => {
-      if (e.key === 'Escape') onClose()
-    }
+    const handler = (e) => { if (e.key === 'Escape') onClose() }
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
   }, [onClose])
 
   if (!plaza) return null
 
+  const color = barrio?.colorPrimario ?? '#1c1917'
   const linksDisponibles = plaza.visitada
     ? REDES.filter((r) => plaza.videos?.[r.key])
     : []
@@ -46,79 +30,88 @@ export default function PlazaModal({ plaza, formularioUrl, onClose }) {
       aria-label={plaza.nombre}
     >
       <div
-        className="modal-content bg-white w-full sm:max-w-sm sm:mx-4 rounded-t-3xl sm:rounded-2xl p-6 shadow-2xl"
+        className="modal-content w-full sm:max-w-sm sm:mx-4 rounded-t-2xl sm:rounded-xl shadow-2xl overflow-hidden"
+        style={{ backgroundColor: '#f5ede0' }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Encabezado */}
-        <div className="flex items-start justify-between mb-4">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-wider mb-1 text-stone-400">
-              {plaza.visitada ? '🎥 Plaza visitada' : '📍 Próxima visita'}
-            </p>
-            <h2 className="text-xl font-bold text-stone-900 leading-tight">
-              {plaza.nombre}
-            </h2>
-          </div>
-          <button
-            onClick={onClose}
-            aria-label="Cerrar"
-            className="text-stone-400 hover:text-stone-700 text-lg leading-none p-1.5 rounded-full hover:bg-stone-100 transition-colors ml-2 shrink-0"
+        {/* Franja de color del barrio */}
+        <div className="h-1.5 w-full shrink-0" style={{ backgroundColor: color }} />
+
+        <div className="px-6 pt-5 pb-6">
+
+          {/* Estado */}
+          <p className="font-body text-xs tracking-[0.18em] uppercase text-stone-400 mb-1">
+            {plaza.visitada ? 'Plaza visitada' : 'Plaza por visitar'}
+          </p>
+
+          {/* Nombre */}
+          <h2
+            className="font-display leading-none mb-3"
+            style={{ fontSize: 'clamp(1.7rem, 6vw, 2.1rem)', color }}
           >
-            ✕
-          </button>
-        </div>
+            {plaza.nombre.toUpperCase()}
+          </h2>
 
-        <p className="text-stone-600 text-sm mb-5 leading-relaxed">
-          {plaza.descripcion}
-        </p>
+          <hr className="masthead-rule-thin mb-4" />
 
-        {plaza.visitada ? (
-          <>
-            {linksDisponibles.length > 0 && (
-              <>
-                <p className="text-xs font-semibold text-stone-400 uppercase tracking-wider mb-3">
+          {/* Descripción */}
+          <p className="font-body text-stone-600 text-sm leading-relaxed mb-5">
+            {plaza.descripcion}
+          </p>
+
+          {/* Acción */}
+          {plaza.visitada ? (
+            linksDisponibles.length > 0 ? (
+              <div className="flex flex-col gap-2">
+                <p className="font-body text-xs tracking-[0.18em] uppercase text-stone-400 mb-1">
                   Ver entrevistas
                 </p>
-                <div className="flex flex-col gap-2">
-                  {linksDisponibles.map((r) => (
-                    <a
-                      key={r.key}
-                      href={plaza.videos[r.key]}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`${r.className} text-white flex items-center gap-3 px-4 py-3 rounded-xl font-semibold text-sm transition-opacity active:opacity-70`}
-                    >
-                      <span className="text-base" aria-hidden="true">
-                        {r.icon}
-                      </span>
-                      <span>Ver en {r.label}</span>
-                    </a>
-                  ))}
-                </div>
-              </>
-            )}
-          </>
-        ) : (
-          <>
-            <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 mb-4">
-              <p className="text-amber-800 text-sm font-semibold">
+                {linksDisponibles.map((r) => (
+                  <a
+                    key={r.key}
+                    href={plaza.videos[r.key]}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 px-4 py-3 rounded-lg font-body font-semibold text-sm transition-opacity active:opacity-75 text-white"
+                    style={{ backgroundColor: color }}
+                  >
+                    <span className="text-xs opacity-80" aria-hidden="true">{r.icon}</span>
+                    <span>Ver en {r.label}</span>
+                    <span className="ml-auto opacity-60 text-xs">→</span>
+                  </a>
+                ))}
+              </div>
+            ) : (
+              <p className="font-body text-sm italic text-stone-400">
+                Video en proceso de edición — próximamente disponible.
+              </p>
+            )
+          ) : (
+            <div>
+              <p className="font-body text-sm italic text-stone-500 mb-4 leading-relaxed">
                 Todavía no visitamos esta plaza.
+                ¿Querés que la incluyamos en el recorrido?
               </p>
-              <p className="text-amber-700 text-sm mt-0.5">
-                ¿Querés que la incluyamos? Dejá tu sugerencia.
-              </p>
+              <a
+                href={formularioUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full font-body font-semibold text-sm py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-opacity active:opacity-75 text-white"
+                style={{ backgroundColor: color }}
+              >
+                Dejar mi reclamo
+              </a>
             </div>
-            <a
-              href={formularioUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full bg-amber-500 hover:bg-amber-400 text-white font-semibold text-sm py-3 px-4 rounded-xl flex items-center justify-center gap-2 transition-colors"
-            >
-              <span aria-hidden="true">📢</span>
-              <span>Sugerir esta plaza</span>
-            </a>
-          </>
-        )}
+          )}
+
+          {/* Cerrar */}
+          <button
+            onClick={onClose}
+            className="mt-5 w-full text-center font-body text-xs text-stone-400 tracking-[0.18em] uppercase py-1.5 hover:text-stone-600 transition-colors"
+          >
+            Cerrar
+          </button>
+        </div>
       </div>
     </div>
   )
