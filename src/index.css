@@ -6,80 +6,69 @@
   box-sizing: border-box;
 }
 
+/* ── Base tipográfica ───────────────────────────── */
 body {
-  font-family: 'Inter', system-ui, sans-serif;
-  background-color: #faf7f2;
+  font-family: 'Lora', Georgia, serif;
+  background-color: #f5ede0;
+  /* Grano de papel sutil */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
   color: #1c1917;
   margin: 0;
   min-height: 100vh;
 }
 
-h1,
-h2,
-h3 {
-  font-family: 'Space Grotesk', sans-serif;
-}
-
-/* ── SVG map interactions ───────────────────────────────── */
-
+/* ── Interacciones SVG ──────────────────────────── */
 .barrio-region {
   cursor: pointer;
 }
-
 .barrio-region polygon {
   transition: opacity 0.18s ease, filter 0.18s ease;
 }
-
 .barrio-region:hover polygon:first-child {
-  opacity: 0.95 !important;
-  filter: brightness(1.1);
+  opacity: 0.97 !important;
+  filter: brightness(1.08);
 }
 
 .plaza-marker {
   cursor: pointer;
 }
-
 .plaza-marker circle,
 .plaza-marker text {
   transition: transform 0.14s ease;
   transform-origin: center;
   transform-box: fill-box;
 }
-
 .plaza-marker:hover circle {
   transform: scale(1.28);
 }
 
-/* ── Modal ──────────────────────────────────────────────── */
-
+/* ── Modal ──────────────────────────────────────── */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: scale(0.97) translateY(4px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
+  from { opacity: 0; transform: scale(0.97) translateY(4px); }
+  to   { opacity: 1; transform: scale(1)    translateY(0);   }
 }
-
 .modal-content {
   animation: fadeIn 0.2s ease;
 }
 
-/* ── Page entrance ──────────────────────────────────────── */
-
+/* ── Entrada de páginas ─────────────────────────── */
 @keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0);    }
 }
-
 .page-enter {
   animation: slideUp 0.28s ease;
+}
+
+/* ── Elementos barrial/editorial ────────────────── */
+.masthead-rule {
+  border: none;
+  border-top: 2px solid #1c1917;
+  margin: 0;
+}
+.masthead-rule-thin {
+  border: none;
+  border-top: 1px solid #1c1917;
+  margin: 0;
 }

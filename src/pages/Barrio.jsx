@@ -6,14 +6,13 @@ export default function Barrio() {
   const { id } = useParams()
   const navigate = useNavigate()
 
-  // Busca el barrio por id en el JSON
   const barrio = data.barrios.find((b) => b.id === id)
 
   if (!barrio) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center p-8 text-center">
         <p className="text-stone-500 mb-4">Barrio no encontrado.</p>
-        <Link to="/" className="text-blue-600 underline text-sm">
+        <Link to="/" className="text-stone-600 underline text-sm font-body">
           ← Volver al mapa de la Comuna
         </Link>
       </div>
@@ -24,62 +23,67 @@ export default function Barrio() {
 
   return (
     <div className="page-enter min-h-screen flex flex-col pb-24">
-      {/* ── Header de barrio ────────────────────────────── */}
-      <header className="px-4 pt-5 pb-2 max-w-2xl mx-auto w-full">
+
+      {/* ── Franja de color del barrio ── */}
+      <div className="h-2 w-full shrink-0" style={{ backgroundColor: barrio.colorPrimario }} />
+
+      {/* ── Masthead de barrio ─────────────────────────── */}
+      <header className="w-full max-w-2xl mx-auto px-5">
         {/* Volver */}
         <button
           onClick={() => navigate('/')}
-          className="flex items-center gap-1.5 text-sm text-stone-400 hover:text-stone-700 transition-colors mb-4 -ml-1 py-1"
+          className="mt-3 mb-2 flex items-center gap-1.5 text-xs text-stone-400 hover:text-stone-700 transition-colors font-body tracking-wide"
         >
-          <span>←</span>
-          <span>Volver a Comuna 4</span>
+          ← COMUNA 4.0
         </button>
 
-        {/* Nombre y descripción */}
-        <div className="flex items-start justify-between gap-3">
-          <div>
-            <div className="flex items-center gap-2 mb-1">
-              <span
-                className="inline-block w-3 h-3 rounded-full shrink-0"
-                style={{ backgroundColor: barrio.colorPrimario }}
-              />
-              <h1
-                className="text-2xl sm:text-3xl font-extrabold leading-tight"
-                style={{ color: barrio.colorPrimario }}
-              >
-                {barrio.nombre}
-              </h1>
-            </div>
-            <p className="text-stone-500 text-sm max-w-sm leading-relaxed">
-              {barrio.descripcion}
-            </p>
-          </div>
+        <hr className="masthead-rule" />
 
-          {/* Contador de plazas del barrio */}
-          <div className="text-right text-xs text-stone-400 shrink-0 mt-1">
-            <span className="text-green-600 font-bold text-lg">{visitadas}</span>
-            <span className="text-stone-400"> / {barrio.plazas.length}</span>
-            <br />
-            <span>plazas</span>
+        {/* Nombre del barrio */}
+        <div className="py-3 flex items-end justify-between gap-4">
+          <h1
+            className="font-display leading-none text-stone-900"
+            style={{
+              fontSize: 'clamp(2.8rem, 11vw, 5rem)',
+              letterSpacing: '0.04em',
+              color: barrio.colorPrimario,
+            }}
+          >
+            {barrio.nombre.toUpperCase()}
+          </h1>
+
+          {/* Contador de plazas */}
+          <div className="text-right shrink-0 mb-1">
+            <p className="font-display text-stone-900 leading-none" style={{ fontSize: '2rem' }}>
+              {visitadas}<span className="text-stone-400 text-lg">/{barrio.plazas.length}</span>
+            </p>
+            <p className="text-xs text-stone-400 font-body tracking-widest uppercase">plazas</p>
           </div>
         </div>
+
+        <hr className="masthead-rule-thin" />
+
+        {/* Descripción */}
+        <p className="font-heading italic text-stone-600 text-sm sm:text-base leading-snug py-3">
+          {barrio.descripcion}
+        </p>
+
+        <hr className="masthead-rule" />
       </header>
 
       {/* ── Leyenda ─────────────────────────────────────── */}
-      <div className="px-4 pt-3 pb-1 max-w-2xl mx-auto w-full">
-        <div className="flex items-center gap-4 text-xs text-stone-500 flex-wrap">
+      <div className="px-5 pt-3 pb-1 max-w-2xl mx-auto w-full">
+        <div className="flex items-center gap-5 text-xs text-stone-400 font-body tracking-wide">
           <span className="flex items-center gap-1.5">
-            <span className="inline-block w-2.5 h-2.5 rounded-full bg-green-500 shrink-0" />
+            <span className="inline-block w-2 h-2 rounded-full bg-green-500 shrink-0" />
             Visitada
           </span>
           <span className="flex items-center gap-1.5">
-            <span className="inline-block w-2.5 h-2.5 rounded-full bg-gray-400 shrink-0" />
+            <span className="inline-block w-2 h-2 rounded-full bg-stone-300 shrink-0" />
             Por visitar
           </span>
           <span className="text-stone-300 hidden sm:inline">·</span>
-          <span className="text-stone-400 hidden sm:inline">
-            Tocá una plaza para ver información
-          </span>
+          <span className="hidden sm:inline">Tocá una plaza para ver información</span>
         </div>
       </div>
 
@@ -88,13 +92,14 @@ export default function Barrio() {
         <MapaBarrio barrio={barrio} />
 
         {/* ── Lista de plazas ──────────────────────────── */}
-        <section className="mt-6">
-          <h2 className="text-xs font-semibold text-stone-400 uppercase tracking-wider mb-3 px-1">
+        <section className="mt-6 px-2">
+          <p className="text-xs text-stone-400 font-body tracking-[0.2em] uppercase mb-3">
             Plazas del barrio
-          </h2>
-          <div className="flex flex-col gap-2">
-            {barrio.plazas.map((plaza) => (
-              <PlazaListItem key={plaza.id} plaza={plaza} />
+          </p>
+          <hr className="masthead-rule-thin mb-3" />
+          <div className="flex flex-col gap-0">
+            {barrio.plazas.map((plaza, i) => (
+              <PlazaListItem key={plaza.id} plaza={plaza} barrio={barrio} index={i} total={barrio.plazas.length} />
             ))}
           </div>
         </section>
@@ -103,24 +108,23 @@ export default function Barrio() {
   )
 }
 
-function PlazaListItem({ plaza }) {
+function PlazaListItem({ plaza, barrio, index, total }) {
   return (
-    <div className="bg-white rounded-xl px-4 py-3 shadow-sm flex items-center justify-between border border-stone-100">
+    <div className={`flex items-center justify-between py-3 gap-3 ${index < total - 1 ? 'border-b border-stone-200' : ''}`}>
       <div className="flex items-center gap-3">
         <span
-          className={`w-2.5 h-2.5 rounded-full shrink-0 ${
-            plaza.visitada ? 'bg-green-500' : 'bg-gray-300'
-          }`}
+          className="w-2 h-2 rounded-full shrink-0"
+          style={{ backgroundColor: plaza.visitada ? barrio.colorPrimario : '#d6d3d1' }}
         />
-        <span className="text-sm font-medium text-stone-800">{plaza.nombre}</span>
+        <span className="font-body text-sm text-stone-800">{plaza.nombre}</span>
       </div>
       {plaza.visitada ? (
-        <span className="text-xs text-stone-400 flex items-center gap-1 shrink-0 ml-2">
-          <span aria-hidden="true">🎥</span>
-          <span className="hidden sm:inline">Entrevistas disponibles</span>
+        <span className="text-xs text-stone-400 font-body flex items-center gap-1 shrink-0">
+          <span aria-hidden="true">▶</span>
+          <span className="hidden sm:inline">Entrevistas</span>
         </span>
       ) : (
-        <span className="text-xs text-stone-300 shrink-0 ml-2">Próximamente</span>
+        <span className="text-xs text-stone-300 font-body shrink-0 italic">Próximamente</span>
       )}
     </div>
   )

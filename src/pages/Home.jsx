@@ -6,26 +6,61 @@ import data from '../data/comuna4.json'
 export default function Home() {
   return (
     <div className="page-enter min-h-screen flex flex-col pb-20">
-      {/* ── Encabezado ──────────────────────────────────── */}
-      <header className="px-5 pt-8 pb-4 text-center max-w-lg mx-auto w-full">
-        <h1 className="text-3xl sm:text-4xl font-extrabold text-stone-900 mb-2 leading-tight">
-          {data.config.titulo}
-        </h1>
-        <p className="text-stone-500 text-sm sm:text-base leading-relaxed mb-5">
-          {data.config.subtitulo}
+
+      {/* ── Barra de colores — identidad de los 4 barrios ── */}
+      <div className="flex h-2.5 w-full shrink-0">
+        <div className="flex-1" style={{ backgroundColor: '#1C5BA8' }} />
+        <div className="flex-1" style={{ backgroundColor: '#C2185B' }} />
+        <div className="flex-1" style={{ backgroundColor: '#B71C1C' }} />
+        <div className="flex-1" style={{ backgroundColor: '#424242' }} />
+      </div>
+
+      {/* ── Masthead ─────────────────────────────────────── */}
+      <header className="w-full max-w-2xl mx-auto px-5">
+        {/* Etiqueta de sección */}
+        <p className="text-center text-xs tracking-[0.25em] uppercase text-stone-400 font-body pt-4 pb-2">
+          Periodismo territorial · CABA
         </p>
-        <Contador />
+
+        <hr className="masthead-rule" />
+
+        {/* Título principal */}
+        <div className="text-center py-3">
+          <h1
+            className="font-display leading-none text-stone-900"
+            style={{ fontSize: 'clamp(3.5rem, 14vw, 6.5rem)', letterSpacing: '0.04em' }}
+          >
+            COMUNA 4.0
+          </h1>
+        </div>
+
+        <hr className="masthead-rule-thin" />
+
+        {/* Subtítulo y contador */}
+        <div className="flex items-center justify-between gap-4 py-3">
+          <p
+            className="font-heading italic text-stone-600 leading-snug text-sm sm:text-base"
+            style={{ maxWidth: '26rem' }}
+          >
+            {data.config.subtitulo}
+          </p>
+          <div className="shrink-0">
+            <Contador />
+          </div>
+        </div>
+
+        <hr className="masthead-rule" />
       </header>
 
       {/* ── Mapa SVG ────────────────────────────────────── */}
       <main className="flex-1 px-4 max-w-2xl mx-auto w-full">
-        <p className="text-center text-xs text-stone-400 mb-3">
+        <p className="text-center text-xs text-stone-400 font-body mt-4 mb-2 tracking-wide">
           Tocá un barrio para explorar sus plazas ↓
         </p>
         <MapaComuna />
 
-        {/* ── Cards de barrio (alternativa táctil mobile) ─ */}
-        <div className="grid grid-cols-2 gap-3 mt-6">
+        {/* ── Cards de barrio ─────────────────────────── */}
+        <div className="grid grid-cols-2 gap-3 mt-5">
           {data.barrios.map((b) => (
             <BarrioCard key={b.id} barrio={b} />
           ))}
@@ -42,18 +77,26 @@ function BarrioCard({ barrio }) {
   return (
     <button
       onClick={() => navigate(`/barrio/${barrio.id}`)}
-      className="rounded-2xl p-4 text-left transition-transform active:scale-95 hover:brightness-105 bg-white shadow-sm border border-stone-100"
-      style={{ borderLeftColor: barrio.colorPrimario, borderLeftWidth: '4px' }}
+      className="rounded-xl overflow-hidden text-left transition-all active:scale-95 hover:brightness-105 shadow-md hover:shadow-lg"
+      style={{ backgroundColor: barrio.colorPrimario }}
     >
-      <span
-        className="font-bold text-sm block mb-0.5"
-        style={{ color: barrio.colorPrimario }}
-      >
-        {barrio.nombre}
-      </span>
-      <span className="text-xs text-stone-400">
-        {visitadas}/{barrio.plazas.length} plazas visitadas
-      </span>
+      {/* Cuerpo */}
+      <div className="p-4 pb-3">
+        <p className="text-white/60 text-xs tracking-widest uppercase font-body mb-1">
+          {visitadas}/{barrio.plazas.length} plazas
+        </p>
+        <h2
+          className="font-display text-white leading-none"
+          style={{ fontSize: 'clamp(1.5rem, 5vw, 2rem)', letterSpacing: '0.04em' }}
+        >
+          {barrio.nombre.toUpperCase()}
+        </h2>
+      </div>
+      {/* Franja de color secundario como pie */}
+      <div
+        className="h-1.5"
+        style={{ backgroundColor: barrio.colorSecundario, opacity: 0.65 }}
+      />
     </button>
   )
 }
