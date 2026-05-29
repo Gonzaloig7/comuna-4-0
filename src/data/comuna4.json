@@ -123,7 +123,7 @@
         {
           "id": "plaza-colombia",
           "nombre": "Plaza Colombia",
-          "svgX": 286,
+          "svgX": 345,
           "svgY": 170,
           "visitada": false,
           "descripcion": "Una de las plazas más queridas de Barracas, con árboles centenarios y fuente central.",
@@ -132,7 +132,7 @@
         {
           "id": "plaza-casa-cuna",
           "nombre": "Plaza Casa Cuna",
-          "svgX": 258,
+          "svgX": 311,
           "svgY": 113,
           "visitada": false,
           "descripcion": "Plaza histórica frente al edificio del antiguo Hospital Casa Cuna.",
@@ -141,7 +141,7 @@
         {
           "id": "plaza-virrey-vertiz",
           "nombre": "Plaza Virrey Vértiz",
-          "svgX": 265,
+          "svgX": 320,
           "svgY": 165,
           "visitada": false,
           "descripcion": "Plaza en el sector noreste de Barracas.",
@@ -150,7 +150,7 @@
         {
           "id": "plazoleta-herrera",
           "nombre": "Plazoleta Herrera",
-          "svgX": 275,
+          "svgX": 332,
           "svgY": 217,
           "visitada": false,
           "descripcion": "Pequeña plaza de barrio en la zona este de Barracas.",
@@ -159,7 +159,7 @@
         {
           "id": "plaza-angel-villoldo",
           "nombre": "Plaza Ángel Villoldo",
-          "svgX": 284,
+          "svgX": 344,
           "svgY": 256,
           "visitada": false,
           "descripcion": "Homenaje al creador de 'El Choclo', en el barrio de arraigo tanguero.",
@@ -168,7 +168,7 @@
         {
           "id": "parque-espana",
           "nombre": "Parque España",
-          "svgX": 202,
+          "svgX": 243,
           "svgY": 154,
           "visitada": false,
           "descripcion": "Amplio parque sobre Av. Amancio Alcorta, pulmón verde del sur de Barracas.",
@@ -177,7 +177,7 @@
         {
           "id": "parque-pereyra",
           "nombre": "Parque Pereyra",
-          "svgX": 187,
+          "svgX": 225,
           "svgY": 276,
           "visitada": true,
           "descripcion": "Espacio verde de Barracas con mucho movimiento vecinal y vida de barrio.",
@@ -190,7 +190,7 @@
         {
           "id": "plaza-diaz-velez",
           "nombre": "Plaza Díaz Vélez",
-          "svgX": 257,
+          "svgX": 310,
           "svgY": 280,
           "visitada": false,
           "descripcion": "Plaza del sector sureste de Barracas.",
@@ -199,7 +199,7 @@
         {
           "id": "plaza-nuestra-senora-lujan",
           "nombre": "Plaza Nuestra Señora de Luján",
-          "svgX": 190,
+          "svgX": 227,
           "svgY": 292,
           "visitada": false,
           "descripcion": "Plaza de devoción popular en el sur del barrio, cerca del Riachuelo.",

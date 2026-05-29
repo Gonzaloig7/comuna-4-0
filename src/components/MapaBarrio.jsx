@@ -105,12 +105,13 @@ function LaBocaBackground() {
 
 // ── Barracas ─────────────────────────────────────────────
 function BarracasBackground() {
-  // Grilla de manzanas: líneas cada ~27 unidades entre avenidas principales
-  // Bounds: latN=-34.616 latS=-34.668 lonW=-58.412 lonE=-58.346
-  // Av.MontesDeOca x=296 | Av.RegPatricios x=386 | Av.VelezSarsfield x=447
+  // Bounds: latN=-34.616 latS=-34.668 lonW=-58.412 lonE=-58.358 (range 0.054)
+  // Lat range 0.052 (unchanged)
+  // Av.MontesDeOca x=357 | Av.RegPatricios x=468
   // Av.Caseros y=68       | Av.Iriarte y=281
+  // Martín García NW→SE: (121,68)→(336,310)
   const hGrid = [97, 127, 157, 187, 217, 247]
-  const vGrid = [80, 140, 200, 256, 326, 356, 416]
+  const vGrid = [95, 172, 250, 327, 404]
 
   return (
     <g>
@@ -128,32 +129,28 @@ function BarracasBackground() {
       {vGrid.map(x => <line key={`bv${x}`} x1={x} y1="18" x2={x} y2="366"
         stroke="#f0d4df" strokeWidth="0.6" />)}
 
-      {/* ── Avenidas secundarias ── */}
-      <line x1="447" y1="18" x2="447" y2="366" stroke="#e2829a" strokeWidth="2" strokeLinecap="round" />
-      <text x="447" y="11" fontSize="6.5" fill="#C2185B" opacity="0.75" textAnchor="middle"
-        fontFamily="'Lora',Georgia,serif">Vélez Sársfield</text>
-
+      {/* ── Av. Gral. T. de Iriarte (secundaria) ── */}
       <line x1="18" y1="281" x2="482" y2="281" stroke="#e2829a" strokeWidth="2" strokeLinecap="round" />
-      <text x="355" y="273" fontSize="6.5" fill="#C2185B" opacity="0.75" textAnchor="middle"
+      <text x="420" y="273" fontSize="6.5" fill="#C2185B" opacity="0.75" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif">Av. Gral. T. de Iriarte</text>
 
       {/* ── Avenidas principales ── */}
-      <line x1="296" y1="18" x2="296" y2="366" stroke="#C2185B" strokeWidth="3.5" strokeLinecap="round" />
-      <text x="296" y="11" fontSize="7" fill="#C2185B" textAnchor="middle"
+      <line x1="357" y1="18" x2="357" y2="366" stroke="#C2185B" strokeWidth="3.5" strokeLinecap="round" />
+      <text x="357" y="11" fontSize="7" fill="#C2185B" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif">Av. Montes de Oca</text>
 
       <line x1="18" y1="68" x2="482" y2="68" stroke="#C2185B" strokeWidth="3.5" strokeLinecap="round" />
-      <text x="380" y="60" fontSize="7" fill="#C2185B" textAnchor="middle"
+      <text x="200" y="60" fontSize="7" fill="#C2185B" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif">Av. Caseros</text>
 
-      <line x1="386" y1="18" x2="386" y2="366" stroke="#C2185B" strokeWidth="3" strokeLinecap="round" />
-      <text x="386" y="11" fontSize="6.5" fill="#C2185B" textAnchor="middle"
+      <line x1="468" y1="18" x2="468" y2="366" stroke="#C2185B" strokeWidth="3" strokeLinecap="round" />
+      <text x="468" y="11" fontSize="6.5" fill="#C2185B" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif">Av. Reg. de Patricios</text>
 
-      {/* Av. Martín García diagonal NW→SE: (102,68)→(278,310) ≈50° */}
-      <line x1="102" y1="68" x2="278" y2="310" stroke="#C2185B" strokeWidth="2.5" strokeLinecap="round" />
-      <text x="185" y="192" fontSize="6.5" fill="#C2185B" textAnchor="middle"
-        transform="rotate(54,185,192)" fontFamily="'Lora',Georgia,serif">Av. Martín García</text>
+      {/* Av. Martín García diagonal NW→SE: (121,68)→(336,310) ≈50° */}
+      <line x1="121" y1="68" x2="336" y2="310" stroke="#C2185B" strokeWidth="2.5" strokeLinecap="round" />
+      <text x="229" y="189" fontSize="6.5" fill="#C2185B" textAnchor="middle"
+        transform="rotate(48,229,189)" fontFamily="'Lora',Georgia,serif">Av. Martín García</text>
     </g>
   )
 }
