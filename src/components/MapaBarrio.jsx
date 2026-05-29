@@ -166,8 +166,8 @@ function ParquePatriciosBackground() {
       {vGrid.map(x => <line key={`pv${x}`} x1={x} y1="18" x2={x} y2="388"
         stroke="#f0c8c8" strokeWidth="0.6" />)}
 
-      {/* ── Área verde: Parque de los Patricios — entre Chiclana y Caseros, cerca de Colonia */}
-      <rect x="195" y="88" width="120" height="104" fill="#86efac" opacity="0.35" rx="4" />
+      {/* ── Área verde: Parque de los Patricios — entre Caseros y Chiclana (y=83–210) */}
+      <rect x="190" y="83" width="128" height="127" fill="#86efac" opacity="0.35" rx="4" />
       <text x="255" y="147" fontSize="7" fill="#15803d" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif" fontStyle="italic">Parque de los Patricios</text>
 
@@ -217,16 +217,16 @@ function NuevaPompeyaBackground() {
     <g>
       <rect width="500" height="400" fill="#f5f3f0" rx="4" />
 
-      {/* Riachuelo (sur) — lat≈-34.671 → y≈325 */}
-      <path d="M 0,325 Q 120,315 260,320 Q 380,324 500,318 L 500,400 L 0,400 Z"
+      {/* Riachuelo (sur) — lat≈-34.673 → y≈355 */}
+      <path d="M 0,355 Q 120,346 260,351 Q 380,355 500,348 L 500,400 L 0,400 Z"
         fill={AGUA} opacity="0.55" />
-      <text x="250" y="360" fontSize="7" fill="#4A90A4" textAnchor="middle"
+      <text x="320" y="382" fontSize="7" fill="#4A90A4" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif" fontStyle="italic">Riachuelo</text>
 
       {/* ── Grilla de manzanas ── */}
       {hGrid.map(y => <line key={`nh${y}`} x1="18" y1={y} x2="482" y2={y}
         stroke="#d8d4cf" strokeWidth="0.6" />)}
-      {vGrid.map(x => <line key={`nv${x}`} x1={x} y1="18" x2={x} y2="325"
+      {vGrid.map(x => <line key={`nv${x}`} x1={x} y1="18" x2={x} y2="355"
         stroke="#d8d4cf" strokeWidth="0.6" />)}
 
       {/* ── Av. Perito Moreno (secundaria) ── */}
