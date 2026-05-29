@@ -15,8 +15,8 @@
         {
           "id": "plaza-maestro-quinquela",
           "nombre": "Plaza Maestro Quinquela",
-          "svgX": 237,
-          "svgY": 115,
+          "svgX": 141,
+          "svgY": 96,
           "visitada": false,
           "descripcion": "Homenaje al pintor Benito Quinquela Martín, a pasos del Caminito.",
           "videos": null
@@ -24,8 +24,8 @@
         {
           "id": "plaza-lucila",
           "nombre": "Plaza Lucila",
-          "svgX": 285,
-          "svgY": 75,
+          "svgX": 169,
+          "svgY": 82,
           "visitada": false,
           "descripcion": "Plaza del sector norte del barrio.",
           "videos": null
@@ -33,8 +33,8 @@
         {
           "id": "plaza-de-la-usina",
           "nombre": "Plaza de la Usina",
-          "svgX": 418,
-          "svgY": 110,
+          "svgX": 225,
+          "svgY": 127,
           "visitada": false,
           "descripcion": "Espaciosa plaza junto a la Usina del Arte, símbolo del patrimonio industrial boquense.",
           "videos": null
@@ -42,8 +42,8 @@
         {
           "id": "plaza-necochea",
           "nombre": "Plaza Necochea",
-          "svgX": 155,
-          "svgY": 125,
+          "svgX": 104,
+          "svgY": 138,
           "visitada": false,
           "descripcion": "Plaza barrial en el entramado histórico del sur de La Boca.",
           "videos": null
@@ -51,8 +51,8 @@
         {
           "id": "parque-flora-nativa-benito",
           "nombre": "Parque de Flora Nativa Benito Quinquela Martín",
-          "svgX": 105,
-          "svgY": 178,
+          "svgX": 101,
+          "svgY": 180,
           "visitada": false,
           "descripcion": "Reserva de flora autóctona porteña sobre el borde de Paseo Colón.",
           "videos": null
@@ -60,8 +60,8 @@
         {
           "id": "plaza-irala",
           "nombre": "Plaza Irala",
-          "svgX": 130,
-          "svgY": 203,
+          "svgX": 126,
+          "svgY": 141,
           "visitada": false,
           "descripcion": "Pequeña plaza de vecinos en la zona norte de La Boca.",
           "videos": null
@@ -69,8 +69,8 @@
         {
           "id": "plaza-solis",
           "nombre": "Plaza Solís",
-          "svgX": 382,
-          "svgY": 210,
+          "svgX": 231,
+          "svgY": 175,
           "visitada": false,
           "descripcion": "Plaza histórica en el corazón de La Boca, punto de encuentro vecinal.",
           "videos": null
@@ -78,8 +78,8 @@
         {
           "id": "plaza-bomberos-voluntarios",
           "nombre": "Plaza Bomberos Voluntarios",
-          "svgX": 229,
-          "svgY": 225,
+          "svgX": 137,
+          "svgY": 215,
           "visitada": false,
           "descripcion": "Plaza en homenaje a los bomberos voluntarios, escenario de ferias de arte callejero.",
           "videos": null
@@ -87,8 +87,8 @@
         {
           "id": "plazoleta-de-los-suspiros",
           "nombre": "Plazoleta de los Suspiros",
-          "svgX": 275,
-          "svgY": 258,
+          "svgX": 159,
+          "svgY": 221,
           "visitada": false,
           "descripcion": "Rincón pintoresco en el corazón turístico de La Boca.",
           "videos": null
@@ -96,8 +96,8 @@
         {
           "id": "plaza-matheu",
           "nombre": "Plaza Matheu",
-          "svgX": 135,
-          "svgY": 265,
+          "svgX": 94,
+          "svgY": 232,
           "visitada": false,
           "descripcion": "Pequeña plaza de barrio en el corazón residencial de La Boca.",
           "videos": null
@@ -105,8 +105,8 @@
         {
           "id": "plaza-almirante-brown",
           "nombre": "Plaza Almirante Brown",
-          "svgX": 165,
-          "svgY": 318,
+          "svgX": 122,
+          "svgY": 276,
           "visitada": false,
           "descripcion": "Plaza barrial sobre la avenida que lleva el nombre del héroe naval.",
           "videos": null
@@ -123,8 +123,8 @@
         {
           "id": "plaza-colombia",
           "nombre": "Plaza Colombia",
-          "svgX": 220,
-          "svgY": 165,
+          "svgX": 286,
+          "svgY": 170,
           "visitada": false,
           "descripcion": "Una de las plazas más queridas de Barracas, con árboles centenarios y fuente central.",
           "videos": null
@@ -132,8 +132,8 @@
         {
           "id": "plaza-casa-cuna",
           "nombre": "Plaza Casa Cuna",
-          "svgX": 305,
-          "svgY": 145,
+          "svgX": 258,
+          "svgY": 113,
           "visitada": false,
           "descripcion": "Plaza histórica frente al edificio del antiguo Hospital Casa Cuna.",
           "videos": null
@@ -141,8 +141,8 @@
         {
           "id": "plaza-virrey-vertiz",
           "nombre": "Plaza Virrey Vértiz",
-          "svgX": 415,
-          "svgY": 138,
+          "svgX": 265,
+          "svgY": 165,
           "visitada": false,
           "descripcion": "Plaza en el sector noreste de Barracas.",
           "videos": null
@@ -150,8 +150,8 @@
         {
           "id": "plazoleta-herrera",
           "nombre": "Plazoleta Herrera",
-          "svgX": 395,
-          "svgY": 245,
+          "svgX": 275,
+          "svgY": 217,
           "visitada": false,
           "descripcion": "Pequeña plaza de barrio en la zona este de Barracas.",
           "videos": null
@@ -159,8 +159,8 @@
         {
           "id": "plaza-angel-villoldo",
           "nombre": "Plaza Ángel Villoldo",
-          "svgX": 420,
-          "svgY": 288,
+          "svgX": 284,
+          "svgY": 256,
           "visitada": false,
           "descripcion": "Homenaje al creador de 'El Choclo', en el barrio de arraigo tanguero.",
           "videos": null
@@ -168,8 +168,8 @@
         {
           "id": "parque-espana",
           "nombre": "Parque España",
-          "svgX": 95,
-          "svgY": 322,
+          "svgX": 202,
+          "svgY": 154,
           "visitada": false,
           "descripcion": "Amplio parque sobre Av. Amancio Alcorta, pulmón verde del sur de Barracas.",
           "videos": null
@@ -177,8 +177,8 @@
         {
           "id": "parque-pereyra",
           "nombre": "Parque Pereyra",
-          "svgX": 350,
-          "svgY": 315,
+          "svgX": 187,
+          "svgY": 276,
           "visitada": true,
           "descripcion": "Espacio verde de Barracas con mucho movimiento vecinal y vida de barrio.",
           "videos": {
@@ -190,8 +190,8 @@
         {
           "id": "plaza-diaz-velez",
           "nombre": "Plaza Díaz Vélez",
-          "svgX": 405,
-          "svgY": 352,
+          "svgX": 257,
+          "svgY": 280,
           "visitada": false,
           "descripcion": "Plaza del sector sureste de Barracas.",
           "videos": null
@@ -199,8 +199,8 @@
         {
           "id": "plaza-nuestra-senora-lujan",
           "nombre": "Plaza Nuestra Señora de Luján",
-          "svgX": 200,
-          "svgY": 355,
+          "svgX": 190,
+          "svgY": 292,
           "visitada": false,
           "descripcion": "Plaza de devoción popular en el sur del barrio, cerca del Riachuelo.",
           "videos": null
@@ -217,8 +217,8 @@
         {
           "id": "parque-los-patricios",
           "nombre": "Parque de los Patricios",
-          "svgX": 265,
-          "svgY": 140,
+          "svgX": 250,
+          "svgY": 198,
           "visitada": true,
           "descripcion": "Gran pulmón verde del barrio, con canchas, juegos y el espíritu de la comunidad.",
           "videos": {
@@ -230,8 +230,8 @@
         {
           "id": "parque-florentino-ameghino",
           "nombre": "Parque Florentino Ameghino",
-          "svgX": 415,
-          "svgY": 112,
+          "svgX": 395,
+          "svgY": 195,
           "visitada": false,
           "descripcion": "Parque arbolado en homenaje al naturalista Florentino Ameghino, límite este del barrio.",
           "videos": null
@@ -239,8 +239,8 @@
         {
           "id": "plazoleta-jose-de-luca",
           "nombre": "Plazoleta José de Luca",
-          "svgX": 312,
-          "svgY": 162,
+          "svgX": 311,
+          "svgY": 198,
           "visitada": false,
           "descripcion": "Pequeña plazoleta barrial en el corazón de Parque Patricios.",
           "videos": null
@@ -248,8 +248,8 @@
         {
           "id": "plaza-alfia-del-parque",
           "nombre": "Plaza Alfia del Parque",
-          "svgX": 218,
-          "svgY": 192,
+          "svgX": 244,
+          "svgY": 186,
           "visitada": false,
           "descripcion": "Plaza barrial dentro del complejo de espacios verdes de Parque Patricios.",
           "videos": null
@@ -257,8 +257,8 @@
         {
           "id": "plaza-guillermo-alfredo-barbieri",
           "nombre": "Plaza Guillermo y Alfredo Barbieri",
-          "svgX": 392,
-          "svgY": 205,
+          "svgX": 324,
+          "svgY": 224,
           "visitada": false,
           "descripcion": "Plaza dedicada a los hermanos Barbieri, figuras del tango y del barrio.",
           "videos": null
@@ -266,8 +266,8 @@
         {
           "id": "plaza-uriburu",
           "nombre": "Plaza Uriburu",
-          "svgX": 248,
-          "svgY": 262,
+          "svgX": 177,
+          "svgY": 233,
           "visitada": false,
           "descripcion": "Plaza barrial de Parque Patricios, punto de encuentro de la comunidad.",
           "videos": null
@@ -275,8 +275,8 @@
         {
           "id": "plazoleta-lopez-torres",
           "nombre": "Plazoleta F. López Torres",
-          "svgX": 172,
-          "svgY": 284,
+          "svgX": 177,
+          "svgY": 261,
           "visitada": false,
           "descripcion": "Pequeña plazoleta en el sector oeste del barrio.",
           "videos": null
@@ -284,8 +284,8 @@
         {
           "id": "parque-jose-c-paz",
           "nombre": "Parque José C. Paz",
-          "svgX": 258,
-          "svgY": 320,
+          "svgX": 187,
+          "svgY": 263,
           "visitada": false,
           "descripcion": "Parque verde en el sur del barrio, espacio de deportes y recreación.",
           "videos": null
@@ -293,8 +293,8 @@
         {
           "id": "plaza-nicaragua",
           "nombre": "Plaza Nicaragua",
-          "svgX": 258,
-          "svgY": 355,
+          "svgX": 213,
+          "svgY": 271,
           "visitada": false,
           "descripcion": "Plaza del sector sur de Parque Patricios, cerca del límite con Nueva Pompeya.",
           "videos": null
@@ -311,8 +311,8 @@
         {
           "id": "plaza-de-las-misiones",
           "nombre": "Plaza de las Misiones",
-          "svgX": 180,
-          "svgY": 200,
+          "svgX": 328,
+          "svgY": 160,
           "visitada": false,
           "descripcion": "Plaza céntrica del barrio, punto de encuentro y actividades comunitarias.",
           "videos": null
@@ -320,8 +320,8 @@
         {
           "id": "parque-roca",
           "nombre": "Parque Roca",
-          "svgX": 355,
-          "svgY": 320,
+          "svgX": 75,
+          "svgY": 350,
           "visitada": false,
           "descripcion": "Gran espacio verde con canchas de fútbol, pistas de atletismo y actividades al aire libre.",
           "videos": null
@@ -329,8 +329,8 @@
         {
           "id": "plaza-centenario-pompeya",
           "nombre": "Plaza Centenario",
-          "svgX": 135,
-          "svgY": 100,
+          "svgX": 294,
+          "svgY": 76,
           "visitada": false,
           "descripcion": "Plaza histórica del barrio Nueva Pompeya, con árbol centenario y memoria local.",
           "videos": null
