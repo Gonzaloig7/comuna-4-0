@@ -15,100 +15,100 @@
         {
           "id": "plaza-maestro-quinquela",
           "nombre": "Plaza Maestro Quinquela",
-          "svgX": 141,
+          "svgX": 213,
           "svgY": 96,
           "visitada": false,
-          "descripcion": "Homenaje al pintor Benito Quinquela Martín, a pasos del Caminito.",
+          "descripcion": "A pasos del Caminito, homenajea al pintor Benito Quinquela Martín. Punto de referencia del circuito cultural boquense, donde el arte callejero se cruza con la historia del barrio.",
           "videos": null
         },
         {
           "id": "plaza-lucila",
           "nombre": "Plaza Lucila",
-          "svgX": 169,
+          "svgX": 205,
           "svgY": 82,
           "visitada": false,
-          "descripcion": "Plaza del sector norte del barrio.",
+          "descripcion": "Plaza del sector norte del barrio, próxima al puerto y al Estadio Alberto J. Armando. Testigo de la transformación urbana que vive La Boca desde hace décadas.",
           "videos": null
         },
         {
           "id": "plaza-de-la-usina",
           "nombre": "Plaza de la Usina",
-          "svgX": 225,
+          "svgX": 345,
           "svgY": 127,
           "visitada": false,
-          "descripcion": "Espaciosa plaza junto a la Usina del Arte, símbolo del patrimonio industrial boquense.",
+          "descripcion": "Frente a la icónica Usina del Arte, patrimonio industrial reconvertido en centro cultural. Uno de los espacios públicos más nuevos del barrio, símbolo del renacimiento urbano del sur porteño.",
           "videos": null
         },
         {
           "id": "plaza-necochea",
           "nombre": "Plaza Necochea",
-          "svgX": 104,
+          "svgX": 154,
           "svgY": 138,
           "visitada": false,
-          "descripcion": "Plaza barrial en el entramado histórico del sur de La Boca.",
+          "descripcion": "En la calle más conocida de La Boca, entre talleres navales y casas de colores. La vida cotidiana de los vecinos convive aquí con el movimiento turístico.",
           "videos": null
         },
         {
           "id": "parque-flora-nativa-benito",
           "nombre": "Parque de Flora Nativa Benito Quinquela Martín",
-          "svgX": 101,
+          "svgX": 149,
           "svgY": 180,
           "visitada": false,
-          "descripcion": "Reserva de flora autóctona porteña sobre el borde de Paseo Colón.",
+          "descripcion": "Reserva de flora autóctona porteña sobre el borde de Paseo Colón. Un pulmón verde que rescata la biodiversidad nativa en el barrio más colorido de Buenos Aires.",
           "videos": null
         },
         {
           "id": "plaza-irala",
           "nombre": "Plaza Irala",
-          "svgX": 126,
+          "svgX": 187,
           "svgY": 141,
           "visitada": false,
-          "descripcion": "Pequeña plaza de vecinos en la zona norte de La Boca.",
+          "descripcion": "Entre conventillos y murales, esta plaza de vecinos refleja el alma del La Boca que no aparece en las postales. Un espacio de encuentro cotidiano en el tejido histórico del barrio.",
           "videos": null
         },
         {
           "id": "plaza-solis",
           "nombre": "Plaza Solís",
-          "svgX": 231,
+          "svgX": 354,
           "svgY": 175,
           "visitada": false,
-          "descripcion": "Plaza histórica en el corazón de La Boca, punto de encuentro vecinal.",
+          "descripcion": "Plaza histórica en el corazón de La Boca. Punto de encuentro de vecinos de varias generaciones, testigo de la vida barrial que se desarrolla lejos de los circuitos turísticos.",
           "videos": null
         },
         {
           "id": "plaza-bomberos-voluntarios",
           "nombre": "Plaza Bomberos Voluntarios",
-          "svgX": 137,
+          "svgX": 205,
           "svgY": 215,
           "visitada": false,
-          "descripcion": "Plaza en homenaje a los bomberos voluntarios, escenario de ferias de arte callejero.",
+          "descripcion": "Homenaje a los bomberos voluntarios que protegen el barrio desde hace más de un siglo. Escenario habitual de ferias y actividades culturales a cielo abierto.",
           "videos": null
         },
         {
           "id": "plazoleta-de-los-suspiros",
           "nombre": "Plazoleta de los Suspiros",
-          "svgX": 159,
+          "svgX": 241,
           "svgY": 221,
           "visitada": false,
-          "descripcion": "Rincón pintoresco en el corazón turístico de La Boca.",
+          "descripcion": "La 'plazoleta de los suspiros' evoca el romanticismo del barrio inmigrante. Rodeada de casas de chapa de colores, es uno de los rincones más pintorescos del Caminito.",
           "videos": null
         },
         {
           "id": "plaza-matheu",
           "nombre": "Plaza Matheu",
-          "svgX": 94,
+          "svgX": 138,
           "svgY": 232,
           "visitada": false,
-          "descripcion": "Pequeña plaza de barrio en el corazón residencial de La Boca.",
+          "descripcion": "Lejos del circuito turístico, esta plaza es el corazón tranquilo del La Boca que viven sus vecinos. Un espacio de juegos, descanso y comunidad en el tejido residencial del barrio.",
           "videos": null
         },
         {
           "id": "plaza-almirante-brown",
           "nombre": "Plaza Almirante Brown",
-          "svgX": 122,
+          "svgX": 183,
           "svgY": 276,
           "visitada": false,
-          "descripcion": "Plaza barrial sobre la avenida que lleva el nombre del héroe naval.",
+          "descripcion": "Sobre la avenida que lleva el nombre del almirante irlandés fundador de la Armada Argentina, a metros del Riachuelo. Un espacio de memoria naval y vida de barrio.",
           "videos": null
         }
       ]
@@ -126,7 +126,7 @@
           "svgX": 345,
           "svgY": 170,
           "visitada": false,
-          "descripcion": "Una de las plazas más queridas de Barracas, con árboles centenarios y fuente central.",
+          "descripcion": "Una de las plazas más queridas de Barracas, con árboles centenarios y fuente central. Punto de encuentro de la comunidad barraquense, donde se cruzan generaciones y tradiciones.",
           "videos": null
         },
         {
@@ -135,7 +135,7 @@
           "svgX": 311,
           "svgY": 113,
           "visitada": false,
-          "descripcion": "Plaza histórica frente al edificio del antiguo Hospital Casa Cuna.",
+          "descripcion": "Frente al histórico edificio del Hospital Casa Cuna. Testigo de la transformación urbana de Barracas hacia el norte, entre el patrimonio histórico y los nuevos usos del barrio.",
           "videos": null
         },
         {
@@ -144,7 +144,7 @@
           "svgX": 320,
           "svgY": 165,
           "visitada": false,
-          "descripcion": "Plaza en el sector noreste de Barracas.",
+          "descripcion": "Plaza en la trama residencial de Barracas, cercana al eje de Av. Montes de Oca. Vecinos de varias generaciones se reúnen en este espacio verde del corazón del barrio.",
           "videos": null
         },
         {
@@ -153,7 +153,7 @@
           "svgX": 332,
           "svgY": 217,
           "visitada": false,
-          "descripcion": "Pequeña plaza de barrio en la zona este de Barracas.",
+          "descripcion": "Pequeña joya verde en el barrio. Su nombre evoca las calles que dibujaron la Barracas obrera e inmigrante de principios del siglo XX.",
           "videos": null
         },
         {
@@ -162,7 +162,7 @@
           "svgX": 344,
           "svgY": 256,
           "visitada": false,
-          "descripcion": "Homenaje al creador de 'El Choclo', en el barrio de arraigo tanguero.",
+          "descripcion": "Homenaje al creador de 'El Choclo', el tango más grabado de la historia. En el barrio de arraigo tanguero, esta plaza lleva el nombre de uno de sus hijos más ilustres.",
           "videos": null
         },
         {
@@ -171,7 +171,7 @@
           "svgX": 243,
           "svgY": 154,
           "visitada": false,
-          "descripcion": "Amplio parque sobre Av. Amancio Alcorta, pulmón verde del sur de Barracas.",
+          "descripcion": "Amplio espacio verde sobre Av. Amancio Alcorta, pulmón verde del sur de Barracas. Escenario de actividades deportivas comunitarias y encuentros familiares.",
           "videos": null
         },
         {
@@ -180,7 +180,7 @@
           "svgX": 225,
           "svgY": 276,
           "visitada": true,
-          "descripcion": "Espacio verde de Barracas con mucho movimiento vecinal y vida de barrio.",
+          "descripcion": "Espacio verde con mucho movimiento vecinal y vida de barrio. Ya lo visitamos: hablamos con vecinos que lo usan todos los días y que piden más mantenimiento y actividades.",
           "videos": {
             "instagram": "https://www.instagram.com/p/DY3B9R1Obwu/?hl=es%2F",
             "tiktok": null,
@@ -193,7 +193,7 @@
           "svgX": 310,
           "svgY": 280,
           "visitada": false,
-          "descripcion": "Plaza del sector sureste de Barracas.",
+          "descripcion": "Plaza del sector sur de Barracas, en una zona en proceso de transformación urbana. Espacio de sociabilidad entre el tejido histórico del barrio y el Riachuelo.",
           "videos": null
         },
         {
@@ -202,7 +202,7 @@
           "svgX": 227,
           "svgY": 292,
           "visitada": false,
-          "descripcion": "Plaza de devoción popular en el sur del barrio, cerca del Riachuelo.",
+          "descripcion": "Plaza de devoción popular en el sur del barrio, a metros del Riachuelo. La fe popular y la historia de la inmigración conviven en este espacio cercano al agua.",
           "videos": null
         }
       ]
@@ -220,7 +220,7 @@
           "svgX": 250,
           "svgY": 198,
           "visitada": true,
-          "descripcion": "Gran pulmón verde del barrio, con canchas, juegos y el espíritu de la comunidad.",
+          "descripcion": "El gran pulmón verde del barrio homónimo. Ya lo visitamos: hablamos con vecinos que lo recorren a diario y que piden más infraestructura y actividades culturales para el espacio.",
           "videos": {
             "instagram": "https://www.instagram.com/p/DYpKEO8Owkp/?hl=es%2F",
             "tiktok": null,
@@ -233,7 +233,7 @@
           "svgX": 395,
           "svgY": 195,
           "visitada": false,
-          "descripcion": "Parque arbolado en homenaje al naturalista Florentino Ameghino, límite este del barrio.",
+          "descripcion": "Parque arbolado en homenaje al naturalista Florentino Ameghino. Límite este del barrio, bisagra entre Parque Patricios y Barracas, con un carácter propio y una vegetación densa.",
           "videos": null
         },
         {
@@ -242,7 +242,7 @@
           "svgX": 311,
           "svgY": 198,
           "visitada": false,
-          "descripcion": "Pequeña plazoleta barrial en el corazón de Parque Patricios.",
+          "descripcion": "Pequeña plazoleta que recuerda al poeta y letrista de tango barriotero José de Luca. En el corazón del barrio, entre el parque y el estadio de Huracán.",
           "videos": null
         },
         {
@@ -251,7 +251,7 @@
           "svgX": 244,
           "svgY": 186,
           "visitada": false,
-          "descripcion": "Plaza barrial dentro del complejo de espacios verdes de Parque Patricios.",
+          "descripcion": "Plaza barrial dentro del complejo de espacios verdes de Parque Patricios. La vegetación densa le da un carácter tranquilo, lejos del bullicio de las avenidas principales.",
           "videos": null
         },
         {
@@ -260,7 +260,7 @@
           "svgX": 324,
           "svgY": 224,
           "visitada": false,
-          "descripcion": "Plaza dedicada a los hermanos Barbieri, figuras del tango y del barrio.",
+          "descripcion": "Plaza dedicada a los hermanos Barbieri, bandoneonistas del primer tango. El barrio honra su historia musical en este espacio de encuentro comunitario.",
           "videos": null
         },
         {
@@ -269,7 +269,7 @@
           "svgX": 177,
           "svgY": 233,
           "visitada": false,
-          "descripcion": "Plaza barrial de Parque Patricios, punto de encuentro de la comunidad.",
+          "descripcion": "Plaza de barrio en la zona oeste de Parque Patricios. Punto de encuentro cotidiano en un barrio que mezcla su identidad obrera con la llegada del polo tecnológico.",
           "videos": null
         },
         {
@@ -278,7 +278,7 @@
           "svgX": 177,
           "svgY": 261,
           "visitada": false,
-          "descripcion": "Pequeña plazoleta en el sector oeste del barrio.",
+          "descripcion": "Pequeña plazoleta en el sector oeste del barrio. Un respiro verde en la trama densa de Parque Patricios, cerca del límite con Nueva Pompeya.",
           "videos": null
         },
         {
@@ -287,7 +287,7 @@
           "svgX": 187,
           "svgY": 263,
           "visitada": false,
-          "descripcion": "Parque verde en el sur del barrio, espacio de deportes y recreación.",
+          "descripcion": "Parque verde en el sur del barrio, espacio de deportes y recreación para familias. Uno de los puntos de encuentro más activos de la zona entre Chiclana y Sáenz.",
           "videos": null
         },
         {
@@ -296,7 +296,7 @@
           "svgX": 213,
           "svgY": 271,
           "visitada": false,
-          "descripcion": "Plaza del sector sur de Parque Patricios, cerca del límite con Nueva Pompeya.",
+          "descripcion": "Plaza en el extremo sur de Parque Patricios, en el límite con Nueva Pompeya. Un espacio verde compartido entre dos barrios con identidades propias y una historia obrera común.",
           "videos": null
         }
       ]
@@ -314,7 +314,7 @@
           "svgX": 328,
           "svgY": 160,
           "visitada": false,
-          "descripcion": "Plaza céntrica del barrio, punto de encuentro y actividades comunitarias.",
+          "descripcion": "Plaza central y corazón de la vida comunitaria de Nueva Pompeya. Ferias, actividades culturales y encuentros vecinales se suceden en este espacio que da nombre al barrio.",
           "videos": null
         },
         {
@@ -323,7 +323,7 @@
           "svgX": 75,
           "svgY": 350,
           "visitada": false,
-          "descripcion": "Gran espacio verde con canchas de fútbol, pistas de atletismo y actividades al aire libre.",
+          "descripcion": "El gran pulmón del sur de la ciudad. Canchas de fútbol, pistas de atletismo y anfiteatro convocan a miles de vecinos de la zona sur. El espacio verde más grande de la Comuna 4.",
           "videos": null
         },
         {
@@ -332,7 +332,7 @@
           "svgX": 294,
           "svgY": 76,
           "visitada": false,
-          "descripcion": "Plaza histórica del barrio Nueva Pompeya, con árbol centenario y memoria local.",
+          "descripcion": "Plaza histórica de Nueva Pompeya, con árbol centenario y memoria de la inmigración que forjó el barrio. Una de las más antiguas del sur porteño, con identidad propia y arraigo popular.",
           "videos": null
         }
       ]

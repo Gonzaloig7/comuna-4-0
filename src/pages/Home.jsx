@@ -86,16 +86,23 @@ function BarrioCard({ barrio }) {
           {visitadas}/{barrio.plazas.length} plazas
         </p>
         <h2
-          className="font-display text-white leading-none"
+          className="font-display text-white leading-none mb-3"
           style={{ fontSize: 'clamp(1.5rem, 5vw, 2rem)', letterSpacing: '0.04em' }}
         >
           {barrio.nombre.toUpperCase()}
         </h2>
+        {/* Barra de progreso */}
+        <div className="h-1 rounded-full bg-white/20 overflow-hidden">
+          <div
+            className="h-full rounded-full bg-white/60 transition-all"
+            style={{ width: `${Math.max(2, Math.round((visitadas / barrio.plazas.length) * 100))}%` }}
+          />
+        </div>
       </div>
       {/* Franja de color secundario como pie */}
       <div
-        className="h-1.5"
-        style={{ backgroundColor: barrio.colorSecundario, opacity: 0.65 }}
+        className="h-1"
+        style={{ backgroundColor: barrio.colorSecundario, opacity: 0.55 }}
       />
     </button>
   )

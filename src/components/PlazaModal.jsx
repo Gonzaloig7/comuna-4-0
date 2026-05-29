@@ -89,8 +89,8 @@ export default function PlazaModal({ plaza, barrio, formularioUrl, onClose }) {
           ) : (
             <div>
               <p className="font-body text-sm italic text-stone-500 mb-4 leading-relaxed">
-                Todavía no visitamos esta plaza.
-                ¿Querés que la incluyamos en el recorrido?
+                Todavía no la visitamos. Si sos vecino/a de esta plaza y querés
+                que la incluyamos en el recorrido, escribinos.
               </p>
               <a
                 href={formularioUrl}
@@ -99,7 +99,7 @@ export default function PlazaModal({ plaza, barrio, formularioUrl, onClose }) {
                 className="w-full font-body font-semibold text-sm py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-opacity active:opacity-75 text-white"
                 style={{ backgroundColor: color }}
               >
-                Dejar mi reclamo
+                Contanos cómo está →
               </a>
             </div>
           )}

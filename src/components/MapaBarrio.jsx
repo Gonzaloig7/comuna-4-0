@@ -6,98 +6,91 @@ const PAPEL = '#f5ede0'
 const AGUA = '#89C9DD'
 
 // ── La Boca ──────────────────────────────────────────────
-// La Boca tiene una grilla rotada ~43° (alineada con el Almirante Brown).
-// Las calles transversales son perpendiculares a Brown (ángulo -47°).
-// Las calles paralelas a Brown forman el otro eje del damero rotado.
+// Bounds: latN=-34.618 latS=-34.657 lonW=-58.374 lonE=-58.348 (range lon=0.026 lat=0.039)
+// Av.Paseo Colón x=89 | Av.Brown (273,55)→(89,312) NE→SW | Av.Pedro Mendoza y=322
+// Brown dir(-184,257) norm(-0.582,0.813) | perp(0.813,0.582) ∡+36°
 function LaBocaBackground() {
   return (
     <g>
       <rect width="500" height="400" fill="#eff4f9" rx="4" />
 
-      {/* Riachuelo y curva SE */}
+      {/* Riachuelo (sur) — debajo de y≈370 */}
       <path
-        d="M 372,348 Q 420,330 468,290 L 500,270 L 500,400 L 0,400 L 0,395 Z"
+        d="M 0,368 Q 90,358 200,364 Q 310,370 415,362 L 482,368 L 482,400 L 0,400 Z"
         fill={AGUA} opacity="0.55"
       />
-      <text x="450" y="393" fontSize="7" fill="#4A90A4" textAnchor="middle"
+      <text x="200" y="392" fontSize="7" fill="#4A90A4" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif" fontStyle="italic">Riachuelo</text>
 
-      {/* Puerto Madero / Río de la Plata (NE) */}
-      <path d="M 470,15 L 500,15 L 500,270 L 468,290 L 470,220 L 472,150 L 470,15 Z"
-        fill={AGUA} opacity="0.40" />
-      <text x="487" y="155" fontSize="6.5" fill="#4A90A4" textAnchor="middle"
-        transform="rotate(90,487,155)"
+      {/* Puerto Madero / Río de la Plata (NE, este) */}
+      <path d="M 438,18 L 482,18 L 482,368 L 438,355 Q 420,270 432,140 L 438,18 Z"
+        fill={AGUA} opacity="0.32" />
+      <text x="463" y="175" fontSize="6.5" fill="#4A90A4" textAnchor="middle"
+        transform="rotate(90,463,175)"
         fontFamily="'Lora',Georgia,serif" fontStyle="italic">Puerto Madero</text>
 
-      {/* ── Bounds: latN=-34.618 latS=-34.657 lonW=-58.374 lonE=-58.333 ──
-           Av.Paseo Colón x=68 | Av.Brown (180,55)→(63,312) NE→SW | Av.Pedro Mendoza y=322
-           Brown dir(-117,255) normalized(-0.416,0.909) | perp(0.909,0.416) */}
-
       {/* ── Grilla rotada: paralelas a Brown ── */}
-      {/* dir Brown: (-0.416,0.909)  perp: (0.909,0.416) */}
+      {/* dir Brown: (-0.582,0.813)  perp: (0.813,0.582) */}
       {[40, 80, 120].map((d) => (
         <line key={`par${d}`}
-          x1={180 + 0.909 * d} y1={55 + 0.416 * d}
-          x2={63  + 0.909 * d} y2={312 + 0.416 * d}
+          x1={273 + 0.813 * d} y1={55 + 0.582 * d}
+          x2={89  + 0.813 * d} y2={312 + 0.582 * d}
           stroke="#d4e4f4" strokeWidth="0.7" strokeDasharray="2,2" />
       ))}
       {[-40, -80].map((d) => (
         <line key={`parN${d}`}
-          x1={180 + 0.909 * d} y1={55 + 0.416 * d}
-          x2={63  + 0.909 * d} y2={312 + 0.416 * d}
+          x1={273 + 0.813 * d} y1={55 + 0.582 * d}
+          x2={89  + 0.813 * d} y2={312 + 0.582 * d}
           stroke="#d4e4f4" strokeWidth="0.7" strokeDasharray="2,2" />
       ))}
 
       {/* ── Grilla rotada: perpendiculares a Brown ── */}
       {[0.22, 0.44, 0.66, 0.84].map((t) => {
-        const px = 180 + t * (63 - 180)
+        const px = 273 + t * (89 - 273)
         const py = 55  + t * (312 - 55)
         return (
           <line key={`perp${t}`}
-            x1={px + 0.909 * 140} y1={py + 0.416 * 140}
-            x2={px - 0.909 * 140} y2={py - 0.416 * 140}
+            x1={px + 0.813 * 130} y1={py + 0.582 * 130}
+            x2={px - 0.813 * 130} y2={py - 0.582 * 130}
             stroke="#d4e4f4" strokeWidth="0.7" strokeDasharray="2,2" />
         )
       })}
 
-      {/* ── Calles con nombre (perpendiculares a Brown) ── */}
-      {/* Brandsen ≈ t=0.30 */}
-      <line x1={Math.round(180+0.3*(63-180)+0.909*150)} y1={Math.round(55+0.3*257+0.416*150)}
-            x2={Math.round(180+0.3*(63-180)-0.909*150)} y2={Math.round(55+0.3*257-0.416*150)}
+      {/* ── Calle Brandsen (t≈0.30 sobre Brown) ── */}
+      <line x1="332" y1="214" x2="104" y2="51"
             stroke="#b8cfe8" strokeWidth="1.4" />
-      <text x="216" y="138" fontSize="6.5" fill="#7aa0c8" textAnchor="middle"
-        transform="rotate(-25,216,138)" fontFamily="'Lora',Georgia,serif">Brandsen</text>
+      <text x="228" y="140" fontSize="6.5" fill="#7aa0c8" textAnchor="middle"
+        transform="rotate(-36,228,140)" fontFamily="'Lora',Georgia,serif">Brandsen</text>
 
-      {/* Suárez ≈ t=0.56 */}
-      <line x1={Math.round(180+0.56*(63-180)+0.909*130)} y1={Math.round(55+0.56*257+0.416*130)}
-            x2={Math.round(180+0.56*(63-180)-0.909*130)} y2={Math.round(55+0.56*257-0.416*130)}
+      {/* ── Calle Suárez (t≈0.56 sobre Brown) ── */}
+      <line x1="268" y1="269" x2="72" y2="129"
             stroke="#b8cfe8" strokeWidth="1.4" />
-      <text x="196" y="218" fontSize="6.5" fill="#7aa0c8" textAnchor="middle"
-        transform="rotate(-25,196,218)" fontFamily="'Lora',Georgia,serif">Suárez</text>
+      <text x="183" y="212" fontSize="6.5" fill="#7aa0c8" textAnchor="middle"
+        transform="rotate(-36,183,212)" fontFamily="'Lora',Georgia,serif">Suárez</text>
 
-      {/* ── Av. Paseo Colón (oeste, lon≈-58.370 → x=68) ── */}
-      <line x1="68" y1="18" x2="68" y2="322" stroke="#1C5BA8" strokeWidth="3.5" strokeLinecap="round" />
-      <text x="68" y="11" fontSize="7" fill="#1C5BA8" textAnchor="middle"
+      {/* ── Av. Paseo Colón (oeste, lon≈-58.370 → x=89) ── */}
+      <line x1="89" y1="18" x2="89" y2="368" stroke="#1C5BA8" strokeWidth="3.5" strokeLinecap="round" />
+      <text x="89" y="11" fontSize="7" fill="#1C5BA8" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif">Av. Paseo Colón</text>
 
-      {/* ── Av. Almirante Brown: (180,55) → (63,312) CORRECTO: NE → SO ── */}
-      <line x1="180" y1="55" x2="63" y2="312" stroke="#1C5BA8" strokeWidth="3.5" strokeLinecap="round" />
-      <text x="124" y="186" fontSize="7" fill="#1C5BA8" textAnchor="middle"
-        transform="rotate(-66,124,186)" fontFamily="'Lora',Georgia,serif">Av. Almirante Brown</text>
+      {/* ── Av. Almirante Brown: (273,55) → (89,312) CORRECTO: NE → SO ── */}
+      <line x1="273" y1="55" x2="89" y2="312" stroke="#1C5BA8" strokeWidth="3.5" strokeLinecap="round" />
+      <text x="181" y="184" fontSize="7" fill="#1C5BA8" textAnchor="middle"
+        transform="rotate(-54,181,184)" fontFamily="'Lora',Georgia,serif">Av. Almirante Brown</text>
 
       {/* ── Av. Pedro de Mendoza (sur, lat≈-34.650 → y=322) ── */}
-      <line x1="18" y1="322" x2="482" y2="322" stroke="#1C5BA8" strokeWidth="2.5" strokeLinecap="round" />
-      <text x="280" y="314" fontSize="6.5" fill="#1C5BA8" textAnchor="middle"
+      <line x1="18" y1="322" x2="438" y2="322" stroke="#1C5BA8" strokeWidth="2.5" strokeLinecap="round" />
+      <text x="240" y="314" fontSize="6.5" fill="#1C5BA8" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif">Av. Pedro de Mendoza</text>
 
-      {/* ── Landmark: La Bombonera (lat≈-34.635 lon≈-58.364 → x≈131 y≈179) ── */}
-      <rect x="119" y="168" width="24" height="18" fill="#1C5BA8" opacity="0.18" rx="2" />
-      <text x="131" y="196" fontSize="5.5" fill="#1C5BA8" opacity="0.65" textAnchor="middle"
+      {/* ── Landmark: La Bombonera (lat≈-34.635 lon≈-58.364 → x≈197 y≈179) ── */}
+      <rect x="185" y="168" width="24" height="18" fill="#1C5BA8" opacity="0.18" rx="2" />
+      <text x="197" y="196" fontSize="5.5" fill="#1C5BA8" opacity="0.65" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif">La Bombonera</text>
 
-      {/* ── Label Caminito (lat≈-34.638 lon≈-58.361 → x≈160 y≈200, diagonal Brown) ── */}
-      <text x="158" y="210" fontSize="6" fill="#1C5BA8" opacity="0.65" textAnchor="middle"
-        transform="rotate(-66,158,210)"
+      {/* ── Label Caminito (lat≈-34.638 lon≈-58.361 → x≈250 y≈208) ── */}
+      <text x="248" y="208" fontSize="6" fill="#1C5BA8" opacity="0.65" textAnchor="middle"
+        transform="rotate(-54,248,208)"
         fontFamily="'Lora',Georgia,serif" fontStyle="italic">Caminito</text>
     </g>
   )
