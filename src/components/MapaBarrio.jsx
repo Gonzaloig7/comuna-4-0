@@ -257,6 +257,21 @@ const BACKGROUNDS = {
   'nueva-pompeya': NuevaPompeyaBackground,
 }
 
+// Elimina prefijos genéricos y deja solo el nombre distintivo (max 3 palabras)
+function labelCorto(nombre) {
+  return nombre
+    .replace(/^Parque de Flora Nativa .*/i, 'Flora Nativa')
+    .replace(/^Plazoleta de los /i, '')
+    .replace(/^Plazoleta /i, '')
+    .replace(/^Parque de los /i, '')
+    .replace(/^Parque de?l? /i, '')
+    .replace(/^Parque /i, '')
+    .replace(/^Plaza de las? /i, '')
+    .replace(/^Plaza Nuestra Señora de /i, '')
+    .replace(/^Plaza /i, '')
+    .split(' ').slice(0, 3).join(' ')
+}
+
 function PlazaMarker({ plaza, onClick }) {
   return (
     <g
@@ -283,13 +298,13 @@ function PlazaMarker({ plaza, onClick }) {
         textAnchor="middle" paintOrder="stroke"
         className="select-none pointer-events-none"
         fontFamily="'Lora',Georgia,serif">
-        {plaza.nombre}
+        {labelCorto(plaza.nombre)}
       </text>
       <text x={plaza.svgX} y={plaza.svgY + 23} fontSize="7.5" fontWeight="600"
         fill="#1c1917" textAnchor="middle"
         className="select-none pointer-events-none"
         fontFamily="'Lora',Georgia,serif">
-        {plaza.nombre}
+        {labelCorto(plaza.nombre)}
       </text>
 
       {/* Ícono de video si fue visitada */}
