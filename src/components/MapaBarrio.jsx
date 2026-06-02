@@ -180,8 +180,8 @@ function ParquePatriciosBackground() {
 // ── Nueva Pompeya ────────────────────────────────────────
 // Bounds: latN=-34.636 latS=-34.677 lonW=-58.453 lonE=-58.395 (range lon=0.058 lat=0.041)
 // Diseño minimalista — solo avenidas principales, sin grilla
-// Av.Sáenz y=90 (N) | Av.PeritMoreno y=144 | Av.OsvaldoCruz y=217 | Riachuelo y≈355
-// Av.Centenera x=274 (central N-S)
+// E-O: Av.Sáenz y=90 | Av.PeritMoreno y=144 | Av.OsvaldoCruz y=217 | Riachuelo y≈355
+// N-S: Av.Riestra x=146 (O) | Av.Centenera x=274 | Av.Rivera x=370 (E)
 function NuevaPompeyaBackground() {
   return (
     <g>
@@ -193,29 +193,41 @@ function NuevaPompeyaBackground() {
       <text x="320" y="382" fontSize="7.5" fill="#4A90A4" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif" fontStyle="italic">Riachuelo</text>
 
-      {/* ── Av. Osvaldo Cruz (sur, lat≈-34.658 → y=217) ── */}
+      {/* ── Av. Osvaldo Cruz (lat≈-34.658 → y=217) ── */}
       <line x1="18" y1="217" x2="482" y2="217"
         stroke="#424242" strokeWidth="3.5" strokeLinecap="round" />
       <text x="260" y="209" fontSize="7" fill="#424242" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif">Av. Osvaldo Cruz</text>
 
-      {/* ── Av. Perito Moreno (central, lat≈-34.650 → y=144) ── */}
+      {/* ── Av. Perito Moreno (lat≈-34.650 → y=144) ── */}
       <line x1="18" y1="144" x2="482" y2="144"
         stroke="#757575" strokeWidth="2" strokeLinecap="round" />
-      <text x="145" y="136" fontSize="6.5" fill="#424242" opacity="0.75" textAnchor="middle"
+      <text x="200" y="136" fontSize="6.5" fill="#424242" opacity="0.75" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif">Av. Perito Moreno</text>
 
       {/* ── Av. Sáenz (norte, lat≈-34.644 → y=90) ── */}
       <line x1="18" y1="90" x2="482" y2="90"
         stroke="#424242" strokeWidth="3.5" strokeLinecap="round" />
-      <text x="145" y="82" fontSize="7" fill="#424242" textAnchor="middle"
+      <text x="200" y="82" fontSize="7" fill="#424242" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif">Av. Sáenz</text>
 
-      {/* ── Av. Centenera (central N-S, lon≈-58.421 → x=274) ── */}
+      {/* ── Av. Riestra (occidental, lon≈-58.437 → x=146) ── */}
+      <line x1="146" y1="18" x2="146" y2="355"
+        stroke="#757575" strokeWidth="2" strokeLinecap="round" />
+      <text x="146" y="11" fontSize="6.5" fill="#424242" opacity="0.75" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif">Av. Riestra</text>
+
+      {/* ── Av. Del Barco Centenera (central, lon≈-58.421 → x=274) ── */}
       <line x1="274" y1="18" x2="274" y2="355"
         stroke="#424242" strokeWidth="3" strokeLinecap="round" />
       <text x="274" y="11" fontSize="7" fill="#424242" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif">Av. Centenera</text>
+
+      {/* ── Av. Rivera (oriental, lon≈-58.409 → x=370) ── */}
+      <line x1="370" y1="18" x2="370" y2="355"
+        stroke="#757575" strokeWidth="2" strokeLinecap="round" />
+      <text x="370" y="11" fontSize="6.5" fill="#424242" opacity="0.75" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif">Av. Rivera</text>
     </g>
   )
 }
