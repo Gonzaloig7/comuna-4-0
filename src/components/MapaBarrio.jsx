@@ -7,50 +7,52 @@ const AGUA = '#89C9DD'
 
 // ── La Boca ──────────────────────────────────────────────
 // Bounds: latN=-34.618 latS=-34.657 lonW=-58.374 lonE=-58.348 (range lon=0.026 lat=0.039)
-// Diseño minimalista: solo las 4 avenidas principales, sin grilla secundaria
-// Av.Paseo Colón x=89 | Av.Brown (196,18)→(89,322) | Av.Brasil y=84 | Av.Pedro Mendoza y=322
+// Av.Brown: NO→SE (arriba-izquierda → abajo-derecha) — (161,18)→(393,312)
+// Av.Paseo Colón x=89 | Av.Brasil y=84 | Av.Pedro Mendoza y=322
+// Riachuelo envuelve por el ESTE y SUR
 function LaBocaBackground() {
   return (
     <g>
-      {/* Fondo */}
+      {/* Fondo tierra */}
       <rect width="500" height="400" fill="#eef3f8" rx="4" />
 
-      {/* ── Riachuelo (sur, lat≈-34.651 → y≈322, agua debajo) ── */}
-      <path d="M 0,350 Q 80,340 200,346 Q 320,352 440,344 L 482,350 L 482,400 L 0,400 Z"
-        fill={AGUA} opacity="0.60" />
-      <text x="220" y="382" fontSize="8" fill="#4A90A4" textAnchor="middle"
+      {/* ── Riachuelo — envuelve el barrio por el este (derecha) y sur (abajo) ── */}
+      {/* Entra desde el borde derecho a ~y=145 y rodea el sector SE */}
+      <path
+        d="M 382,140 C 420,136 455,144 482,154
+           L 482,400 L 0,400 L 0,390
+           Q 110,382 240,388 Q 330,393 362,380
+           Q 382,366 382,320 L 382,220 L 382,140 Z"
+        fill={AGUA} opacity="0.50"
+      />
+      <text x="448" y="278" fontSize="7.5" fill="#4A90A4" textAnchor="middle"
+        transform="rotate(90,448,278)"
         fontFamily="'Lora',Georgia,serif" fontStyle="italic">Riachuelo</text>
 
-      {/* ── Puerto Madero / Río de la Plata (este) ── */}
-      <path d="M 442,18 L 482,18 L 482,350 L 442,342 Q 422,255 436,135 L 442,18 Z"
-        fill={AGUA} opacity="0.32" />
-      <text x="465" y="190" fontSize="7" fill="#4A90A4" textAnchor="middle"
-        transform="rotate(90,465,190)"
-        fontFamily="'Lora',Georgia,serif" fontStyle="italic">Puerto Madero</text>
-
       {/* ── Av. Brasil (norte, lat≈-34.625 → y=84) ── */}
-      <line x1="18" y1="84" x2="442" y2="84"
+      <line x1="18" y1="84" x2="382" y2="84"
         stroke="#1C5BA8" strokeWidth="2" strokeLinecap="round" strokeDasharray="6,4" />
-      <text x="300" y="76" fontSize="6.5" fill="#1C5BA8" opacity="0.85" textAnchor="middle"
+      <text x="220" y="76" fontSize="6.5" fill="#1C5BA8" opacity="0.85" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif">Av. Brasil</text>
 
       {/* ── Av. Paseo Colón (límite oeste, lon≈-58.370 → x=89) ── */}
-      <line x1="89" y1="18" x2="89" y2="350"
-        stroke="#1C5BA8" strokeWidth="4.5" strokeLinecap="round" />
-      <text x="89" y="11" fontSize="7.5" fill="#1C5BA8" textAnchor="middle"
+      <line x1="89" y1="18" x2="89" y2="388"
+        stroke="#1C5BA8" strokeWidth="4" strokeLinecap="round" />
+      <text x="89" y="11" fontSize="7" fill="#1C5BA8" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif">Av. Paseo Colón</text>
 
-      {/* ── Av. Almirante Brown: (196,18)→(89,322) NE→SO ── */}
-      {/* p_NE: lon=-58.364 lat=-34.618 | p_SO: lon=-58.370 lat=-34.650 */}
-      <line x1="196" y1="18" x2="89" y2="322"
+      {/* ── Av. Almirante Brown: NO→SE (arriba-izquierda → abajo-derecha) ∡52° ── */}
+      {/* p_NO: lon=-58.366 lat=-34.618 | p_SE: lon=-58.353 lat=-34.649 */}
+      <line x1="161" y1="18" x2="393" y2="312"
         stroke="#1C5BA8" strokeWidth="4.5" strokeLinecap="round" />
-      <text x="143" y="170" fontSize="7.5" fill="#1C5BA8" textAnchor="middle"
-        transform="rotate(-70,143,170)" fontFamily="'Lora',Georgia,serif">Av. Almirante Brown</text>
+      <text x="277" y="165" fontSize="7" fill="#1C5BA8" textAnchor="middle"
+        transform="rotate(52,277,165)"
+        fontFamily="'Lora',Georgia,serif">Av. Almirante Brown</text>
 
       {/* ── Av. Pedro de Mendoza (sur, lat≈-34.650 → y=322) ── */}
-      <line x1="18" y1="322" x2="442" y2="322"
+      <line x1="18" y1="322" x2="382" y2="322"
         stroke="#1C5BA8" strokeWidth="3" strokeLinecap="round" />
-      <text x="265" y="313" fontSize="6.5" fill="#1C5BA8" textAnchor="middle"
+      <text x="215" y="313" fontSize="6.5" fill="#1C5BA8" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif">Av. Pedro de Mendoza</text>
     </g>
   )
