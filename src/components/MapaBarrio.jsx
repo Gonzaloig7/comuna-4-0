@@ -34,15 +34,29 @@ function LaBocaBackground() {
           stroke="#7aa4c4" strokeWidth="1.0" />
       ))}
 
-      {/* ── Grilla diagonal — calles transversales (perpendiculares a Brown) ── */}
-      {[0.15, 0.27, 0.39, 0.51, 0.63, 0.75, 0.87].map(t => {
+      {/* ── Calles transversales (perpendiculares a Brown) con nombres reales ── */}
+      {[
+        {t:0.15, n:'Pinzón'},
+        {t:0.27, n:'Brandsen'},
+        {t:0.39, n:'Suárez'},
+        {t:0.51, n:'Necochea'},
+        {t:0.63, n:'Olavarría'},
+        {t:0.75, n:'Irala'},
+        {t:0.87, n:'Magallanes'},
+      ].map(({t, n}) => {
         const cx = Math.round(161 + 232 * t)
         const cy = Math.round(18  + 294 * t)
+        const lx1 = cx + Math.round(0.785*140)
+        const ly1 = cy - Math.round(0.620*140)
+        const lx2 = cx - Math.round(0.785*140)
+        const ly2 = cy + Math.round(0.620*140)
         return (
-          <line key={`lbx${t}`}
-            x1={cx + Math.round(0.785*140)} y1={cy - Math.round(0.620*140)}
-            x2={cx - Math.round(0.785*140)} y2={cy + Math.round(0.620*140)}
-            stroke="#7aa4c4" strokeWidth="1.0" />
+          <g key={n}>
+            <title>{n}</title>
+            <line x1={lx1} y1={ly1} x2={lx2} y2={ly2} stroke="#7aa4c4" strokeWidth="1.0" />
+            <text x={lx2+14} y={ly2-6} fontSize="5.5" fill="#1C5BA8" opacity="0.65"
+              fontFamily="'Lora',Georgia,serif">{n}</text>
+          </g>
         )
       })}
 
@@ -88,14 +102,23 @@ function LaBocaBackground() {
 
 // ── Barracas ─────────────────────────────────────────────
 // Bounds: latN=-34.616 latS=-34.668 lonW=-58.412 lonE=-58.346 (range lon=0.066 lat=0.052)
-// Diseño minimalista — solo avenidas principales, sin grilla
-// Av.Alcorta x=32 (W) | Av.MontesDeOca x=296 | Av.VélezSársfield x=446
-// Av.Caseros y=68 (N) | Av.Iriarte y=281 (S) | Riachuelo y≈366
-// Av.MartínGarcía (109,25)→(285,289) NO→SE ∡56°
+// Calles reales con nombres — E-O entre Caseros/Iriarte, N-S entre Alcorta/Vélez Sársfield
 function BarracasBackground() {
-  // Grilla ortogonal: hStep≈35px (0.005° lat), vStep≈35px (0.005° lon)
-  const hGrid = [53,88,123,158,193,228,263,298,333]   // entre Caseros(68) e Iriarte(281)
-  const vGrid = [53,88,123,158,193,228,263,333,368,403,438,473]
+  // Calles E-O (horizontales) con nombres reales — lat→y = 18+(lat−latN)/range*370
+  const callesEO = [
+    {n:'Pedriel',          y: 90},  // lat≈-34.625
+    {n:'Olavarría',        y:125},  // lat≈-34.630
+    {n:'California',       y:162},  // lat≈-34.636
+    {n:'Cnel. Salvadores', y:198},  // lat≈-34.641
+    {n:'Gualeguay',        y:234},  // lat≈-34.646
+  ]
+  // Calles N-S (verticales) con nombres reales — lon→x = 18+(lon−lonW)/range*464
+  const callesNS = [
+    {n:'Av. Australia', x:170},  // lon≈-58.390
+    {n:'Herrera',       x:228},  // lon≈-58.382
+    {n:'Patagones',     x:362},  // lon≈-58.363
+    {n:'Beazley',       x:410},  // lon≈-58.356
+  ]
   return (
     <g>
       <rect width="500" height="400" fill="#fdf0f5" rx="4" />
@@ -106,11 +129,25 @@ function BarracasBackground() {
       <text x="240" y="392" fontSize="7.5" fill="#4A90A4" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif" fontStyle="italic">Riachuelo</text>
 
-      {/* ── Grilla de manzanas ── */}
-      {hGrid.map(y => <line key={`bh${y}`} x1="18" y1={y} x2="482" y2={y}
-        stroke="#d88aaa" strokeWidth="1.0" />)}
-      {vGrid.map(x => <line key={`bv${x}`} x1={x} y1="18" x2={x} y2="366"
-        stroke="#d88aaa" strokeWidth="1.0" />)}
+      {/* ── Calles E-O con nombre ── */}
+      {callesEO.map(c => (
+        <g key={c.n}>
+          <title>{c.n}</title>
+          <line x1="18" y1={c.y} x2="482" y2={c.y} stroke="#d88aaa" strokeWidth="1.0" />
+          <text x={24} y={c.y - 3} fontSize="5.5" fill="#C2185B" opacity="0.65"
+            fontFamily="'Lora',Georgia,serif">{c.n}</text>
+        </g>
+      ))}
+      {/* ── Calles N-S con nombre ── */}
+      {callesNS.map(c => (
+        <g key={c.n}>
+          <title>{c.n}</title>
+          <line x1={c.x} y1="18" x2={c.x} y2="366" stroke="#d88aaa" strokeWidth="1.0" />
+          <text x={c.x} y={24} fontSize="5.5" fill="#C2185B" opacity="0.65"
+            textAnchor="middle" fontFamily="'Lora',Georgia,serif"
+            transform={`rotate(-90,${c.x},24)`}>{c.n}</text>
+        </g>
+      ))}
 
       {/* ── Avenidas con título hover ── */}
       <g><title>Av. Amancio Alcorta</title>
@@ -143,14 +180,21 @@ function BarracasBackground() {
 
 // ── Parque Patricios ─────────────────────────────────────
 // Bounds: latN=-34.618 latS=-34.658 lonW=-58.425 lonE=-58.387 (range lon=0.038 lat=0.040)
-// Diseño minimalista — solo avenidas principales, sin grilla
-// E-O: Av.Caseros y=83 | Av.Chiclana y=194 | Av.Sáenz y=305
-// N-S: Av.Almafuerte x=158 | Av.Colonia x=311 | Av.Alcorta x=421
-// Parque entre Almafuerte–Colonia y Caseros–Chiclana
+// Calles reales con nombres
 function ParquePatriciosBackground() {
-  // Grilla ortogonal: hStep≈28px (0.003° lat), vStep≈37px (0.003° lon)
-  const hGrid = [46,74,102,130,158,186,214,242,270,298,326,354,382]
-  const vGrid = [55,92,129,166,203,240,277,314,351,388,425,462]
+  // E-O: lat→y = 18+(lat−latN)/0.040*370
+  const callesEO = [
+    {n:'Uspallata',     y:120},  // lat≈-34.628
+    {n:'Pepiri',        y:157},  // lat≈-34.632
+    {n:'Montesquieu',   y:248},  // lat≈-34.641
+    {n:'Av. Perito M.', y:290},  // lat≈-34.646 (Perito Moreno)
+  ]
+  // N-S: lon→x = 18+(lon−lonW)/0.038*464
+  const callesNS = [
+    {n:'Av. Luna',       x: 90},  // lon≈-58.418
+    {n:'Av. Centenera',  x:230},  // lon≈-58.407
+    {n:'Regimiento',     x:370},  // lon≈-58.396 (Av. Reg. de Patricios)
+  ]
   return (
     <g>
       <rect width="500" height="400" fill="#fdf0f0" rx="4" />
@@ -160,11 +204,25 @@ function ParquePatriciosBackground() {
       <text x="234" y="142" fontSize="7" fill="#15803d" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif" fontStyle="italic">Parque de los Patricios</text>
 
-      {/* ── Grilla de manzanas ── */}
-      {hGrid.map(y => <line key={`ph${y}`} x1="18" y1={y} x2="482" y2={y}
-        stroke="#d09090" strokeWidth="1.0" />)}
-      {vGrid.map(x => <line key={`pv${x}`} x1={x} y1="18" x2={x} y2="388"
-        stroke="#d09090" strokeWidth="1.0" />)}
+      {/* ── Calles E-O con nombre ── */}
+      {callesEO.map(c => (
+        <g key={c.n}>
+          <title>{c.n}</title>
+          <line x1="18" y1={c.y} x2="482" y2={c.y} stroke="#d09090" strokeWidth="1.0" />
+          <text x={24} y={c.y - 3} fontSize="5.5" fill="#B71C1C" opacity="0.65"
+            fontFamily="'Lora',Georgia,serif">{c.n}</text>
+        </g>
+      ))}
+      {/* ── Calles N-S con nombre ── */}
+      {callesNS.map(c => (
+        <g key={c.n}>
+          <title>{c.n}</title>
+          <line x1={c.x} y1="18" x2={c.x} y2="388" stroke="#d09090" strokeWidth="1.0" />
+          <text x={c.x} y={24} fontSize="5.5" fill="#B71C1C" opacity="0.65"
+            textAnchor="middle" fontFamily="'Lora',Georgia,serif"
+            transform={`rotate(-90,${c.x},24)`}>{c.n}</text>
+        </g>
+      ))}
 
       {/* ── Avenidas con título hover ── */}
       <g><title>Av. Sáenz</title>
@@ -202,13 +260,20 @@ function ParquePatriciosBackground() {
 
 // ── Nueva Pompeya ────────────────────────────────────────
 // Bounds: latN=-34.636 latS=-34.677 lonW=-58.453 lonE=-58.395 (range lon=0.058 lat=0.041)
-// Diseño minimalista — solo avenidas principales, sin grilla
-// E-O: Av.Sáenz y=90 | Av.PeritMoreno y=144 | Av.OsvaldoCruz y=217 | Riachuelo y≈355
-// N-S: Av.Riestra x=146 (O) | Av.Centenera x=274 | Av.Rivera x=370 (E)
+// Calles reales con nombres
 function NuevaPompeyaBackground() {
-  // Grilla ortogonal: hStep≈45px (0.005° lat), vStep≈40px (0.005° lon)
-  const hGrid = [63,108,153,198,243,288,333]
-  const vGrid = [58,98,138,178,218,258,298,338,378,418,458]
+  // E-O: lat→y = 18+(lat−latN)/0.041*370
+  const callesEO = [
+    {n:'Lacarra',        y:115},  // lat≈-34.648
+    {n:'Cnel. Pagola',   y:162},  // lat≈-34.653
+    {n:'Fernández',      y:196},  // lat≈-34.657
+  ]
+  // N-S: lon→x = 18+(lon−lonW)/0.058*464
+  const callesNS = [
+    {n:'Av. J.M. Moreno', x: 80},  // lon≈-58.443
+    {n:'Av. Daract',      x:210},  // lon≈-58.429
+    {n:'Lynch',           x:356},  // lon≈-58.411
+  ]
   return (
     <g>
       <rect width="500" height="400" fill="#f5f3f0" rx="4" />
@@ -219,11 +284,25 @@ function NuevaPompeyaBackground() {
       <text x="320" y="382" fontSize="7.5" fill="#4A90A4" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif" fontStyle="italic">Riachuelo</text>
 
-      {/* ── Grilla de manzanas ── */}
-      {hGrid.map(y => <line key={`nh${y}`} x1="18" y1={y} x2="482" y2={y}
-        stroke="#a0a09a" strokeWidth="1.0" />)}
-      {vGrid.map(x => <line key={`nv${x}`} x1={x} y1="18" x2={x} y2="355"
-        stroke="#a0a09a" strokeWidth="1.0" />)}
+      {/* ── Calles E-O con nombre ── */}
+      {callesEO.map(c => (
+        <g key={c.n}>
+          <title>{c.n}</title>
+          <line x1="18" y1={c.y} x2="482" y2={c.y} stroke="#a0a09a" strokeWidth="1.0" />
+          <text x={24} y={c.y - 3} fontSize="5.5" fill="#424242" opacity="0.65"
+            fontFamily="'Lora',Georgia,serif">{c.n}</text>
+        </g>
+      ))}
+      {/* ── Calles N-S con nombre ── */}
+      {callesNS.map(c => (
+        <g key={c.n}>
+          <title>{c.n}</title>
+          <line x1={c.x} y1="18" x2={c.x} y2="355" stroke="#a0a09a" strokeWidth="1.0" />
+          <text x={c.x} y={24} fontSize="5.5" fill="#424242" opacity="0.65"
+            textAnchor="middle" fontFamily="'Lora',Georgia,serif"
+            transform={`rotate(-90,${c.x},24)`}>{c.n}</text>
+        </g>
+      ))}
 
       {/* ── Avenidas con título hover ── */}
       <g><title>Av. Osvaldo Cruz</title>
