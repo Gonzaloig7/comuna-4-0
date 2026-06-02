@@ -7,68 +7,50 @@ const AGUA = '#89C9DD'
 
 // ── La Boca ──────────────────────────────────────────────
 // Bounds: latN=-34.618 latS=-34.657 lonW=-58.374 lonE=-58.348 (range lon=0.026 lat=0.039)
-// Av.Paseo Colón x=89 | Av.Brown (273,55)→(89,312) NE→SW | Av.Pedro Mendoza y=322
-// Brown dir(-184,257) norm(-0.582,0.813) | perp(0.813,0.582) ∡+36°
+// Diseño minimalista: solo las 4 avenidas principales, sin grilla secundaria
+// Av.Paseo Colón x=89 | Av.Brown (196,18)→(89,322) | Av.Brasil y=84 | Av.Pedro Mendoza y=322
 function LaBocaBackground() {
   return (
     <g>
-      <rect width="500" height="400" fill="#eff4f9" rx="4" />
+      {/* Fondo */}
+      <rect width="500" height="400" fill="#eef3f8" rx="4" />
 
-      {/* Riachuelo (sur) — debajo de y≈370 */}
-      <path
-        d="M 0,368 Q 90,358 200,364 Q 310,370 415,362 L 482,368 L 482,400 L 0,400 Z"
-        fill={AGUA} opacity="0.55"
-      />
-      <text x="200" y="392" fontSize="7" fill="#4A90A4" textAnchor="middle"
+      {/* ── Riachuelo (sur, lat≈-34.651 → y≈322, agua debajo) ── */}
+      <path d="M 0,350 Q 80,340 200,346 Q 320,352 440,344 L 482,350 L 482,400 L 0,400 Z"
+        fill={AGUA} opacity="0.60" />
+      <text x="220" y="382" fontSize="8" fill="#4A90A4" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif" fontStyle="italic">Riachuelo</text>
 
-      {/* Puerto Madero / Río de la Plata (NE, este) */}
-      <path d="M 438,18 L 482,18 L 482,368 L 438,355 Q 420,270 432,140 L 438,18 Z"
+      {/* ── Puerto Madero / Río de la Plata (este) ── */}
+      <path d="M 442,18 L 482,18 L 482,350 L 442,342 Q 422,255 436,135 L 442,18 Z"
         fill={AGUA} opacity="0.32" />
-      <text x="463" y="175" fontSize="6.5" fill="#4A90A4" textAnchor="middle"
-        transform="rotate(90,463,175)"
+      <text x="465" y="190" fontSize="7" fill="#4A90A4" textAnchor="middle"
+        transform="rotate(90,465,190)"
         fontFamily="'Lora',Georgia,serif" fontStyle="italic">Puerto Madero</text>
 
-      {/* ── Grilla rotada: paralelas a Brown ── */}
-      {/* dir Brown: (-0.582,0.813)  perp: (0.813,0.582) */}
-      {[40, 80, 120].map((d) => (
-        <line key={`par${d}`}
-          x1={273 + 0.813 * d} y1={55 + 0.582 * d}
-          x2={89  + 0.813 * d} y2={312 + 0.582 * d}
-          stroke="#d4e4f4" strokeWidth="0.7" strokeDasharray="2,2" />
-      ))}
-      {[-40, -80].map((d) => (
-        <line key={`parN${d}`}
-          x1={273 + 0.813 * d} y1={55 + 0.582 * d}
-          x2={89  + 0.813 * d} y2={312 + 0.582 * d}
-          stroke="#d4e4f4" strokeWidth="0.7" strokeDasharray="2,2" />
-      ))}
+      {/* ── Av. Brasil (norte, lat≈-34.625 → y=84) ── */}
+      <line x1="18" y1="84" x2="442" y2="84"
+        stroke="#1C5BA8" strokeWidth="2" strokeLinecap="round" strokeDasharray="6,4" />
+      <text x="300" y="76" fontSize="6.5" fill="#1C5BA8" opacity="0.85" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif">Av. Brasil</text>
 
-      {/* ── Grilla rotada: perpendiculares a Brown ── */}
-      {[0.22, 0.44, 0.66, 0.84].map((t) => {
-        const px = 273 + t * (89 - 273)
-        const py = 55  + t * (312 - 55)
-        return (
-          <line key={`perp${t}`}
-            x1={px + 0.813 * 130} y1={py + 0.582 * 130}
-            x2={px - 0.813 * 130} y2={py - 0.582 * 130}
-            stroke="#d4e4f4" strokeWidth="0.7" strokeDasharray="2,2" />
-        )
-      })}
-
-      {/* ── Av. Paseo Colón (oeste, lon≈-58.370 → x=89) ── */}
-      <line x1="89" y1="18" x2="89" y2="368" stroke="#1C5BA8" strokeWidth="3.5" strokeLinecap="round" />
-      <text x="89" y="11" fontSize="7" fill="#1C5BA8" textAnchor="middle"
+      {/* ── Av. Paseo Colón (límite oeste, lon≈-58.370 → x=89) ── */}
+      <line x1="89" y1="18" x2="89" y2="350"
+        stroke="#1C5BA8" strokeWidth="4.5" strokeLinecap="round" />
+      <text x="89" y="11" fontSize="7.5" fill="#1C5BA8" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif">Av. Paseo Colón</text>
 
-      {/* ── Av. Almirante Brown: (273,55) → (89,312) NE → SO ── */}
-      <line x1="273" y1="55" x2="89" y2="312" stroke="#1C5BA8" strokeWidth="3.5" strokeLinecap="round" />
-      <text x="181" y="184" fontSize="7" fill="#1C5BA8" textAnchor="middle"
-        transform="rotate(-54,181,184)" fontFamily="'Lora',Georgia,serif">Av. Almirante Brown</text>
+      {/* ── Av. Almirante Brown: (196,18)→(89,322) NE→SO ── */}
+      {/* p_NE: lon=-58.364 lat=-34.618 | p_SO: lon=-58.370 lat=-34.650 */}
+      <line x1="196" y1="18" x2="89" y2="322"
+        stroke="#1C5BA8" strokeWidth="4.5" strokeLinecap="round" />
+      <text x="143" y="170" fontSize="7.5" fill="#1C5BA8" textAnchor="middle"
+        transform="rotate(-70,143,170)" fontFamily="'Lora',Georgia,serif">Av. Almirante Brown</text>
 
       {/* ── Av. Pedro de Mendoza (sur, lat≈-34.650 → y=322) ── */}
-      <line x1="18" y1="322" x2="438" y2="322" stroke="#1C5BA8" strokeWidth="2.5" strokeLinecap="round" />
-      <text x="240" y="314" fontSize="6.5" fill="#1C5BA8" textAnchor="middle"
+      <line x1="18" y1="322" x2="442" y2="322"
+        stroke="#1C5BA8" strokeWidth="3" strokeLinecap="round" />
+      <text x="265" y="313" fontSize="6.5" fill="#1C5BA8" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif">Av. Pedro de Mendoza</text>
     </g>
   )
