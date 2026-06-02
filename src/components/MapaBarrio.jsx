@@ -166,13 +166,18 @@ function BarracasBackground() {
         <line x1="296" y1="18" x2="296" y2="366" stroke="#C2185B" strokeWidth="3.5" strokeLinecap="round" />
         <text x="296" y="11" fontSize="7" fill="#C2185B" textAnchor="middle" fontFamily="'Lora',Georgia,serif">Av. Montes de Oca</text>
       </g>
-      <g><title>Av. Vélez Sársfield</title>
-        <line x1="446" y1="18" x2="446" y2="366" stroke="#e2829a" strokeWidth="2" strokeLinecap="round" />
-        <text x="446" y="11" fontSize="6.5" fill="#C2185B" opacity="0.75" textAnchor="middle" fontFamily="'Lora',Georgia,serif">Av. Vélez Sársfield</text>
+      {/* ── Av. Reg. de Patricios (entre Montes de Oca y Vélez, lon≈-58.351 → x=446) ── */}
+      <g><title>Av. Regimiento de Patricios</title>
+        <line x1="446" y1="18" x2="446" y2="366" stroke="#C2185B" strokeWidth="3" strokeLinecap="round" />
+        <text x="446" y="11" fontSize="6.5" fill="#C2185B" textAnchor="middle" fontFamily="'Lora',Georgia,serif">Av. Reg. de Patricios</text>
       </g>
+      {/* ── Av. Martín García: diagonal NO→SE ENTRE Montes de Oca y Reg. Patricios ── */}
+      {/* p_NO: lon≈-58.368 (x=327) lat≈-34.623 (y=68) */}
+      {/* p_SE: lon≈-58.354 (x=420) lat≈-34.653 (y=281) */}
       <g><title>Av. Martín García</title>
-        <line x1="109" y1="25" x2="285" y2="289" stroke="#C2185B" strokeWidth="2.5" strokeLinecap="round" />
-        <text x="197" y="157" fontSize="6.5" fill="#C2185B" textAnchor="middle" transform="rotate(56,197,157)" fontFamily="'Lora',Georgia,serif">Av. Martín García</text>
+        <line x1="327" y1="68" x2="420" y2="281" stroke="#C2185B" strokeWidth="2.5" strokeLinecap="round" />
+        <text x="374" y="175" fontSize="6.5" fill="#C2185B" textAnchor="middle"
+          transform="rotate(66,374,175)" fontFamily="'Lora',Georgia,serif">Av. Martín García</text>
       </g>
     </g>
   )
