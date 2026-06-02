@@ -117,101 +117,103 @@ function BarracasBackground() {
 }
 
 // ── Parque Patricios ─────────────────────────────────────
+// Bounds: latN=-34.618 latS=-34.658 lonW=-58.425 lonE=-58.387 (range lon=0.038 lat=0.040)
+// Diseño minimalista — solo avenidas principales, sin grilla
+// E-O: Av.Caseros y=83 | Av.Chiclana y=194 | Av.Sáenz y=305
+// N-S: Av.Almafuerte x=158 | Av.Colonia x=311 | Av.Alcorta x=421
+// Parque entre Almafuerte–Colonia y Caseros–Chiclana
 function ParquePatriciosBackground() {
-  // Bounds: latN=-34.618 latS=-34.658 lonW=-58.425 lonE=-58.387
-  // Av.Caseros y=83 | Av.Chiclana y=194 | Av.Sáenz y=305
-  // Av.Centenera x=158 | Av.Colonia x=311 | Av.Alcorta x=421
-  const hGrid = [110, 138, 165, 222, 250, 278]
-  const vGrid = [95, 128, 230, 260, 290, 366, 395]
-
   return (
     <g>
       <rect width="500" height="400" fill="#fdf0f0" rx="4" />
 
-      {/* ── Grilla de manzanas ── */}
-      {hGrid.map(y => <line key={`ph${y}`} x1="18" y1={y} x2="482" y2={y}
-        stroke="#f0c8c8" strokeWidth="0.6" />)}
-      {vGrid.map(x => <line key={`pv${x}`} x1={x} y1="18" x2={x} y2="388"
-        stroke="#f0c8c8" strokeWidth="0.6" />)}
-
-      {/* ── Área verde: Parque de los Patricios — entre Caseros y Chiclana (y=83–210) */}
-      <rect x="190" y="83" width="128" height="127" fill="#86efac" opacity="0.35" rx="4" />
-      <text x="255" y="147" fontSize="7" fill="#15803d" textAnchor="middle"
+      {/* ── Área verde: Parque de los Patricios ── */}
+      {/* Entre Almafuerte (x=158) y Colonia (x=311), Caseros (y=83) y Chiclana (y=194) */}
+      <rect x="158" y="83" width="153" height="111" fill="#86efac" opacity="0.30" rx="4" />
+      <text x="234" y="142" fontSize="7" fill="#15803d" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif" fontStyle="italic">Parque de los Patricios</text>
 
-      {/* ── Av. Amancio Alcorta (límite este) ── */}
-      <line x1="421" y1="18" x2="421" y2="388" stroke="#e57373" strokeWidth="2" strokeLinecap="round" />
-      <text x="421" y="11" fontSize="6.5" fill="#B71C1C" opacity="0.75" textAnchor="middle"
-        fontFamily="'Lora',Georgia,serif">Av. Alcorta</text>
-
-      {/* ── Avenidas principales ── */}
-      <line x1="18" y1="83" x2="482" y2="83" stroke="#B71C1C" strokeWidth="3.5" strokeLinecap="round" />
-      <text x="118" y="75" fontSize="7" fill="#B71C1C" textAnchor="middle"
-        fontFamily="'Lora',Georgia,serif">Av. Caseros</text>
-
-      <line x1="18" y1="194" x2="482" y2="194" stroke="#B71C1C" strokeWidth="3.5" strokeLinecap="round" />
-      <text x="118" y="186" fontSize="7" fill="#B71C1C" textAnchor="middle"
-        fontFamily="'Lora',Georgia,serif">Av. Chiclana</text>
-
-      <line x1="18" y1="305" x2="482" y2="305" stroke="#B71C1C" strokeWidth="2.5" strokeLinecap="round" />
-      <text x="118" y="297" fontSize="7" fill="#B71C1C" textAnchor="middle"
+      {/* ── Av. Sáenz (sur, lat≈-34.649 → y=305) ── */}
+      <line x1="18" y1="305" x2="482" y2="305"
+        stroke="#e57373" strokeWidth="2" strokeLinecap="round" />
+      <text x="260" y="297" fontSize="6.5" fill="#B71C1C" opacity="0.75" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif">Av. Sáenz</text>
 
-      <line x1="158" y1="18" x2="158" y2="388" stroke="#B71C1C" strokeWidth="3" strokeLinecap="round" />
-      <text x="158" y="11" fontSize="7" fill="#B71C1C" textAnchor="middle"
-        fontFamily="'Lora',Georgia,serif">Av. Centenera</text>
+      {/* ── Av. Chiclana (central, lat≈-34.637 → y=194) ── */}
+      <line x1="18" y1="194" x2="482" y2="194"
+        stroke="#B71C1C" strokeWidth="3.5" strokeLinecap="round" />
+      <text x="260" y="186" fontSize="7" fill="#B71C1C" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif">Av. Chiclana</text>
 
-      <line x1="311" y1="18" x2="311" y2="388" stroke="#B71C1C" strokeWidth="3" strokeLinecap="round" />
+      {/* ── Av. Caseros (norte, lat≈-34.625 → y=83) ── */}
+      <line x1="18" y1="83" x2="482" y2="83"
+        stroke="#B71C1C" strokeWidth="3.5" strokeLinecap="round" />
+      <text x="260" y="75" fontSize="7" fill="#B71C1C" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif">Av. Caseros</text>
+
+      {/* ── Av. Almafuerte (occidental, lon≈-58.414 → x=158) ── */}
+      <line x1="158" y1="18" x2="158" y2="388"
+        stroke="#B71C1C" strokeWidth="3" strokeLinecap="round" />
+      <text x="158" y="11" fontSize="6.5" fill="#B71C1C" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif">Av. Almafuerte</text>
+
+      {/* ── Av. Colonia (central, lon≈-58.400 → x=311) ── */}
+      <line x1="311" y1="18" x2="311" y2="388"
+        stroke="#B71C1C" strokeWidth="3" strokeLinecap="round" />
       <text x="311" y="11" fontSize="7" fill="#B71C1C" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif">Av. Colonia</text>
 
-      {/* ── Landmark: Estadio de Huracán — x≈311 (Colonia) y≈305 (Sáenz) area ── */}
-      <ellipse cx="320" cy="315" rx="22" ry="16" fill="#B71C1C" opacity="0.18" />
-      <text x="320" y="340" fontSize="5.5" fill="#B71C1C" opacity="0.70" textAnchor="middle"
+      {/* ── Av. Amancio Alcorta (límite este, lon≈-58.391 → x=421) ── */}
+      <line x1="421" y1="18" x2="421" y2="388"
+        stroke="#e57373" strokeWidth="2" strokeLinecap="round" />
+      <text x="421" y="11" fontSize="6.5" fill="#B71C1C" opacity="0.75" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif">Av. Alcorta</text>
+
+      {/* ── Estadio Huracán (lat≈-34.649 lon≈-58.399 → x≈318 y≈306) ── */}
+      <ellipse cx="318" cy="318" rx="26" ry="20" fill="#B71C1C" opacity="0.15" />
+      <text x="318" y="346" fontSize="5.5" fill="#B71C1C" opacity="0.65" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif">Est. Huracán</text>
     </g>
   )
 }
 
 // ── Nueva Pompeya ────────────────────────────────────────
+// Bounds: latN=-34.636 latS=-34.677 lonW=-58.453 lonE=-58.395 (range lon=0.058 lat=0.041)
+// Diseño minimalista — solo avenidas principales, sin grilla
+// Av.Sáenz y=90 (N) | Av.PeritMoreno y=144 | Av.OsvaldoCruz y=217 | Riachuelo y≈355
+// Av.Centenera x=274 (central N-S)
 function NuevaPompeyaBackground() {
-  // Bounds: latN=-34.636 latS=-34.677 lonW=-58.453 lonE=-58.395
-  // Av.Sáenz y=90 | Av.OsvaldoCruz y=217 | Av.Centenera x=274
-  // Av.PeritMoreno y=144 | Riachuelo y≈325
-  const hGrid = [116, 168, 195, 245, 270, 295]
-  const vGrid = [80, 165, 220, 330, 385, 430]
-
   return (
     <g>
       <rect width="500" height="400" fill="#f5f3f0" rx="4" />
 
-      {/* Riachuelo (sur) — lat≈-34.673 → y≈355 */}
-      <path d="M 0,355 Q 120,346 260,351 Q 380,355 500,348 L 500,400 L 0,400 Z"
+      {/* ── Riachuelo (sur, lat≈-34.673 → y≈355) ── */}
+      <path d="M 0,355 Q 120,346 260,351 Q 380,355 482,348 L 482,400 L 0,400 Z"
         fill={AGUA} opacity="0.55" />
-      <text x="320" y="382" fontSize="7" fill="#4A90A4" textAnchor="middle"
+      <text x="320" y="382" fontSize="7.5" fill="#4A90A4" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif" fontStyle="italic">Riachuelo</text>
 
-      {/* ── Grilla de manzanas ── */}
-      {hGrid.map(y => <line key={`nh${y}`} x1="18" y1={y} x2="482" y2={y}
-        stroke="#d8d4cf" strokeWidth="0.6" />)}
-      {vGrid.map(x => <line key={`nv${x}`} x1={x} y1="18" x2={x} y2="355"
-        stroke="#d8d4cf" strokeWidth="0.6" />)}
-
-      {/* ── Av. Perito Moreno (secundaria) ── */}
-      <line x1="18" y1="144" x2="482" y2="144" stroke="#757575" strokeWidth="2" strokeLinecap="round" />
-      <text x="112" y="136" fontSize="6.5" fill="#424242" opacity="0.70" textAnchor="middle"
-        fontFamily="'Lora',Georgia,serif">Av. Perito Moreno</text>
-
-      {/* ── Avenidas principales ── */}
-      <line x1="18" y1="90" x2="482" y2="90" stroke="#424242" strokeWidth="3.5" strokeLinecap="round" />
-      <text x="105" y="82" fontSize="7" fill="#424242" textAnchor="middle"
-        fontFamily="'Lora',Georgia,serif">Av. Sáenz</text>
-
-      <line x1="18" y1="217" x2="482" y2="217" stroke="#424242" strokeWidth="3.5" strokeLinecap="round" />
-      <text x="118" y="209" fontSize="7" fill="#424242" textAnchor="middle"
+      {/* ── Av. Osvaldo Cruz (sur, lat≈-34.658 → y=217) ── */}
+      <line x1="18" y1="217" x2="482" y2="217"
+        stroke="#424242" strokeWidth="3.5" strokeLinecap="round" />
+      <text x="260" y="209" fontSize="7" fill="#424242" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif">Av. Osvaldo Cruz</text>
 
-      <line x1="274" y1="18" x2="274" y2="325" stroke="#424242" strokeWidth="3" strokeLinecap="round" />
+      {/* ── Av. Perito Moreno (central, lat≈-34.650 → y=144) ── */}
+      <line x1="18" y1="144" x2="482" y2="144"
+        stroke="#757575" strokeWidth="2" strokeLinecap="round" />
+      <text x="145" y="136" fontSize="6.5" fill="#424242" opacity="0.75" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif">Av. Perito Moreno</text>
+
+      {/* ── Av. Sáenz (norte, lat≈-34.644 → y=90) ── */}
+      <line x1="18" y1="90" x2="482" y2="90"
+        stroke="#424242" strokeWidth="3.5" strokeLinecap="round" />
+      <text x="145" y="82" fontSize="7" fill="#424242" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif">Av. Sáenz</text>
+
+      {/* ── Av. Centenera (central N-S, lon≈-58.421 → x=274) ── */}
+      <line x1="274" y1="18" x2="274" y2="355"
+        stroke="#424242" strokeWidth="3" strokeLinecap="round" />
       <text x="274" y="11" fontSize="7" fill="#424242" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif">Av. Centenera</text>
     </g>
