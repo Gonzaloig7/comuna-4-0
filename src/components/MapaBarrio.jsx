@@ -32,7 +32,8 @@ function LaBocaBackground() {
       {/* ── Av. Brasil (norte, lat≈-34.625 → y=84) ── */}
       <line x1="18" y1="84" x2="382" y2="84"
         stroke="#1C5BA8" strokeWidth="2" strokeLinecap="round" strokeDasharray="6,4" />
-      <text x="220" y="76" fontSize="6.5" fill="#1C5BA8" opacity="0.85" textAnchor="middle"
+      {/* label a la izquierda de Brown (x≈207 en y=76) para no superponerse */}
+      <text x="130" y="76" fontSize="6.5" fill="#1C5BA8" opacity="0.85" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif">Av. Brasil</text>
 
       {/* ── Av. Paseo Colón (límite oeste, lon≈-58.370 → x=89) ── */}
@@ -84,7 +85,8 @@ function BarracasBackground() {
       {/* ── Av. Gral. T. de Iriarte (sur, lat≈-34.653 → y=281) ── */}
       <line x1="18" y1="281" x2="482" y2="281"
         stroke="#e2829a" strokeWidth="2" strokeLinecap="round" />
-      <text x="260" y="273" fontSize="6.5" fill="#C2185B" opacity="0.75" textAnchor="middle"
+      {/* label a la izquierda del cluster de plazas para mejor legibilidad */}
+      <text x="120" y="273" fontSize="6.5" fill="#C2185B" opacity="0.75" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif">Av. Gral. T. de Iriarte</text>
 
       {/* ── Av. Caseros (norte, lat≈-34.623 → y=68) ── */}
@@ -142,7 +144,8 @@ function ParquePatriciosBackground() {
       {/* ── Av. Chiclana (central, lat≈-34.637 → y=194) ── */}
       <line x1="18" y1="194" x2="482" y2="194"
         stroke="#B71C1C" strokeWidth="3.5" strokeLinecap="round" />
-      <text x="260" y="186" fontSize="7" fill="#B71C1C" textAnchor="middle"
+      {/* label a la derecha (entre Colonia y Alcorta) sin plazas */}
+      <text x="400" y="186" fontSize="7" fill="#B71C1C" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif">Av. Chiclana</text>
 
       {/* ── Av. Caseros (norte, lat≈-34.625 → y=83) ── */}
