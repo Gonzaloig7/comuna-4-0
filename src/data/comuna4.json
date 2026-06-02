@@ -123,7 +123,7 @@
         {
           "id": "plaza-colombia",
           "nombre": "Plaza Colombia",
-          "svgX": 358,
+          "svgX": 286,
           "svgY": 170,
           "visitada": false,
           "descripcion": "Una de las plazas más queridas de Barracas, con árboles centenarios y fuente central. Punto de encuentro de la comunidad barraquense, donde se cruzan generaciones y tradiciones.",
@@ -132,7 +132,7 @@
         {
           "id": "plaza-casa-cuna",
           "nombre": "Plaza Casa Cuna",
-          "svgX": 322,
+          "svgX": 258,
           "svgY": 113,
           "visitada": false,
           "descripcion": "Frente al histórico edificio del Hospital Casa Cuna. Testigo de la transformación urbana de Barracas hacia el norte, entre el patrimonio histórico y los nuevos usos del barrio.",
@@ -141,7 +141,7 @@
         {
           "id": "plaza-virrey-vertiz",
           "nombre": "Plaza Virrey Vértiz",
-          "svgX": 332,
+          "svgX": 265,
           "svgY": 165,
           "visitada": false,
           "descripcion": "Plaza en la trama residencial de Barracas, cercana al eje de Av. Montes de Oca. Vecinos de varias generaciones se reúnen en este espacio verde del corazón del barrio.",
@@ -150,7 +150,7 @@
         {
           "id": "plazoleta-herrera",
           "nombre": "Plazoleta Herrera",
-          "svgX": 345,
+          "svgX": 275,
           "svgY": 217,
           "visitada": false,
           "descripcion": "Pequeña joya verde en el barrio. Su nombre evoca las calles que dibujaron la Barracas obrera e inmigrante de principios del siglo XX.",
@@ -159,7 +159,7 @@
         {
           "id": "plaza-angel-villoldo",
           "nombre": "Plaza Ángel Villoldo",
-          "svgX": 356,
+          "svgX": 284,
           "svgY": 256,
           "visitada": false,
           "descripcion": "Homenaje al creador de 'El Choclo', el tango más grabado de la historia. En el barrio de arraigo tanguero, esta plaza lleva el nombre de uno de sus hijos más ilustres.",
@@ -168,7 +168,7 @@
         {
           "id": "parque-espana",
           "nombre": "Parque España",
-          "svgX": 252,
+          "svgX": 202,
           "svgY": 154,
           "visitada": false,
           "descripcion": "Amplio espacio verde sobre Av. Amancio Alcorta, pulmón verde del sur de Barracas. Escenario de actividades deportivas comunitarias y encuentros familiares.",
@@ -177,7 +177,7 @@
         {
           "id": "parque-pereyra",
           "nombre": "Parque Pereyra",
-          "svgX": 233,
+          "svgX": 187,
           "svgY": 276,
           "visitada": true,
           "descripcion": "Espacio verde con mucho movimiento vecinal y vida de barrio. Ya lo visitamos: hablamos con vecinos que lo usan todos los días y que piden más mantenimiento y actividades.",
@@ -190,7 +190,7 @@
         {
           "id": "plaza-diaz-velez",
           "nombre": "Plaza Díaz Vélez",
-          "svgX": 321,
+          "svgX": 257,
           "svgY": 280,
           "visitada": false,
           "descripcion": "Plaza del sector sur de Barracas, en una zona en proceso de transformación urbana. Espacio de sociabilidad entre el tejido histórico del barrio y el Riachuelo.",
@@ -199,7 +199,7 @@
         {
           "id": "plaza-nuestra-senora-lujan",
           "nombre": "Plaza Nuestra Señora de Luján",
-          "svgX": 236,
+          "svgX": 190,
           "svgY": 292,
           "visitada": false,
           "descripcion": "Plaza de devoción popular en el sur del barrio, a metros del Riachuelo. La fe popular y la historia de la inmigración conviven en este espacio cercano al agua.",

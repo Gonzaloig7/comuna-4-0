@@ -59,55 +59,59 @@ function LaBocaBackground() {
 }
 
 // ── Barracas ─────────────────────────────────────────────
+// Bounds: latN=-34.616 latS=-34.668 lonW=-58.412 lonE=-58.346 (range lon=0.066 lat=0.052)
+// Diseño minimalista — solo avenidas principales, sin grilla
+// Av.Alcorta x=32 (W) | Av.MontesDeOca x=296 | Av.VélezSársfield x=446
+// Av.Caseros y=68 (N) | Av.Iriarte y=281 (S) | Riachuelo y≈366
+// Av.MartínGarcía (109,25)→(285,289) NO→SE ∡56°
 function BarracasBackground() {
-  // Bounds: latN=-34.616 latS=-34.668 lonW=-58.412 lonE=-58.360 (range lon=0.052)
-  // Lat range 0.052 (unchanged)
-  // Av.Alcorta x=36 (límite O) | Av.MontesDeOca x=370 | Av.Caseros y=68 | Av.Iriarte y=281
-  // Martín García NW→SE corregida: (143,68)→(286,260)  ∡53°
-  const hGrid = [97, 127, 157, 187, 217, 247]
-  const vGrid = [98, 179, 259, 340, 420]
-
   return (
     <g>
       <rect width="500" height="400" fill="#fdf0f5" rx="4" />
 
-      {/* Riachuelo (sur) — lat≈-34.665 → y≈366 */}
-      <path d="M 0,366 Q 90,356 200,362 Q 310,368 400,364 Q 450,361 500,366 L 500,400 L 0,400 Z"
+      {/* ── Riachuelo (sur, lat≈-34.665 → y≈366) ── */}
+      <path d="M 0,366 Q 100,356 220,362 Q 340,368 440,364 Q 465,361 482,366 L 482,400 L 0,400 Z"
         fill={AGUA} opacity="0.55" />
-      <text x="250" y="392" fontSize="7" fill="#4A90A4" textAnchor="middle"
+      <text x="240" y="392" fontSize="7.5" fill="#4A90A4" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif" fontStyle="italic">Riachuelo</text>
 
-      {/* ── Grilla de manzanas ── */}
-      {hGrid.map(y => <line key={`bh${y}`} x1="18" y1={y} x2="482" y2={y}
-        stroke="#f0d4df" strokeWidth="0.6" />)}
-      {vGrid.map(x => <line key={`bv${x}`} x1={x} y1="18" x2={x} y2="366"
-        stroke="#f0d4df" strokeWidth="0.6" />)}
-
-      {/* ── Av. Amancio Alcorta (límite oeste, lon≈-58.410 → x=36) ── */}
-      <line x1="36" y1="18" x2="36" y2="366" stroke="#e2829a" strokeWidth="2" strokeLinecap="round" />
-      <text x="36" y="11" fontSize="6" fill="#C2185B" opacity="0.7" textAnchor="middle"
+      {/* ── Av. Amancio Alcorta (límite oeste, lon≈-58.410 → x=32) ── */}
+      <line x1="32" y1="18" x2="32" y2="366"
+        stroke="#e2829a" strokeWidth="2" strokeLinecap="round" />
+      <text x="32" y="11" fontSize="6" fill="#C2185B" opacity="0.75" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif">Av. Alcorta</text>
 
-      {/* ── Av. Gral. T. de Iriarte ── */}
-      <line x1="18" y1="281" x2="482" y2="281" stroke="#e2829a" strokeWidth="2" strokeLinecap="round" />
-      <text x="250" y="273" fontSize="6.5" fill="#C2185B" opacity="0.75" textAnchor="middle"
+      {/* ── Av. Gral. T. de Iriarte (sur, lat≈-34.653 → y=281) ── */}
+      <line x1="18" y1="281" x2="482" y2="281"
+        stroke="#e2829a" strokeWidth="2" strokeLinecap="round" />
+      <text x="260" y="273" fontSize="6.5" fill="#C2185B" opacity="0.75" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif">Av. Gral. T. de Iriarte</text>
 
-      {/* ── Av. Caseros (norte) ── */}
-      <line x1="18" y1="68" x2="482" y2="68" stroke="#C2185B" strokeWidth="3.5" strokeLinecap="round" />
+      {/* ── Av. Caseros (norte, lat≈-34.623 → y=68) ── */}
+      <line x1="18" y1="68" x2="482" y2="68"
+        stroke="#C2185B" strokeWidth="3.5" strokeLinecap="round" />
       <text x="220" y="60" fontSize="7" fill="#C2185B" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif">Av. Caseros</text>
 
-      {/* ── Av. Montes de Oca (lon≈-58.3725 → x=370) ── */}
-      <line x1="370" y1="18" x2="370" y2="366" stroke="#C2185B" strokeWidth="3.5" strokeLinecap="round" />
-      <text x="370" y="11" fontSize="7" fill="#C2185B" textAnchor="middle"
+      {/* ── Av. Manuel Montes de Oca (lon≈-58.3725 → x=296) ── */}
+      <line x1="296" y1="18" x2="296" y2="366"
+        stroke="#C2185B" strokeWidth="3.5" strokeLinecap="round" />
+      <text x="296" y="11" fontSize="7" fill="#C2185B" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif">Av. Montes de Oca</text>
 
-      {/* ── Av. Martín García diagonal NW→SE corregida: (143,68)→(286,260) ≈53° ── */}
-      {/* p1: lon=-58.398 lat=-34.623 | p2: lon=-58.382 lat=-34.650 */}
-      <line x1="143" y1="68" x2="286" y2="260" stroke="#C2185B" strokeWidth="2.5" strokeLinecap="round" />
-      <text x="214" y="164" fontSize="6.5" fill="#C2185B" textAnchor="middle"
-        transform="rotate(53,214,164)" fontFamily="'Lora',Georgia,serif">Av. Martín García</text>
+      {/* ── Av. Vélez Sársfield (límite este, lon≈-58.351 → x=446) ── */}
+      <line x1="446" y1="18" x2="446" y2="366"
+        stroke="#e2829a" strokeWidth="2" strokeLinecap="round" />
+      <text x="446" y="11" fontSize="6.5" fill="#C2185B" opacity="0.75" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif">Av. Vélez Sársfield</text>
+
+      {/* ── Av. Martín García (diagonal NO→SE): (109,25)→(285,289) ∡56° ── */}
+      {/* p_NO: lon=-58.399 lat=-34.617 | p_SE: lon=-58.374 lat=-34.654 */}
+      <line x1="109" y1="25" x2="285" y2="289"
+        stroke="#C2185B" strokeWidth="2.5" strokeLinecap="round" />
+      <text x="197" y="157" fontSize="6.5" fill="#C2185B" textAnchor="middle"
+        transform="rotate(56,197,157)"
+        fontFamily="'Lora',Georgia,serif">Av. Martín García</text>
     </g>
   )
 }
