@@ -11,50 +11,77 @@ const AGUA = '#89C9DD'
 // Av.Paseo Colón x=89 | Av.Brasil y=84 | Av.Pedro Mendoza y=322
 // Riachuelo envuelve por el ESTE y SUR
 function LaBocaBackground() {
+  // Brown dir=(0.620,0.786) | perp-west=(-0.785,0.620) | perp-east=(0.785,-0.620)
   return (
     <g>
-      {/* Fondo tierra */}
       <rect width="500" height="400" fill="#eef3f8" rx="4" />
 
-      {/* ── Riachuelo — envuelve el barrio por el este (derecha) y sur (abajo) ── */}
-      {/* Entra desde el borde derecho a ~y=145 y rodea el sector SE */}
-      <path
-        d="M 382,140 C 420,136 455,144 482,154
-           L 482,400 L 0,400 L 0,390
-           Q 110,382 240,388 Q 330,393 362,380
-           Q 382,366 382,320 L 382,220 L 382,140 Z"
-        fill={AGUA} opacity="0.50"
-      />
+      {/* ── Riachuelo (este y sur) ── */}
+      <path d="M 382,140 C 420,136 455,144 482,154
+               L 482,400 L 0,400 L 0,390
+               Q 110,382 240,388 Q 330,393 362,380
+               Q 382,366 382,320 L 382,220 L 382,140 Z"
+        fill={AGUA} opacity="0.50" />
       <text x="448" y="278" fontSize="7.5" fill="#4A90A4" textAnchor="middle"
         transform="rotate(90,448,278)"
         fontFamily="'Lora',Georgia,serif" fontStyle="italic">Riachuelo</text>
 
+      {/* ── Grilla diagonal — paralelas a Brown (hacia el oeste, tierra) ── */}
+      {[30, 60, 90].map(d => (
+        <line key={`lbp${d}`}
+          x1={Math.round(161-0.785*d)} y1={Math.round(18+0.620*d)}
+          x2={Math.round(393-0.785*d)} y2={Math.round(312+0.620*d)}
+          stroke="#b8cee0" strokeWidth="0.5" opacity="0.7" />
+      ))}
+
+      {/* ── Grilla diagonal — calles transversales (perpendiculares a Brown) ── */}
+      {[0.20, 0.35, 0.50, 0.65, 0.80].map(t => {
+        const cx = Math.round(161 + 232 * t)
+        const cy = Math.round(18  + 294 * t)
+        return (
+          <line key={`lbx${t}`}
+            x1={cx + Math.round(0.785*130)} y1={cy - Math.round(0.620*130)}
+            x2={cx - Math.round(0.785*130)} y2={cy + Math.round(0.620*130)}
+            stroke="#b8cee0" strokeWidth="0.5" opacity="0.7" />
+        )
+      })}
+
       {/* ── Av. Brasil (norte, lat≈-34.625 → y=84) ── */}
-      <line x1="18" y1="84" x2="382" y2="84"
-        stroke="#1C5BA8" strokeWidth="2" strokeLinecap="round" strokeDasharray="6,4" />
-      {/* label a la izquierda de Brown (x≈207 en y=76) para no superponerse */}
-      <text x="130" y="76" fontSize="6.5" fill="#1C5BA8" opacity="0.85" textAnchor="middle"
-        fontFamily="'Lora',Georgia,serif">Av. Brasil</text>
+      <g>
+        <title>Av. Brasil</title>
+        <line x1="18" y1="84" x2="382" y2="84"
+          stroke="#1C5BA8" strokeWidth="2" strokeLinecap="round" strokeDasharray="6,4" />
+        <text x="130" y="76" fontSize="6.5" fill="#1C5BA8" opacity="0.85" textAnchor="middle"
+          fontFamily="'Lora',Georgia,serif">Av. Brasil</text>
+      </g>
 
-      {/* ── Av. Paseo Colón (límite oeste, lon≈-58.370 → x=89) ── */}
-      <line x1="89" y1="18" x2="89" y2="388"
-        stroke="#1C5BA8" strokeWidth="4" strokeLinecap="round" />
-      <text x="89" y="11" fontSize="7" fill="#1C5BA8" textAnchor="middle"
-        fontFamily="'Lora',Georgia,serif">Av. Paseo Colón</text>
+      {/* ── Av. Paseo Colón (límite oeste, x=89) ── */}
+      <g>
+        <title>Av. Paseo Colón</title>
+        <line x1="89" y1="18" x2="89" y2="388"
+          stroke="#1C5BA8" strokeWidth="4" strokeLinecap="round" />
+        <text x="89" y="11" fontSize="7" fill="#1C5BA8" textAnchor="middle"
+          fontFamily="'Lora',Georgia,serif">Av. Paseo Colón</text>
+      </g>
 
-      {/* ── Av. Almirante Brown: NO→SE (arriba-izquierda → abajo-derecha) ∡52° ── */}
-      {/* p_NO: lon=-58.366 lat=-34.618 | p_SE: lon=-58.353 lat=-34.649 */}
-      <line x1="161" y1="18" x2="393" y2="312"
-        stroke="#1C5BA8" strokeWidth="4.5" strokeLinecap="round" />
-      <text x="277" y="165" fontSize="7" fill="#1C5BA8" textAnchor="middle"
-        transform="rotate(52,277,165)"
-        fontFamily="'Lora',Georgia,serif">Av. Almirante Brown</text>
+      {/* ── Av. Almirante Brown: NO→SE ── */}
+      <g>
+        <title>Av. Almirante Brown</title>
+        <line x1="161" y1="18" x2="393" y2="312"
+          stroke="#1C5BA8" strokeWidth="4.5" strokeLinecap="round" />
+        <text x="277" y="165" fontSize="7" fill="#1C5BA8" textAnchor="middle"
+          transform="rotate(52,277,165)"
+          fontFamily="'Lora',Georgia,serif">Av. Almirante Brown</text>
+      </g>
 
-      {/* ── Av. Pedro de Mendoza (sur, lat≈-34.650 → y=322) ── */}
-      <line x1="18" y1="322" x2="382" y2="322"
-        stroke="#1C5BA8" strokeWidth="3" strokeLinecap="round" />
-      <text x="215" y="313" fontSize="6.5" fill="#1C5BA8" textAnchor="middle"
-        fontFamily="'Lora',Georgia,serif">Av. Pedro de Mendoza</text>
+      {/* ── Av. Pedro de Mendoza (sur, y=322) ── */}
+      <g>
+        <title>Av. Pedro de Mendoza</title>
+        <line x1="18" y1="322" x2="382" y2="322"
+          stroke="#1C5BA8" strokeWidth="3" strokeLinecap="round" />
+        <text x="215" y="313" fontSize="6.5" fill="#1C5BA8" textAnchor="middle"
+          fontFamily="'Lora',Georgia,serif">Av. Pedro de Mendoza</text>
+      </g>
     </g>
   )
 }
@@ -66,54 +93,50 @@ function LaBocaBackground() {
 // Av.Caseros y=68 (N) | Av.Iriarte y=281 (S) | Riachuelo y≈366
 // Av.MartínGarcía (109,25)→(285,289) NO→SE ∡56°
 function BarracasBackground() {
+  // Grilla ortogonal: hStep≈35px (0.005° lat), vStep≈35px (0.005° lon)
+  const hGrid = [53,88,123,158,193,228,263,298,333]   // entre Caseros(68) e Iriarte(281)
+  const vGrid = [53,88,123,158,193,228,263,333,368,403,438,473]
   return (
     <g>
       <rect width="500" height="400" fill="#fdf0f5" rx="4" />
 
-      {/* ── Riachuelo (sur, lat≈-34.665 → y≈366) ── */}
+      {/* ── Riachuelo (sur) ── */}
       <path d="M 0,366 Q 100,356 220,362 Q 340,368 440,364 Q 465,361 482,366 L 482,400 L 0,400 Z"
         fill={AGUA} opacity="0.55" />
       <text x="240" y="392" fontSize="7.5" fill="#4A90A4" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif" fontStyle="italic">Riachuelo</text>
 
-      {/* ── Av. Amancio Alcorta (límite oeste, lon≈-58.410 → x=32) ── */}
-      <line x1="32" y1="18" x2="32" y2="366"
-        stroke="#e2829a" strokeWidth="2" strokeLinecap="round" />
-      <text x="32" y="11" fontSize="6" fill="#C2185B" opacity="0.75" textAnchor="middle"
-        fontFamily="'Lora',Georgia,serif">Av. Alcorta</text>
+      {/* ── Grilla de manzanas (referencia, ≈100m por cuadra) ── */}
+      {hGrid.map(y => <line key={`bh${y}`} x1="18" y1={y} x2="482" y2={y}
+        stroke="#f0c8d8" strokeWidth="0.45" opacity="0.8" />)}
+      {vGrid.map(x => <line key={`bv${x}`} x1={x} y1="18" x2={x} y2="366"
+        stroke="#f0c8d8" strokeWidth="0.45" opacity="0.8" />)}
 
-      {/* ── Av. Gral. T. de Iriarte (sur, lat≈-34.653 → y=281) ── */}
-      <line x1="18" y1="281" x2="482" y2="281"
-        stroke="#e2829a" strokeWidth="2" strokeLinecap="round" />
-      {/* label a la izquierda del cluster de plazas para mejor legibilidad */}
-      <text x="120" y="273" fontSize="6.5" fill="#C2185B" opacity="0.75" textAnchor="middle"
-        fontFamily="'Lora',Georgia,serif">Av. Gral. T. de Iriarte</text>
-
-      {/* ── Av. Caseros (norte, lat≈-34.623 → y=68) ── */}
-      <line x1="18" y1="68" x2="482" y2="68"
-        stroke="#C2185B" strokeWidth="3.5" strokeLinecap="round" />
-      <text x="220" y="60" fontSize="7" fill="#C2185B" textAnchor="middle"
-        fontFamily="'Lora',Georgia,serif">Av. Caseros</text>
-
-      {/* ── Av. Manuel Montes de Oca (lon≈-58.3725 → x=296) ── */}
-      <line x1="296" y1="18" x2="296" y2="366"
-        stroke="#C2185B" strokeWidth="3.5" strokeLinecap="round" />
-      <text x="296" y="11" fontSize="7" fill="#C2185B" textAnchor="middle"
-        fontFamily="'Lora',Georgia,serif">Av. Montes de Oca</text>
-
-      {/* ── Av. Vélez Sársfield (límite este, lon≈-58.351 → x=446) ── */}
-      <line x1="446" y1="18" x2="446" y2="366"
-        stroke="#e2829a" strokeWidth="2" strokeLinecap="round" />
-      <text x="446" y="11" fontSize="6.5" fill="#C2185B" opacity="0.75" textAnchor="middle"
-        fontFamily="'Lora',Georgia,serif">Av. Vélez Sársfield</text>
-
-      {/* ── Av. Martín García (diagonal NO→SE): (109,25)→(285,289) ∡56° ── */}
-      {/* p_NO: lon=-58.399 lat=-34.617 | p_SE: lon=-58.374 lat=-34.654 */}
-      <line x1="109" y1="25" x2="285" y2="289"
-        stroke="#C2185B" strokeWidth="2.5" strokeLinecap="round" />
-      <text x="197" y="157" fontSize="6.5" fill="#C2185B" textAnchor="middle"
-        transform="rotate(56,197,157)"
-        fontFamily="'Lora',Georgia,serif">Av. Martín García</text>
+      {/* ── Avenidas con título hover ── */}
+      <g><title>Av. Amancio Alcorta</title>
+        <line x1="32" y1="18" x2="32" y2="366" stroke="#e2829a" strokeWidth="2" strokeLinecap="round" />
+        <text x="32" y="11" fontSize="6" fill="#C2185B" opacity="0.75" textAnchor="middle" fontFamily="'Lora',Georgia,serif">Av. Alcorta</text>
+      </g>
+      <g><title>Av. Gral. Tomás de Iriarte</title>
+        <line x1="18" y1="281" x2="482" y2="281" stroke="#e2829a" strokeWidth="2" strokeLinecap="round" />
+        <text x="120" y="273" fontSize="6.5" fill="#C2185B" opacity="0.75" textAnchor="middle" fontFamily="'Lora',Georgia,serif">Av. Gral. T. de Iriarte</text>
+      </g>
+      <g><title>Av. Caseros</title>
+        <line x1="18" y1="68" x2="482" y2="68" stroke="#C2185B" strokeWidth="3.5" strokeLinecap="round" />
+        <text x="220" y="60" fontSize="7" fill="#C2185B" textAnchor="middle" fontFamily="'Lora',Georgia,serif">Av. Caseros</text>
+      </g>
+      <g><title>Av. Manuel Montes de Oca</title>
+        <line x1="296" y1="18" x2="296" y2="366" stroke="#C2185B" strokeWidth="3.5" strokeLinecap="round" />
+        <text x="296" y="11" fontSize="7" fill="#C2185B" textAnchor="middle" fontFamily="'Lora',Georgia,serif">Av. Montes de Oca</text>
+      </g>
+      <g><title>Av. Vélez Sársfield</title>
+        <line x1="446" y1="18" x2="446" y2="366" stroke="#e2829a" strokeWidth="2" strokeLinecap="round" />
+        <text x="446" y="11" fontSize="6.5" fill="#C2185B" opacity="0.75" textAnchor="middle" fontFamily="'Lora',Georgia,serif">Av. Vélez Sársfield</text>
+      </g>
+      <g><title>Av. Martín García</title>
+        <line x1="109" y1="25" x2="285" y2="289" stroke="#C2185B" strokeWidth="2.5" strokeLinecap="round" />
+        <text x="197" y="157" fontSize="6.5" fill="#C2185B" textAnchor="middle" transform="rotate(56,197,157)" fontFamily="'Lora',Georgia,serif">Av. Martín García</text>
+      </g>
     </g>
   )
 }
@@ -125,54 +148,51 @@ function BarracasBackground() {
 // N-S: Av.Almafuerte x=158 | Av.Colonia x=311 | Av.Alcorta x=421
 // Parque entre Almafuerte–Colonia y Caseros–Chiclana
 function ParquePatriciosBackground() {
+  // Grilla ortogonal: hStep≈28px (0.003° lat), vStep≈37px (0.003° lon)
+  const hGrid = [46,74,102,130,158,186,214,242,270,298,326,354,382]
+  const vGrid = [55,92,129,166,203,240,277,314,351,388,425,462]
   return (
     <g>
       <rect width="500" height="400" fill="#fdf0f0" rx="4" />
 
       {/* ── Área verde: Parque de los Patricios ── */}
-      {/* Entre Almafuerte (x=158) y Colonia (x=311), Caseros (y=83) y Chiclana (y=194) */}
-      <rect x="158" y="83" width="153" height="111" fill="#86efac" opacity="0.30" rx="4" />
+      <rect x="158" y="83" width="153" height="111" fill="#86efac" opacity="0.28" rx="4" />
       <text x="234" y="142" fontSize="7" fill="#15803d" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif" fontStyle="italic">Parque de los Patricios</text>
 
-      {/* ── Av. Sáenz (sur, lat≈-34.649 → y=305) ── */}
-      <line x1="18" y1="305" x2="482" y2="305"
-        stroke="#e57373" strokeWidth="2" strokeLinecap="round" />
-      <text x="260" y="297" fontSize="6.5" fill="#B71C1C" opacity="0.75" textAnchor="middle"
-        fontFamily="'Lora',Georgia,serif">Av. Sáenz</text>
+      {/* ── Grilla de manzanas ── */}
+      {hGrid.map(y => <line key={`ph${y}`} x1="18" y1={y} x2="482" y2={y}
+        stroke="#f0c0c0" strokeWidth="0.45" opacity="0.8" />)}
+      {vGrid.map(x => <line key={`pv${x}`} x1={x} y1="18" x2={x} y2="388"
+        stroke="#f0c0c0" strokeWidth="0.45" opacity="0.8" />)}
 
-      {/* ── Av. Chiclana (central, lat≈-34.637 → y=194) ── */}
-      <line x1="18" y1="194" x2="482" y2="194"
-        stroke="#B71C1C" strokeWidth="3.5" strokeLinecap="round" />
-      {/* label a la derecha (entre Colonia y Alcorta) sin plazas */}
-      <text x="400" y="186" fontSize="7" fill="#B71C1C" textAnchor="middle"
-        fontFamily="'Lora',Georgia,serif">Av. Chiclana</text>
+      {/* ── Avenidas con título hover ── */}
+      <g><title>Av. Sáenz</title>
+        <line x1="18" y1="305" x2="482" y2="305" stroke="#e57373" strokeWidth="2" strokeLinecap="round" />
+        <text x="260" y="297" fontSize="6.5" fill="#B71C1C" opacity="0.75" textAnchor="middle" fontFamily="'Lora',Georgia,serif">Av. Sáenz</text>
+      </g>
+      <g><title>Av. Chiclana</title>
+        <line x1="18" y1="194" x2="482" y2="194" stroke="#B71C1C" strokeWidth="3.5" strokeLinecap="round" />
+        <text x="400" y="186" fontSize="7" fill="#B71C1C" textAnchor="middle" fontFamily="'Lora',Georgia,serif">Av. Chiclana</text>
+      </g>
+      <g><title>Av. Caseros</title>
+        <line x1="18" y1="83" x2="482" y2="83" stroke="#B71C1C" strokeWidth="3.5" strokeLinecap="round" />
+        <text x="260" y="75" fontSize="7" fill="#B71C1C" textAnchor="middle" fontFamily="'Lora',Georgia,serif">Av. Caseros</text>
+      </g>
+      <g><title>Av. Almafuerte</title>
+        <line x1="158" y1="18" x2="158" y2="388" stroke="#B71C1C" strokeWidth="3" strokeLinecap="round" />
+        <text x="158" y="11" fontSize="6.5" fill="#B71C1C" textAnchor="middle" fontFamily="'Lora',Georgia,serif">Av. Almafuerte</text>
+      </g>
+      <g><title>Av. Colonia</title>
+        <line x1="311" y1="18" x2="311" y2="388" stroke="#B71C1C" strokeWidth="3" strokeLinecap="round" />
+        <text x="311" y="11" fontSize="7" fill="#B71C1C" textAnchor="middle" fontFamily="'Lora',Georgia,serif">Av. Colonia</text>
+      </g>
+      <g><title>Av. Amancio Alcorta</title>
+        <line x1="421" y1="18" x2="421" y2="388" stroke="#e57373" strokeWidth="2" strokeLinecap="round" />
+        <text x="421" y="11" fontSize="6.5" fill="#B71C1C" opacity="0.75" textAnchor="middle" fontFamily="'Lora',Georgia,serif">Av. Alcorta</text>
+      </g>
 
-      {/* ── Av. Caseros (norte, lat≈-34.625 → y=83) ── */}
-      <line x1="18" y1="83" x2="482" y2="83"
-        stroke="#B71C1C" strokeWidth="3.5" strokeLinecap="round" />
-      <text x="260" y="75" fontSize="7" fill="#B71C1C" textAnchor="middle"
-        fontFamily="'Lora',Georgia,serif">Av. Caseros</text>
-
-      {/* ── Av. Almafuerte (occidental, lon≈-58.414 → x=158) ── */}
-      <line x1="158" y1="18" x2="158" y2="388"
-        stroke="#B71C1C" strokeWidth="3" strokeLinecap="round" />
-      <text x="158" y="11" fontSize="6.5" fill="#B71C1C" textAnchor="middle"
-        fontFamily="'Lora',Georgia,serif">Av. Almafuerte</text>
-
-      {/* ── Av. Colonia (central, lon≈-58.400 → x=311) ── */}
-      <line x1="311" y1="18" x2="311" y2="388"
-        stroke="#B71C1C" strokeWidth="3" strokeLinecap="round" />
-      <text x="311" y="11" fontSize="7" fill="#B71C1C" textAnchor="middle"
-        fontFamily="'Lora',Georgia,serif">Av. Colonia</text>
-
-      {/* ── Av. Amancio Alcorta (límite este, lon≈-58.391 → x=421) ── */}
-      <line x1="421" y1="18" x2="421" y2="388"
-        stroke="#e57373" strokeWidth="2" strokeLinecap="round" />
-      <text x="421" y="11" fontSize="6.5" fill="#B71C1C" opacity="0.75" textAnchor="middle"
-        fontFamily="'Lora',Georgia,serif">Av. Alcorta</text>
-
-      {/* ── Estadio Huracán (lat≈-34.649 lon≈-58.399 → x≈318 y≈306) ── */}
+      {/* ── Estadio Huracán ── */}
       <ellipse cx="318" cy="318" rx="26" ry="20" fill="#B71C1C" opacity="0.15" />
       <text x="318" y="346" fontSize="5.5" fill="#B71C1C" opacity="0.65" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif">Est. Huracán</text>
@@ -186,6 +206,9 @@ function ParquePatriciosBackground() {
 // E-O: Av.Sáenz y=90 | Av.PeritMoreno y=144 | Av.OsvaldoCruz y=217 | Riachuelo y≈355
 // N-S: Av.Riestra x=146 (O) | Av.Centenera x=274 | Av.Rivera x=370 (E)
 function NuevaPompeyaBackground() {
+  // Grilla ortogonal: hStep≈45px (0.005° lat), vStep≈40px (0.005° lon)
+  const hGrid = [63,108,153,198,243,288,333]
+  const vGrid = [58,98,138,178,218,258,298,338,378,418,458]
   return (
     <g>
       <rect width="500" height="400" fill="#f5f3f0" rx="4" />
@@ -196,41 +219,37 @@ function NuevaPompeyaBackground() {
       <text x="320" y="382" fontSize="7.5" fill="#4A90A4" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif" fontStyle="italic">Riachuelo</text>
 
-      {/* ── Av. Osvaldo Cruz (lat≈-34.658 → y=217) ── */}
-      <line x1="18" y1="217" x2="482" y2="217"
-        stroke="#424242" strokeWidth="3.5" strokeLinecap="round" />
-      <text x="260" y="209" fontSize="7" fill="#424242" textAnchor="middle"
-        fontFamily="'Lora',Georgia,serif">Av. Osvaldo Cruz</text>
+      {/* ── Grilla de manzanas ── */}
+      {hGrid.map(y => <line key={`nh${y}`} x1="18" y1={y} x2="482" y2={y}
+        stroke="#d0ccc8" strokeWidth="0.45" opacity="0.8" />)}
+      {vGrid.map(x => <line key={`nv${x}`} x1={x} y1="18" x2={x} y2="355"
+        stroke="#d0ccc8" strokeWidth="0.45" opacity="0.8" />)}
 
-      {/* ── Av. Perito Moreno (lat≈-34.650 → y=144) ── */}
-      <line x1="18" y1="144" x2="482" y2="144"
-        stroke="#757575" strokeWidth="2" strokeLinecap="round" />
-      <text x="200" y="136" fontSize="6.5" fill="#424242" opacity="0.75" textAnchor="middle"
-        fontFamily="'Lora',Georgia,serif">Av. Perito Moreno</text>
-
-      {/* ── Av. Sáenz (norte, lat≈-34.644 → y=90) ── */}
-      <line x1="18" y1="90" x2="482" y2="90"
-        stroke="#424242" strokeWidth="3.5" strokeLinecap="round" />
-      <text x="200" y="82" fontSize="7" fill="#424242" textAnchor="middle"
-        fontFamily="'Lora',Georgia,serif">Av. Sáenz</text>
-
-      {/* ── Av. Riestra (occidental, lon≈-58.437 → x=146) ── */}
-      <line x1="146" y1="18" x2="146" y2="355"
-        stroke="#757575" strokeWidth="2" strokeLinecap="round" />
-      <text x="146" y="11" fontSize="6.5" fill="#424242" opacity="0.75" textAnchor="middle"
-        fontFamily="'Lora',Georgia,serif">Av. Riestra</text>
-
-      {/* ── Av. Del Barco Centenera (central, lon≈-58.421 → x=274) ── */}
-      <line x1="274" y1="18" x2="274" y2="355"
-        stroke="#424242" strokeWidth="3" strokeLinecap="round" />
-      <text x="274" y="11" fontSize="7" fill="#424242" textAnchor="middle"
-        fontFamily="'Lora',Georgia,serif">Av. Centenera</text>
-
-      {/* ── Av. Rivera (oriental, lon≈-58.409 → x=370) ── */}
-      <line x1="370" y1="18" x2="370" y2="355"
-        stroke="#757575" strokeWidth="2" strokeLinecap="round" />
-      <text x="370" y="11" fontSize="6.5" fill="#424242" opacity="0.75" textAnchor="middle"
-        fontFamily="'Lora',Georgia,serif">Av. Rivera</text>
+      {/* ── Avenidas con título hover ── */}
+      <g><title>Av. Osvaldo Cruz</title>
+        <line x1="18" y1="217" x2="482" y2="217" stroke="#424242" strokeWidth="3.5" strokeLinecap="round" />
+        <text x="260" y="209" fontSize="7" fill="#424242" textAnchor="middle" fontFamily="'Lora',Georgia,serif">Av. Osvaldo Cruz</text>
+      </g>
+      <g><title>Av. Perito Moreno</title>
+        <line x1="18" y1="144" x2="482" y2="144" stroke="#757575" strokeWidth="2" strokeLinecap="round" />
+        <text x="200" y="136" fontSize="6.5" fill="#424242" opacity="0.75" textAnchor="middle" fontFamily="'Lora',Georgia,serif">Av. Perito Moreno</text>
+      </g>
+      <g><title>Av. Sáenz</title>
+        <line x1="18" y1="90" x2="482" y2="90" stroke="#424242" strokeWidth="3.5" strokeLinecap="round" />
+        <text x="200" y="82" fontSize="7" fill="#424242" textAnchor="middle" fontFamily="'Lora',Georgia,serif">Av. Sáenz</text>
+      </g>
+      <g><title>Av. Riestra</title>
+        <line x1="146" y1="18" x2="146" y2="355" stroke="#757575" strokeWidth="2" strokeLinecap="round" />
+        <text x="146" y="11" fontSize="6.5" fill="#424242" opacity="0.75" textAnchor="middle" fontFamily="'Lora',Georgia,serif">Av. Riestra</text>
+      </g>
+      <g><title>Av. Del Barco Centenera</title>
+        <line x1="274" y1="18" x2="274" y2="355" stroke="#424242" strokeWidth="3" strokeLinecap="round" />
+        <text x="274" y="11" fontSize="7" fill="#424242" textAnchor="middle" fontFamily="'Lora',Georgia,serif">Av. Centenera</text>
+      </g>
+      <g><title>Av. Rivera Indarte</title>
+        <line x1="370" y1="18" x2="370" y2="355" stroke="#757575" strokeWidth="2" strokeLinecap="round" />
+        <text x="370" y="11" fontSize="6.5" fill="#424242" opacity="0.75" textAnchor="middle" fontFamily="'Lora',Georgia,serif">Av. Rivera</text>
+      </g>
     </g>
   )
 }
