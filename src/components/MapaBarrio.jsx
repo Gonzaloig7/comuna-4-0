@@ -56,24 +56,12 @@ function LaBocaBackground() {
         )
       })}
 
-      {/* ── Calle Brandsen (t≈0.30 sobre Brown) ── */}
-      <line x1="332" y1="214" x2="104" y2="51"
-            stroke="#b8cfe8" strokeWidth="1.4" />
-      <text x="228" y="140" fontSize="6.5" fill="#7aa0c8" textAnchor="middle"
-        transform="rotate(-36,228,140)" fontFamily="'Lora',Georgia,serif">Brandsen</text>
-
-      {/* ── Calle Suárez (t≈0.56 sobre Brown) ── */}
-      <line x1="268" y1="269" x2="72" y2="129"
-            stroke="#b8cfe8" strokeWidth="1.4" />
-      <text x="183" y="212" fontSize="6.5" fill="#7aa0c8" textAnchor="middle"
-        transform="rotate(-36,183,212)" fontFamily="'Lora',Georgia,serif">Suárez</text>
-
       {/* ── Av. Paseo Colón (oeste, lon≈-58.370 → x=89) ── */}
       <line x1="89" y1="18" x2="89" y2="368" stroke="#1C5BA8" strokeWidth="3.5" strokeLinecap="round" />
       <text x="89" y="11" fontSize="7" fill="#1C5BA8" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif">Av. Paseo Colón</text>
 
-      {/* ── Av. Almirante Brown: (273,55) → (89,312) CORRECTO: NE → SO ── */}
+      {/* ── Av. Almirante Brown: (273,55) → (89,312) NE → SO ── */}
       <line x1="273" y1="55" x2="89" y2="312" stroke="#1C5BA8" strokeWidth="3.5" strokeLinecap="round" />
       <text x="181" y="184" fontSize="7" fill="#1C5BA8" textAnchor="middle"
         transform="rotate(-54,181,184)" fontFamily="'Lora',Georgia,serif">Av. Almirante Brown</text>
@@ -82,29 +70,18 @@ function LaBocaBackground() {
       <line x1="18" y1="322" x2="438" y2="322" stroke="#1C5BA8" strokeWidth="2.5" strokeLinecap="round" />
       <text x="240" y="314" fontSize="6.5" fill="#1C5BA8" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif">Av. Pedro de Mendoza</text>
-
-      {/* ── Landmark: La Bombonera (lat≈-34.635 lon≈-58.364 → x≈197 y≈179) ── */}
-      <rect x="185" y="168" width="24" height="18" fill="#1C5BA8" opacity="0.18" rx="2" />
-      <text x="197" y="196" fontSize="5.5" fill="#1C5BA8" opacity="0.65" textAnchor="middle"
-        fontFamily="'Lora',Georgia,serif">La Bombonera</text>
-
-      {/* ── Label Caminito (lat≈-34.638 lon≈-58.361 → x≈250 y≈208) ── */}
-      <text x="248" y="208" fontSize="6" fill="#1C5BA8" opacity="0.65" textAnchor="middle"
-        transform="rotate(-54,248,208)"
-        fontFamily="'Lora',Georgia,serif" fontStyle="italic">Caminito</text>
     </g>
   )
 }
 
 // ── Barracas ─────────────────────────────────────────────
 function BarracasBackground() {
-  // Bounds: latN=-34.616 latS=-34.668 lonW=-58.412 lonE=-58.358 (range 0.054)
+  // Bounds: latN=-34.616 latS=-34.668 lonW=-58.412 lonE=-58.360 (range lon=0.052)
   // Lat range 0.052 (unchanged)
-  // Av.MontesDeOca x=357 | Av.RegPatricios x=468
-  // Av.Caseros y=68       | Av.Iriarte y=281
-  // Martín García NW→SE: (121,68)→(336,310)
+  // Av.Alcorta x=36 (límite O) | Av.MontesDeOca x=370 | Av.Caseros y=68 | Av.Iriarte y=281
+  // Martín García NW→SE corregida: (143,68)→(286,260)  ∡53°
   const hGrid = [97, 127, 157, 187, 217, 247]
-  const vGrid = [95, 172, 250, 327, 404]
+  const vGrid = [98, 179, 259, 340, 420]
 
   return (
     <g>
@@ -122,28 +99,31 @@ function BarracasBackground() {
       {vGrid.map(x => <line key={`bv${x}`} x1={x} y1="18" x2={x} y2="366"
         stroke="#f0d4df" strokeWidth="0.6" />)}
 
-      {/* ── Av. Gral. T. de Iriarte (secundaria) ── */}
+      {/* ── Av. Amancio Alcorta (límite oeste, lon≈-58.410 → x=36) ── */}
+      <line x1="36" y1="18" x2="36" y2="366" stroke="#e2829a" strokeWidth="2" strokeLinecap="round" />
+      <text x="36" y="11" fontSize="6" fill="#C2185B" opacity="0.7" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif">Av. Alcorta</text>
+
+      {/* ── Av. Gral. T. de Iriarte ── */}
       <line x1="18" y1="281" x2="482" y2="281" stroke="#e2829a" strokeWidth="2" strokeLinecap="round" />
-      <text x="420" y="273" fontSize="6.5" fill="#C2185B" opacity="0.75" textAnchor="middle"
+      <text x="250" y="273" fontSize="6.5" fill="#C2185B" opacity="0.75" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif">Av. Gral. T. de Iriarte</text>
 
-      {/* ── Avenidas principales ── */}
-      <line x1="357" y1="18" x2="357" y2="366" stroke="#C2185B" strokeWidth="3.5" strokeLinecap="round" />
-      <text x="357" y="11" fontSize="7" fill="#C2185B" textAnchor="middle"
-        fontFamily="'Lora',Georgia,serif">Av. Montes de Oca</text>
-
+      {/* ── Av. Caseros (norte) ── */}
       <line x1="18" y1="68" x2="482" y2="68" stroke="#C2185B" strokeWidth="3.5" strokeLinecap="round" />
-      <text x="200" y="60" fontSize="7" fill="#C2185B" textAnchor="middle"
+      <text x="220" y="60" fontSize="7" fill="#C2185B" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif">Av. Caseros</text>
 
-      <line x1="468" y1="18" x2="468" y2="366" stroke="#C2185B" strokeWidth="3" strokeLinecap="round" />
-      <text x="468" y="11" fontSize="6.5" fill="#C2185B" textAnchor="middle"
-        fontFamily="'Lora',Georgia,serif">Av. Reg. de Patricios</text>
+      {/* ── Av. Montes de Oca (lon≈-58.3725 → x=370) ── */}
+      <line x1="370" y1="18" x2="370" y2="366" stroke="#C2185B" strokeWidth="3.5" strokeLinecap="round" />
+      <text x="370" y="11" fontSize="7" fill="#C2185B" textAnchor="middle"
+        fontFamily="'Lora',Georgia,serif">Av. Montes de Oca</text>
 
-      {/* Av. Martín García diagonal NW→SE: (121,68)→(336,310) ≈50° */}
-      <line x1="121" y1="68" x2="336" y2="310" stroke="#C2185B" strokeWidth="2.5" strokeLinecap="round" />
-      <text x="229" y="189" fontSize="6.5" fill="#C2185B" textAnchor="middle"
-        transform="rotate(48,229,189)" fontFamily="'Lora',Georgia,serif">Av. Martín García</text>
+      {/* ── Av. Martín García diagonal NW→SE corregida: (143,68)→(286,260) ≈53° ── */}
+      {/* p1: lon=-58.398 lat=-34.623 | p2: lon=-58.382 lat=-34.650 */}
+      <line x1="143" y1="68" x2="286" y2="260" stroke="#C2185B" strokeWidth="2.5" strokeLinecap="round" />
+      <text x="214" y="164" fontSize="6.5" fill="#C2185B" textAnchor="middle"
+        transform="rotate(53,214,164)" fontFamily="'Lora',Georgia,serif">Av. Martín García</text>
     </g>
   )
 }
