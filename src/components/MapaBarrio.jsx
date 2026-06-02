@@ -26,23 +26,23 @@ function LaBocaBackground() {
         transform="rotate(90,448,278)"
         fontFamily="'Lora',Georgia,serif" fontStyle="italic">Riachuelo</text>
 
-      {/* ── Grilla diagonal — paralelas a Brown (hacia el oeste, tierra) ── */}
-      {[30, 60, 90].map(d => (
+      {/* ── Grilla diagonal — paralelas a Brown (hacia el oeste) ── */}
+      {[20, 40, 60, 80, 100, 120].map(d => (
         <line key={`lbp${d}`}
           x1={Math.round(161-0.785*d)} y1={Math.round(18+0.620*d)}
           x2={Math.round(393-0.785*d)} y2={Math.round(312+0.620*d)}
-          stroke="#b8cee0" strokeWidth="0.5" opacity="0.7" />
+          stroke="#7aa4c4" strokeWidth="1.0" />
       ))}
 
       {/* ── Grilla diagonal — calles transversales (perpendiculares a Brown) ── */}
-      {[0.20, 0.35, 0.50, 0.65, 0.80].map(t => {
+      {[0.15, 0.27, 0.39, 0.51, 0.63, 0.75, 0.87].map(t => {
         const cx = Math.round(161 + 232 * t)
         const cy = Math.round(18  + 294 * t)
         return (
           <line key={`lbx${t}`}
-            x1={cx + Math.round(0.785*130)} y1={cy - Math.round(0.620*130)}
-            x2={cx - Math.round(0.785*130)} y2={cy + Math.round(0.620*130)}
-            stroke="#b8cee0" strokeWidth="0.5" opacity="0.7" />
+            x1={cx + Math.round(0.785*140)} y1={cy - Math.round(0.620*140)}
+            x2={cx - Math.round(0.785*140)} y2={cy + Math.round(0.620*140)}
+            stroke="#7aa4c4" strokeWidth="1.0" />
         )
       })}
 
@@ -106,11 +106,11 @@ function BarracasBackground() {
       <text x="240" y="392" fontSize="7.5" fill="#4A90A4" textAnchor="middle"
         fontFamily="'Lora',Georgia,serif" fontStyle="italic">Riachuelo</text>
 
-      {/* ── Grilla de manzanas (referencia, ≈100m por cuadra) ── */}
+      {/* ── Grilla de manzanas ── */}
       {hGrid.map(y => <line key={`bh${y}`} x1="18" y1={y} x2="482" y2={y}
-        stroke="#f0c8d8" strokeWidth="0.45" opacity="0.8" />)}
+        stroke="#d88aaa" strokeWidth="1.0" />)}
       {vGrid.map(x => <line key={`bv${x}`} x1={x} y1="18" x2={x} y2="366"
-        stroke="#f0c8d8" strokeWidth="0.45" opacity="0.8" />)}
+        stroke="#d88aaa" strokeWidth="1.0" />)}
 
       {/* ── Avenidas con título hover ── */}
       <g><title>Av. Amancio Alcorta</title>
@@ -162,9 +162,9 @@ function ParquePatriciosBackground() {
 
       {/* ── Grilla de manzanas ── */}
       {hGrid.map(y => <line key={`ph${y}`} x1="18" y1={y} x2="482" y2={y}
-        stroke="#f0c0c0" strokeWidth="0.45" opacity="0.8" />)}
+        stroke="#d09090" strokeWidth="1.0" />)}
       {vGrid.map(x => <line key={`pv${x}`} x1={x} y1="18" x2={x} y2="388"
-        stroke="#f0c0c0" strokeWidth="0.45" opacity="0.8" />)}
+        stroke="#d09090" strokeWidth="1.0" />)}
 
       {/* ── Avenidas con título hover ── */}
       <g><title>Av. Sáenz</title>
@@ -221,9 +221,9 @@ function NuevaPompeyaBackground() {
 
       {/* ── Grilla de manzanas ── */}
       {hGrid.map(y => <line key={`nh${y}`} x1="18" y1={y} x2="482" y2={y}
-        stroke="#d0ccc8" strokeWidth="0.45" opacity="0.8" />)}
+        stroke="#a0a09a" strokeWidth="1.0" />)}
       {vGrid.map(x => <line key={`nv${x}`} x1={x} y1="18" x2={x} y2="355"
-        stroke="#d0ccc8" strokeWidth="0.45" opacity="0.8" />)}
+        stroke="#a0a09a" strokeWidth="1.0" />)}
 
       {/* ── Avenidas con título hover ── */}
       <g><title>Av. Osvaldo Cruz</title>
