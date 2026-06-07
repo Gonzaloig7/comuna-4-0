@@ -11,7 +11,8 @@
  *   onSelectPlaza — callback(plaza) al hacer click
  */
 
-import { useState, useEffect, useCallback, useMemo } from 'react'
+import { useState, useEffect, useMemo } from 'react'
+import POLIGONOS from '../data/barrios-poligonos.json'
 
 // ── Overpass API (2 endpoints como fallback) ────────────────────────────────
 const ENDPOINTS = [
@@ -70,6 +71,15 @@ function makeProject({ south, west, north, east }) {
   })
 }
 
+// Convierte polígono [lat,lng][] a path SVG usando el proyector
+function buildBoundaryPath(polygon, project) {
+  if (!polygon?.length) return null
+  return polygon.map(([lat, lng], i) => {
+    const { x, y } = project(lat, lng)
+    return `${i === 0 ? 'M' : 'L'}${x.toFixed(2)},${y.toFixed(2)}`
+  }).join(' ') + ' Z'
+}
+
 // Convierte array de puntos SVG a un atributo "d" de <path>
 function toPath(pts) {
   if (!pts?.length) return ''
@@ -100,6 +110,7 @@ function labelAngle(pts) {
 export default function MapaBarrioOSM({
   plazas = [],
   barrio = '',
+  barrioId = '',
   boundingBox,
   colorPrimario = '#C2185B',
   onSelectPlaza,
@@ -110,6 +121,15 @@ export default function MapaBarrioOSM({
 
   // Proyector estable (solo recalcula si cambia el bounding box)
   const project = useMemo(() => makeProject(boundingBox), [boundingBox])
+
+  // Polígono del barrio desde datos locales (sin fetch extra)
+  const boundaryPath = useMemo(
+    () => buildBoundaryPath(POLIGONOS[barrioId], project),
+    [barrioId, project]
+  )
+
+  const clipId = `clip-${barrioId}`
+  const maskId = `mask-${barrioId}`
 
   // Fetch al montar / cuando cambia el bounding box
   useEffect(() => {
@@ -158,10 +178,32 @@ export default function MapaBarrioOSM({
       viewBox={`0 0 ${SVG_W} ${SVG_H}`}
       className="w-full max-w-2xl mx-auto"
       role="img"
-      aria-label={`Mapa de ${barrio} con calles reales de OpenStreetMap`}
+      aria-label={`Mapa de ${barrio} — OpenStreetMap`}
     >
-      {/* ── Fondo ── */}
-      <rect width={SVG_W} height={SVG_H} fill="#fdf0f5" rx="4" />
+      <defs>
+        {boundaryPath && (
+          <>
+            {/* ClipPath: recorta calles y plazas al polígono real del barrio */}
+            <clipPath id={clipId}>
+              <path d={boundaryPath} />
+            </clipPath>
+            {/* Mask: para oscurecer el área exterior al barrio */}
+            <mask id={maskId}>
+              <rect width={SVG_W} height={SVG_H} fill="white" />
+              <path d={boundaryPath} fill="black" />
+            </mask>
+          </>
+        )}
+      </defs>
+
+      {/* ── Fondo exterior (zona fuera del barrio, más oscura) ── */}
+      <rect width={SVG_W} height={SVG_H} fill="#e8d8e0" rx="4" />
+
+      {/* ── Fondo interior del barrio ── */}
+      {boundaryPath
+        ? <path d={boundaryPath} fill="#fdf0f5" />
+        : <rect width={SVG_W} height={SVG_H} fill="#fdf0f5" rx="4" />
+      }
 
       {/* ── Loading ── */}
       {loading && (
@@ -188,9 +230,9 @@ export default function MapaBarrioOSM({
         </text>
       )}
 
-      {/* ── Mapa real ── */}
+      {/* ── Mapa — todo recortado al polígono del barrio ── */}
       {!loading && !error && osm && (
-        <>
+        <g clipPath={boundaryPath ? `url(#${clipId})` : undefined}>
           {/* Espacios verdes */}
           {osm.greens.map(g => (
             <path key={g.id}
@@ -199,7 +241,7 @@ export default function MapaBarrioOSM({
               stroke="#a5d6a7" strokeWidth="0.5" />
           ))}
 
-          {/* Calles (ordenadas por z-index: finas debajo, avenidas encima) */}
+          {/* Calles por z-order (finas debajo, avenidas encima) */}
           {HW_ORDER.map(hw =>
             osm.streets
               .filter(s => s.tags.highway === hw)
@@ -220,8 +262,7 @@ export default function MapaBarrioOSM({
                         transform={`rotate(${ang.toFixed(1)},${mid.x.toFixed(1)},${mid.y.toFixed(1)})`}
                         paintOrder="stroke" stroke="white" strokeWidth="2.5"
                         strokeLinejoin="round"
-                        className="select-none pointer-events-none"
-                      >
+                        className="select-none pointer-events-none">
                         {s.tags.name}
                       </text>
                     )}
@@ -230,31 +271,23 @@ export default function MapaBarrioOSM({
               })
           )}
 
-          {/* Marcadores de plazas */}
+          {/* Plazas */}
           {projPlazas.map(p => (
-            <g
-              key={p.id}
+            <g key={p.id}
               onClick={() => onSelectPlaza?.(p)}
               role="button"
               aria-label={`${p.nombre}${p.visitada ? ' — visitada' : ' — por visitar'}`}
-              className="plaza-marker"
-            >
-              {/* Área táctil ampliada */}
+              className="plaza-marker">
               <circle cx={p.pos.x} cy={p.pos.y} r="22" fill="transparent" />
-              {/* Halo */}
               <circle cx={p.pos.x} cy={p.pos.y} r="14"
                 fill={p.visitada ? '#22c55e' : '#9ca3af'} opacity="0.18" />
-              {/* Círculo principal */}
               <circle cx={p.pos.x} cy={p.pos.y} r="9"
                 fill={p.visitada ? '#22c55e' : '#9ca3af'}
                 stroke="white" strokeWidth="2" />
-              {/* Ícono de video si fue visitada */}
               {p.visitada && (
-                <text x={p.pos.x + 9} y={p.pos.y - 7}
-                  fontSize="9" textAnchor="middle"
+                <text x={p.pos.x + 9} y={p.pos.y - 7} fontSize="9" textAnchor="middle"
                   className="select-none pointer-events-none">▶</text>
               )}
-              {/* Label con contorno blanco */}
               <text x={p.pos.x} y={p.pos.y + 23} fontSize="7.5" fontWeight="600"
                 fill="white" stroke="white" strokeWidth="3" strokeLinejoin="round"
                 textAnchor="middle" paintOrder="stroke"
@@ -270,10 +303,24 @@ export default function MapaBarrioOSM({
               </text>
             </g>
           ))}
-        </>
+        </g>
       )}
 
-      {/* ── Borde del mapa ── */}
+      {/* ── Sombra exterior (fuera del barrio) ── */}
+      {boundaryPath && (
+        <rect width={SVG_W} height={SVG_H}
+          fill="rgba(120,60,90,0.12)"
+          mask={`url(#${maskId})`} />
+      )}
+
+      {/* ── Borde del polígono del barrio ── */}
+      {boundaryPath && (
+        <path d={boundaryPath} fill="none"
+          stroke={colorPrimario} strokeWidth="2"
+          strokeLinejoin="round" opacity="0.8" />
+      )}
+
+      {/* Borde del SVG */}
       <rect x="2" y="2" width={SVG_W - 4} height={SVG_H - 4}
         fill="none" stroke="#C4B49A" strokeWidth="1" rx="4" />
     </svg>

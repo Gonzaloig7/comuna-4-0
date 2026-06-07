@@ -95,6 +95,7 @@ export default function Barrio() {
       <main className="flex-1 px-3 pt-2 max-w-2xl mx-auto w-full">
         <MapaBarrioOSM
           barrio={barrio.nombre}
+          barrioId={barrio.id}
           plazas={barrio.plazas}
           boundingBox={BOUNDING_BOXES[barrio.id]}
           colorPrimario={barrio.colorPrimario}
