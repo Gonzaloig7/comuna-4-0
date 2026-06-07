@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
-import MapaBarrio from '../components/MapaBarrio.jsx'
+import MapaBarrioOSM from '../components/MapaBarrioOSM.jsx'
 import PlazaModal from '../components/PlazaModal.jsx'
 import data from '../data/comuna4.json'
+import { BOUNDING_BOXES } from '../data/boundingBoxes.js'
 
 export default function Barrio() {
   const { id } = useParams()
@@ -90,9 +91,15 @@ export default function Barrio() {
         </div>
       </div>
 
-      {/* ── Mapa del barrio ─────────────────────────────── */}
+      {/* ── Mapa del barrio (calles reales desde OpenStreetMap) ─────── */}
       <main className="flex-1 px-3 pt-2 max-w-2xl mx-auto w-full">
-        <MapaBarrio barrio={barrio} onSelectPlaza={setPlazaSeleccionada} />
+        <MapaBarrioOSM
+          barrio={barrio.nombre}
+          plazas={barrio.plazas}
+          boundingBox={BOUNDING_BOXES[barrio.id]}
+          colorPrimario={barrio.colorPrimario}
+          onSelectPlaza={setPlazaSeleccionada}
+        />
 
         {/* ── Lista de plazas ──────────────────────────── */}
         <section className="mt-6 px-2">
