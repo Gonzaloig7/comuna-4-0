@@ -27,11 +27,12 @@ async function runQuery(queryStr) {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body,
-        signal: AbortSignal.timeout(30_000),
       })
       if (!res.ok) continue
       return await res.json()
-    } catch { /* try next */ }
+    } catch (e) {
+      console.warn('[MapaBarrioOSM] Overpass error:', url, e?.message)
+    }
   }
   throw new Error('No se pudo conectar con OpenStreetMap.')
 }
